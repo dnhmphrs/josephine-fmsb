@@ -1,0 +1,169 @@
+{
+  "_readme": "This file holds ALL text shown on the site. Edit the values, not the keys. Every entry has an English (en) and Chinese (zh) version — keep both filled in. You can use simple HTML inside the text: <br/> makes a line break, and &amp; is the & symbol. Don't rename keys or remove commas/quotes/brackets. After editing, save and redeploy.",
+
+  "siteTitle": {
+    "en": "Josephine Shen",
+    "zh": "沈约瑟芬"
+  },
+
+  "metaDescription": {
+    "en": "Josephine Shen — research and strategy at the meeting point of AI, security, and the state.",
+    "zh": "沈约瑟芬——研究与战略，立于人工智能、安全与国家的交汇之处。"
+  },
+
+  "ui": {
+    "logo":        { "en": "JOSEPHINE SHEN", "zh": "沈约瑟芬" },
+    "nav_about":   { "en": "Index",   "zh": "概览" },
+    "nav_work":    { "en": "Work",    "zh": "作品" },
+    "nav_contact": { "en": "Contact", "zh": "联系" },
+
+    "eyebrow": {
+      "en": "Research &amp; strategy / AI · security · the state",
+      "zh": "研究与战略 / 人工智能 · 安全 · 国家"
+    },
+    "hero": {
+      "en": "Working where statecraft meets computation.",
+      "zh": "工作于治国之道与计算的交汇之处。"
+    },
+
+    "about_head": { "en": "Profile", "zh": "简介" },
+    "about_p1": {
+      "en": "I work across the whole body of technology governance — not a single domain — connecting the right people on the right problems. My work is deliberately interdisciplinary: I pull together vocabularies from fields that rarely speak, and build the talent to tackle them.",
+      "zh": "我关注技术治理的整体——而非单一领域——把合适的人聚到合适的议题上。我的工作有意跨越学科：把鲜少对话的领域的语汇汇聚到一起，并培养能应对这些问题的人才。"
+    },
+    "about_p2": {
+      "en": "It is international in scope, with working access across Europe and China, and grounded in commercial ML experience with European companies — close to AI weapons proliferation and the questions it raises. I make change at the level of systems.",
+      "zh": "工作范围具国际性，在欧洲与中国均有实际接触，并以同欧洲企业合作的商业机器学习经验为基础——贴近人工智能武器扩散及其引发的问题。我在系统层面推动改变。"
+    },
+
+    "contact_head": { "en": "Contact", "zh": "联系" },
+    "contact_note": {
+      "en": "Available for select work &amp; advisory.",
+      "zh": "接受精选合作与咨询。"
+    },
+
+    "roles_head": { "en": "Practice", "zh": "实践" },
+    "roles_list": {
+      "en": "Researcher<br/>Facilitator<br/>Bridge-builder<br/>Sense-maker<br/>Convener<br/>Organiser",
+      "zh": "研究者<br/>协调者<br/>搭桥者<br/>释义者<br/>召集者<br/>组织者"
+    },
+
+    "fig_caption": {
+      "en": "The technology–policy stack. Work concentrates at the governance layer — the interface where infrastructure, capability, and the state meet.",
+      "zh": "技术—政策栈。工作集中于治理层——基础设施、能力与国家相交的界面。"
+    },
+
+    "work_head": { "en": "Selected Work", "zh": "精选作品" },
+    "work_note": { "en": "Select to read", "zh": "点击展开" },
+    "read_more": { "en": "Read in full", "zh": "阅读全文" },
+
+    "foot_label": { "en": "Contact",  "zh": "联系" },
+    "f_email":    { "en": "Email",    "zh": "邮箱" },
+    "f_linkedin": { "en": "LinkedIn", "zh": "领英" },
+    "f_based":    { "en": "Based in", "zh": "所在地" },
+    "f_lang":     { "en": "Languages","zh": "语言" },
+    "foot_name":  { "en": "Josephine Shen", "zh": "沈约瑟芬" }
+  },
+
+  "contact": {
+    "email":         "[ email ]",
+    "linkedinLabel": "[ handle ]",
+    "linkedinUrl":   "#",
+    "city":          { "en": "Berlin", "zh": "柏林" },
+    "languages":     "English · 中文",
+    "year":          "2026"
+  },
+
+  "work": [
+    {
+      "yr": "2025—",
+      "title": { "en": "Fellow, AIxist", "zh": "AIxist 研究员" },
+      "body": {
+        "en": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "zh": [
+          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
+          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
+        ]
+      },
+      "readMoreUrl": "#"
+    },
+    {
+      "yr": "2024—",
+      "title": { "en": "Grassroots Facilitation", "zh": "基层协调" },
+      "body": {
+        "en": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "zh": [
+          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
+          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
+        ]
+      },
+      "readMoreUrl": "#"
+    },
+    {
+      "yr": "2023—",
+      "title": { "en": "Workshops & Convening", "zh": "工作坊与召集" },
+      "body": {
+        "en": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "zh": [
+          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
+          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
+        ]
+      },
+      "readMoreUrl": "#"
+    },
+    {
+      "yr": "2023",
+      "title": { "en": "Organising", "zh": "组织工作" },
+      "body": {
+        "en": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "zh": [
+          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
+          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
+        ]
+      },
+      "readMoreUrl": "#"
+    },
+    {
+      "yr": "2022—",
+      "title": { "en": "Research", "zh": "研究" },
+      "body": {
+        "en": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "zh": [
+          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
+          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
+        ]
+      },
+      "readMoreUrl": "#"
+    },
+    {
+      "yr": "2020—22",
+      "title": { "en": "Industry & ML", "zh": "产业与机器学习" },
+      "body": {
+        "en": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "zh": [
+          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
+          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
+        ]
+      },
+      "readMoreUrl": "#"
+    }
+  ]
+}

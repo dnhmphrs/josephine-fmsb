@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Josephine Shen</title>
+  <meta name="description" content="Josephine Shen — research and strategy at the meeting point of AI, security, and the state." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="#top" class="logo" id="logo" data-i18n="logo">JOSEPHINE SHEN</a>
+      <div class="nav-meta">
+        <div class="nav-links">
+          <a href="#about" data-i18n="nav_about">Index</a>
+          <a href="#work" data-i18n="nav_work">Work</a>
+          <a href="#contact" data-i18n="nav_contact">Contact</a>
+        </div>
+        <button class="lang-toggle" id="langToggle" data-lang="en" aria-label="Language — English / 中文">
+          <span class="seg en">EN</span><span class="seg zh">中</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <p class="eyebrow reveal" data-i18n="eyebrow">Research &amp; strategy / AI · security · the state</p>
+    <h2 id="heroH2" data-i18n="hero">Working where statecraft meets computation.</h2>
+  </header>
+
+  <!-- INTRO / INDEX -->
+  <section class="intro" id="about">
+    <div class="intro-grid">
+      <div class="col-bio reveal">
+        <div class="col-head"><span data-i18n="about_head">Profile</span></div>
+        <p data-i18n="about_p1"></p>
+        <p data-i18n="about_p2"></p>
+      </div>
+      <div class="col-contact reveal">
+        <div class="col-head"><span data-i18n="contact_head">Contact</span></div>
+        <a href="#" class="contact-link mono-en-keep" data-email>[ email ]</a>
+        <div class="contact-note" data-i18n="contact_note"></div>
+      </div>
+      <div class="col-roles reveal">
+        <div class="col-head"><span data-i18n="roles_head">Practice</span></div>
+        <div class="col-list" data-i18n="roles_list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIGURE: ISOMETRIC STACK -->
+  <section class="figure" id="figure">
+    <figure class="fig-frame reveal">
+      <span class="fig-tag"><span class="ft-dot"></span><span class="mono-en-keep">FIG. 01</span></span>
+      <div class="fig-inner">
+        <svg class="stack-svg" viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg" aria-label="Isometric diagram of the technology-policy stack">
+          <defs>
+            <style>
+              .lyr{fill:none;stroke:var(--fg);stroke-width:1.4;}
+              .lyr-fill{fill:var(--bg);opacity:.65;}
+              .lyr-hi{fill:none;stroke:var(--lilac);stroke-width:2.2;}
+              .lyr-glow{fill:var(--lilac);opacity:.12;}
+              .conn{stroke:var(--fg-2);stroke-width:1;stroke-dasharray:3 4;fill:none;opacity:.7;}
+              .node{fill:var(--lilac);}
+            </style>
+          </defs>
+          <g transform="translate(0,0)"><polygon class="lyr-fill" points="300,70 560,30 760,110 500,150"/><polygon class="lyr" points="300,70 560,30 760,110 500,150"/></g>
+          <g transform="translate(0,86)"><polygon class="lyr-fill" points="280,70 540,30 740,110 480,150"/><polygon class="lyr" points="280,70 540,30 740,110 480,150"/></g>
+          <g transform="translate(0,172)"><polygon class="lyr-glow" points="260,70 520,30 720,110 460,150"/><polygon class="lyr-hi" points="260,70 520,30 720,110 460,150"/></g>
+          <g transform="translate(0,258)"><polygon class="lyr-fill" points="240,70 500,30 700,110 440,150"/><polygon class="lyr" points="240,70 500,30 700,110 440,150"/></g>
+          <g transform="translate(0,344)"><polygon class="lyr-fill" points="220,70 480,30 680,110 420,150"/><polygon class="lyr" points="220,70 480,30 680,110 420,150"/></g>
+          <line class="conn" x1="500" y1="110" x2="420" y2="494"/>
+          <circle class="node" cx="490" cy="232" r="4.6"/>
+          <circle class="node" cx="430" cy="488" r="3.6"/>
+        </svg>
+      </div>
+    </figure>
+    <figcaption class="fig-caption reveal">
+      <span class="cap-no mono-en-keep">FIG. 01</span>
+      <span class="cap-text" data-i18n="fig_caption"></span>
+    </figcaption>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="work-head">
+      <span class="wt" data-i18n="work_head">Selected Work</span>
+      <span class="wh-note" data-i18n="work_note">Select to read</span>
+    </div>
+    <div class="work-list" id="workList"><!-- items injected from content.json --></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-head reveal">
+      <span class="fh-label" data-i18n="foot_label">Contact</span>
+      <span class="fh-code mono-en-keep">//</span>
+    </div>
+    <div class="footer-grid">
+      <div class="reveal"><div class="fk" data-i18n="f_email">Email</div><div class="fv"><a href="#" class="mono-en-keep" data-email>[ email ]</a></div></div>
+      <div class="reveal"><div class="fk" data-i18n="f_linkedin">LinkedIn</div><div class="fv"><a href="#" class="mono-en-keep" data-linkedin>[ handle ]</a></div></div>
+      <div class="reveal"><div class="fk" data-i18n="f_based">Based in</div><div class="fv" data-city></div></div>
+      <div class="reveal"><div class="fk" data-i18n="f_lang">Languages</div><div class="fv mono-en-keep" data-languages></div></div>
+    </div>
+    <div class="footer-bar">
+      <span data-i18n="foot_name">Josephine Shen</span>
+      <span class="mono-en-keep" data-year></span>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
