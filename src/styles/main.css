@@ -19,7 +19,12 @@
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;}
+html{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  scroll-behavior:smooth;
+  background:linear-gradient(var(--bg) 50%, var(--invert-bg) 50%);
+}
 body{
   background-color:var(--bg);color:var(--fg);
   background-image:
