@@ -24,9 +24,17 @@ body{
   background-color:var(--bg);color:var(--fg);
   background-image:
     linear-gradient(rgba(28,27,26,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(28,27,26,.045) 1px, transparent 1px);
-  background-size:32px 32px;
-  background-position:-1px -1px;
+    linear-gradient(90deg, rgba(28,27,26,.045) 1px, transparent 1px),
+    /* overscroll tail: cream for the whole page, switching to the footer's
+       dark colour for the bottom band. The footer block sits over this band so
+       the hard transition line is never visible; the bottom rubber-band bounce
+       reveals the dark tail instead of the page background. On browsers where
+       the body controls the bounce colour (Safari/iOS) this gives a cream top
+       bounce and a dark bottom bounce with no JS. */
+    linear-gradient(to bottom, var(--bg) calc(100% - 360px), var(--invert-bg) calc(100% - 360px));
+  background-size:32px 32px, 32px 32px, 100% 100%;
+  background-position:-1px -1px, -1px -1px, 0 0;
+  background-repeat:repeat, repeat, no-repeat;
   font-family:var(--mono);font-weight:400;font-size:16px;line-height:1.4;
   overflow-x:hidden;
   font-feature-settings:"liga" 0;
@@ -72,18 +80,16 @@ body.lang-zh .mono-en-keep{font-family:var(--mono);}
   letter-spacing:-.02em;
   text-transform:uppercase;
   max-width:24ch;
+  /* hidden start state — the whole headline rises and fades in as one unit
+     when the `ready` class is added by JS */
   opacity:0;
-  transition:opacity .3s var(--ease);
+  transform:translateY(22px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease);
 }
-.hero h2.ready{opacity:1;}
+.hero h2.ready{opacity:1;transform:none;}
 body.lang-zh .hero h2{letter-spacing:0;line-height:1.16;max-width:20ch;}
 .hero h2 .dot{color:var(--lilac);}
-
-/* hero reveal — line-based clip+rise, identical feel in both languages */
-.hero h2 .line{display:block;overflow:hidden;}
-.hero h2 .line .inner{display:block;transform:translateY(105%);transition:transform .7s var(--ease);}
-.hero h2 .line.in .inner{transform:none;}
-@media(prefers-reduced-motion:reduce){ .hero h2 .line .inner{transform:none!important;} }
+@media(prefers-reduced-motion:reduce){ .hero h2{opacity:1!important;transform:none!important;transition:none!important;} }
 
 /* ---------- INTRO COLUMNS ---------- */
 .intro{padding:clamp(40px,6vw,72px) var(--gut) clamp(48px,6.5vw,84px);background:var(--bg);border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);}
