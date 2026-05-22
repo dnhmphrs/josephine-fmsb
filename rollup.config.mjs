@@ -20,11 +20,16 @@ const indexTemplate = readFileSync(resolve(__dirname, 'src/index.html'), 'utf8')
 const articleTemplate = readFileSync(resolve(__dirname, 'src/article.html'), 'utf8');
 
 // shared helper: inject the built <link>/<script> tags into a hand-written page.
-// `withScript` is false for static pages (like the article) that need no JS.
-const injectAssets = (tpl, files, { withScript }) => {
-  const links = (files.css || [])
-    .map((f) => `<link rel="stylesheet" href="/${f.fileName}" />`)
-    .join('\n  ');
+// `withScript` is false for static pages that need no JS.
+// `withCss` is false for pages that link the stylesheet themselves (the article
+// links /assets/styles.css directly, so it doesn't need injection — this avoids
+// a fragile dependency on the second html() instance receiving the CSS asset).
+const injectAssets = (tpl, files, { withScript, withCss = true }) => {
+  const links = withCss
+    ? (files.css || [])
+        .map((f) => `<link rel="stylesheet" href="/${f.fileName}" />`)
+        .join('\n  ')
+    : '';
   const scripts = withScript
     ? (files.js || [])
         .map((f) => `<script type="module" src="/${f.fileName}"></script>`)
@@ -33,7 +38,7 @@ const injectAssets = (tpl, files, { withScript }) => {
   return tpl
     // strip any dev-only module script tags we authored into the source files
     .replace(/\s*<script type="module" src="\/js\/main\.js"><\/script>/, '')
-    .replace('</head>', `  ${links}\n</head>`)
+    .replace('</head>', links ? `  ${links}\n</head>` : '</head>')
     .replace('</body>', scripts ? `  ${scripts}\n</body>` : '</body>');
 };
 
@@ -59,10 +64,10 @@ export default {
       fileName: 'index.html',
       template: ({ files }) => injectAssets(indexTemplate, files, { withScript: true }),
     }),
-    // article page — static, gets the shared stylesheet only (no script)
+    // article page — static; it links /assets/styles.css itself, so inject nothing
     html({
       fileName: 'article.html',
-      template: ({ files }) => injectAssets(articleTemplate, files, { withScript: false }),
+      template: ({ files }) => injectAssets(articleTemplate, files, { withScript: false, withCss: false }),
     }),
     // copy anything in /public (favicons, images, etc.) straight to dist
     copy({
