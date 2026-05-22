@@ -74,6 +74,62 @@
     "year":          "2026"
   },
 
+  "diagram": {
+    "_note": "The interactive figure. Three top layers (one word each), each with three sublayers. Each sublayer has a label and a short note shown in a card to its right. Keep three layers × three subs, and both languages filled.",
+    "en": [
+      {
+        "label": "State",
+        "subs": [
+          { "label": "Regulatory Design",      "note": "Rules, mandates, and the levers of compliance." },
+          { "label": "Institutional Strategy", "note": "How agencies and bodies actually move." },
+          { "label": "Standards & Norms",       "note": "The soft architecture that hardens over time." }
+        ]
+      },
+      {
+        "label": "Industry",
+        "subs": [
+          { "label": "Commercial ML",       "note": "Where capability is built and shipped." },
+          { "label": "Deployment & Safety", "note": "Getting systems into the world responsibly." },
+          { "label": "Procurement",         "note": "The contracts that shape what gets made." }
+        ]
+      },
+      {
+        "label": "Grassroots",
+        "subs": [
+          { "label": "Community Convening", "note": "Bringing the right people to the table." },
+          { "label": "Field-Building",      "note": "Growing the talent the work requires." },
+          { "label": "Public Interest",     "note": "Keeping the public in public policy." }
+        ]
+      }
+    ],
+    "zh": [
+      {
+        "label": "国家",
+        "subs": [
+          { "label": "监管设计",   "note": "规则、授权与合规的杠杆。" },
+          { "label": "制度战略",   "note": "各机构与组织如何真正行动。" },
+          { "label": "标准与规范", "note": "随时间固化的软性架构。" }
+        ]
+      },
+      {
+        "label": "产业",
+        "subs": [
+          { "label": "商业机器学习", "note": "能力在此构建并交付。" },
+          { "label": "部署与安全",   "note": "以负责任的方式将系统落地。" },
+          { "label": "采购",         "note": "塑造产出的合同与采买。" }
+        ]
+      },
+      {
+        "label": "基层",
+        "subs": [
+          { "label": "社区召集", "note": "把合适的人聚到一起。" },
+          { "label": "领域建设", "note": "培养工作所需的人才。" },
+          { "label": "公共利益", "note": "让公共政策守住公共。" }
+        ]
+      }
+    ]
+  },
+
   "work": [
     {
       "yr": "2025—",
