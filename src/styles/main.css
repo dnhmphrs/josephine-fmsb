@@ -19,13 +19,19 @@
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;
-  /* Overscroll / rubber-band background: cream on the top half, footer dark
-     on the bottom half, pinned to the viewport. The page content (body) sits
-     on top and covers this normally; it only shows through when you bounce
-     past the top (cream) or past the footer (dark). */
-  background:linear-gradient(to bottom, var(--bg) 0 50%, var(--invert-bg) 50% 100%) fixed;
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;}
+
+/* Bottom-overscroll backstop: a fixed bar pinned to the bottom of the viewport,
+   sitting behind all content, painted the footer colour. The page background
+   (body, cream) covers it normally; it only shows through when you rubber-band
+   scroll past the footer. The top overscroll is untouched and stays cream. */
+.overscroll-bottom{
+  position:fixed;
+  left:0;right:0;bottom:0;
+  height:50vh;
+  background:var(--invert-bg);
+  z-index:-1;
+  pointer-events:none;
 }
 body{
   background-color:var(--bg);color:var(--fg);
