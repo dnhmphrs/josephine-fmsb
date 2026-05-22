@@ -94,7 +94,7 @@ body.lang-zh .mono-en-keep{font-family:var(--mono);}
   line-height:1.04;
   letter-spacing:-.02em;
   /* text-transform:uppercase; */
-  max-width:24ch;
+  max-width:25ch;
   opacity:0;
   transition:opacity .3s var(--ease);
   /* font-family: var(--prose); */
