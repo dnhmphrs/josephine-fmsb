@@ -135,6 +135,8 @@ body.lang-zh .hero h2{letter-spacing:0;line-height:1.16;max-width:20ch;}
 .fig-caption .cap-text{flex:1 1 auto;font-family:var(--mono);font-size:13.5px;line-height:1.55;color:var(--fg-2);}
 body.lang-zh .fig-caption .cap-text{font-family:var(--mono-cjk);line-height:1.7;}
 
+#stack-mount{ position:relative; width:100%; min-height:clamp(640px,80vh,800px); }
+
 /* ---------- WORK INDEX (expanding list) ---------- */
 .work{padding:0 var(--gut) clamp(56px,8vw,110px);}
 .work-head{display:flex;justify-content:space-between;align-items:baseline;padding:clamp(20px,2.4vw,28px) 0 clamp(18px,2vw,26px);}
