@@ -133,10 +133,10 @@
        return `<span class="line"><span class="inner">${str}</span></span>`;
      }).join('');
    
+     h.classList.add('ready');
      const lineEls = h.querySelectorAll('.line');
      if (reveal) {
-       // reveal + staggered clip-and-rise, measured against the loaded font
-       h.classList.add('ready');
+       // staggered clip-and-rise
        heroRevealed = true;
        lineEls.forEach((el, i) => {
          setTimeout(() => el.classList.add('in'), 120 + i * 140);
@@ -144,12 +144,10 @@
      } else if (heroRevealed) {
        // re-layout (e.g. on resize) after the reveal already played:
        // snap lines into their final position with no animation
-       h.classList.add('ready');
        lineEls.forEach((el) => el.classList.add('in'));
      }
-     // if !reveal and not yet revealed, stay hidden (opacity:0) — the silent pass
-     // only measures line breaks; the font-ready pass calls splitHero(true) to
-     // reveal, so the fallback-font layout is never shown and never reflows.
+     // if !reveal and not yet revealed, leave lines clipped — the font-ready
+     // pass will call splitHero(true) to play the reveal.
    }
    
    /* ---------------------------------------------------------------------------
@@ -218,38 +216,34 @@
        setLang(lang === 'en' ? 'zh' : 'en');
      });
    
-     // The hero animation measures where each word wraps. If we measure before
-     // the web fonts have loaded, the browser is still using a fallback font with
-     // different letter widths — so the lines wrap differently and visibly reflow
-     // ("jump") when the real font arrives. To avoid that, do a silent layout
-     // pass now (no rise animation), then re-measure and play the reveal once the
-     // fonts are actually ready.
+     // Lay out the page (text, work list, hero) up front. It's still hidden by the
+     // `fonts-loading` gate on <body>, so nothing is visible yet — which means the
+     // user never sees the fallback-font layout. We don't play the hero reveal yet.
+     setLang('en', false);
+   
+     // Reveal the page once the web fonts are ready: drop the gate so the content
+     // fades in (already in the correct fonts, so no reflow/jump), then play the
+     // hero animation now that everything is measured against the real fonts.
+     let revealed = false;
+     const revealPage = () => {
+       if (revealed) return;
+       revealed = true;
+       document.body.classList.remove('fonts-loading');
+       splitHero(true); // re-measure against real fonts + play the rise
+     };
+   
      const fontsReady = document.fonts && document.fonts.ready;
-     if (fontsReady && document.fonts.status !== 'loaded') {
-       // first paint: silently measure line breaks against the fallback, but stay
-       // hidden (splitHero(false) no longer reveals) so no fallback layout shows.
-       setLang('en', false);
-   
-       // Reveal as soon as the hero's actual font is ready. The hero <h2> is
-       // Inconsolata 700 (and Noto Sans SC 700 in Chinese), so wait on those
-       // specifically rather than all page fonts — the big CJK serif used
-       // elsewhere shouldn't delay the headline.
-       let revealed = false;
-       const reveal = () => { if (!revealed) { revealed = true; splitHero(true); } };
-   
+     if (fontsReady) {
+       // nudge the browser to fetch the weights the hero actually uses
        Promise.all([
          document.fonts.load('700 4rem Inconsolata'),
-         document.fonts.load('700 4rem "Noto Sans SC"'),
-       ]).then(reveal).catch(() => {});
-   
-       // backups: when everything is ready, and a hard timeout in case a font
-       // never resolves (e.g. blocked CDN) so the headline always appears.
-       document.fonts.ready.then(reveal);
-       setTimeout(reveal, 2000);
-     } else {
-       // fonts already cached, or API unsupported — just go
-       setLang('en', true);
+         document.fonts.load('500 2rem Newsreader'),
+       ]).catch(() => {});
+       document.fonts.ready.then(revealPage);
      }
+     // safety net: reveal anyway after 2s if fonts.ready never resolves
+     // (or if the Font Loading API is unavailable)
+     setTimeout(revealPage, 2000);
    
      // re-measure hero line breaks on resize (layout only, no re-animation)
      let resizeTimer;
