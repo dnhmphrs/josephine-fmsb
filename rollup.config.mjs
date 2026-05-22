@@ -8,7 +8,7 @@ import postcss from 'rollup-plugin-postcss';
 import html from '@rollup/plugin-html';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
-import { terser } from '@rollup/plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
