@@ -25,6 +25,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/styles.css" />
+  <style>
+    /* Critical layout — inlined so the A4 column applies even if the bundled
+       stylesheet fails to load. !important guards against any later override. */
+    main.article{
+      max-width:760px !important;
+      margin-left:auto !important;
+      margin-right:auto !important;
+      padding-left:clamp(20px,4.5vw,64px) !important;
+      padding-right:clamp(20px,4.5vw,64px) !important;
+    }
+  </style>
 </head>
 <body>
 
