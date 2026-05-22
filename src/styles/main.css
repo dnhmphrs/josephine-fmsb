@@ -89,14 +89,15 @@ body.lang-zh .mono-en-keep{font-family:var(--mono);}
 .hero .eyebrow{display:flex;gap:14px;align-items:center;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:clamp(28px,4vw,52px);}
 .hero .eyebrow::before{content:"";width:36px;height:2px;background:var(--lilac);}
 .hero h2{
-  font-weight:700;
-  font-size:clamp(28px,5.4vw,68px);
+  font-weight:500;
+  font-size:clamp(28px,5.4vw,54px);
   line-height:1.04;
-  letter-spacing:-.02em;
-  text-transform:uppercase;
-  max-width:24ch;
+  /* letter-spacing:-.02em; */
+  /* text-transform:uppercase; */
+  max-width:20ch;
   opacity:0;
   transition:opacity .3s var(--ease);
+  font-family: var(--prose);
 }
 .hero h2.ready{opacity:1;}
 body.lang-zh .hero h2{letter-spacing:0;line-height:1.16;max-width:20ch;}
