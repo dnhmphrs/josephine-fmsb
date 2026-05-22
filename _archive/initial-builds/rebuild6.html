@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Josephine Shen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --white:#fbfaf7;        /* gallery white */
+    --paper:#f4f3ef;        /* faint warm white */
+    --ink:#1c1c1a;
+    --soft:#5c5b54;
+    --faint:#9a988f;
+    --line:#e2e0d8;
+
+    /* from the reference */
+    --green:#6cb238;        /* vivid grass-green tile */
+    --green-deep:#5a9a2e;
+    --green-line:#ffffff;   /* white grout */
+    --concrete:#8d8b86;     /* raw concrete mid */
+    --concrete-d:#6f6d68;
+    --slate:#2b2c2a;        /* polished floor / footer */
+    --slate-soft:#9fa09a;
+
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+  body{background:var(--white);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;}
+  ::selection{background:var(--green);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1500px;margin:0 auto;padding:0 clamp(28px,5vw,90px);}
+  .mono{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);font-weight:400;}
+
+  /* concrete texture used across panels */
+  .concrete-tex{
+    background-color:var(--concrete);
+    background-image:
+      radial-gradient(120% 80% at 20% 10%, rgba(255,255,255,.10), transparent 50%),
+      radial-gradient(100% 60% at 80% 90%, rgba(0,0,0,.16), transparent 55%),
+      radial-gradient(60% 40% at 60% 40%, rgba(0,0,0,.10), transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.06'/></svg>");
+  }
+
+  /* ---------- nav ---------- */
+  .topnav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(251,250,247,.86);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .4s;}
+  .topnav.scrolled{border-bottom:1px solid var(--line);}
+  .topnav .bar{max-width:1500px;margin:0 auto;padding:clamp(15px,1.9vw,21px) clamp(28px,5vw,90px);display:flex;justify-content:space-between;align-items:center;}
+  .brand{font-family:var(--serif);font-size:15px;font-weight:500;letter-spacing:.03em;}
+  .brand .dot{color:var(--green);}
+  .topnav .links{display:flex;gap:clamp(18px,2.2vw,34px);}
+  .topnav .links a{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);position:relative;transition:color .3s;}
+  .topnav .links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--green);transition:width .35s;}
+  .topnav .links a:hover{color:var(--ink);}
+  .topnav .links a:hover::after{width:100%;}
+  @media(max-width:680px){ .topnav .links{display:none;} }
+
+  /* ---------- HERO — full bleed, green tile field with wavy concrete cut ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;}
+  /* green tiled upper field */
+  .hero .tilefield{
+    position:absolute;inset:0;
+    background-color:var(--green);
+    background-image:
+      linear-gradient(var(--green-line) 1.5px, transparent 1.5px),
+      linear-gradient(90deg, var(--green-line) 1.5px, transparent 1.5px);
+    background-size:clamp(58px,6vw,92px) clamp(58px,6vw,92px);
+    background-position:center top;
+  }
+  /* concrete lower portion, clipped with an irregular wavy top edge */
+  .hero .concrete{
+    position:absolute;left:0;right:0;bottom:0;height:46%;
+    clip-path:polygon(0 22%, 12% 17%, 26% 24%, 41% 14%, 57% 22%, 72% 12%, 86% 20%, 100% 13%, 100% 100%, 0 100%);
+  }
+  .hero .wrap{position:relative;z-index:3;width:100%;padding-bottom:clamp(56px,8vh,110px);padding-top:140px;}
+  .hero-inner{display:grid;grid-template-columns:auto 1fr;gap:clamp(36px,5vw,90px);align-items:end;}
+  @media(max-width:820px){ .hero-inner{grid-template-columns:1fr;gap:36px;} }
+
+  .portrait{width:clamp(150px,15vw,206px);aspect-ratio:4/5;background:linear-gradient(160deg,#d9d7d1,#bcbab4);position:relative;overflow:hidden;filter:grayscale(1) contrast(1.04);border:3px solid #fff;box-shadow:0 24px 50px -28px rgba(0,0,0,.5);}
+  .portrait::after{content:"[ image ]";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#7f7d77;}
+
+  .hero-text{max-width:46ch;}
+  .hero-text .eyebrow{display:inline-block;padding:7px 12px;background:#fff;color:var(--ink);margin-bottom:20px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;}
+  .hero-text h1{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.8vw,64px);line-height:1.04;letter-spacing:-.008em;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.18);margin-bottom:clamp(20px,2.4vw,30px);}
+  .hero-text h1 em{font-style:italic;font-weight:400;color:#fff;border-bottom:2px solid #fff;}
+  .hero-text .sub{font-size:clamp(14px,1.1vw,15.5px);line-height:1.8;color:#f4f3ef;max-width:46ch;background:rgba(43,44,42,.34);backdrop-filter:blur(2px);padding:14px 16px;border-left:2px solid #fff;}
+  .hero-foot{margin-top:clamp(28px,3vw,40px);display:flex;gap:24px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#fff;}
+  .hero-foot .cjk{font-family:'Noto Sans SC',var(--mono);letter-spacing:.12em;}
+
+  /* ---------- section frame ---------- */
+  section{padding:clamp(96px,14vh,170px) 0;}
+  .sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(36px,4.5vw,58px);}
+  .sec-tag .sec-no{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:var(--green-deep);text-transform:uppercase;}
+  .sec-tag .sec-name{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:var(--faint);text-transform:uppercase;}
+
+  /* ---------- BRIEF ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start;}
+  @media(max-width:760px){ .about-grid{grid-template-columns:1fr;gap:30px;} }
+  .about-grid .abstract{font-family:var(--serif);font-weight:300;font-size:clamp(22px,3vw,38px);line-height:1.26;letter-spacing:-.004em;max-width:20ch;}
+  .about-grid .abstract em{font-style:italic;color:var(--green-deep);}
+  .about-grid .notes p{font-size:14.5px;line-height:1.9;color:var(--soft);max-width:44ch;}
+  .about-grid .notes p + p{margin-top:18px;}
+
+  /* ---------- 3D PLATE — concrete slab with green tile header strip ---------- */
+  .plate-zone{padding:clamp(56px,9vh,110px) 0;}
+  .plate{position:relative;width:100%;min-height:clamp(400px,58vh,620px);border:1px solid var(--line);overflow:hidden;box-shadow:0 30px 60px -42px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;}
+  /* green tiled strip across the top of the plate, wavy concrete below */
+  .plate .pl-green{position:absolute;top:0;left:0;right:0;height:30%;background-color:var(--green);background-image:linear-gradient(var(--green-line) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--green-line) 1.5px,transparent 1.5px);background-size:clamp(52px,5vw,80px) clamp(52px,5vw,80px);}
+  .plate .pl-concrete{position:absolute;inset:0;clip-path:polygon(0 26%,16% 21%,33% 28%,52% 19%,70% 27%,86% 20%,100% 26%,100% 100%,0 100%);}
+  .plate .note{position:relative;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#fff;text-align:center;line-height:2.4;text-shadow:0 1px 10px rgba(0,0,0,.4);}
+  .plate-cap{margin-top:18px;display:flex;gap:18px;align-items:baseline;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);}
+  .plate-cap .fig{color:var(--green-deep);}
+  .plate-cap .desc{text-transform:none;letter-spacing:.02em;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--soft);}
+
+  /* ---------- WORK ---------- */
+  .work-index{border-top:1px solid var(--ink);}
+  .work-item{display:grid;grid-template-columns:90px 1fr 200px;gap:clamp(16px,3vw,40px);align-items:baseline;padding:clamp(22px,2.6vw,32px) 0;border-bottom:1px solid var(--line);position:relative;}
+  .work-item::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--green);transition:width .4s ease;}
+  .work-item:hover::before{width:100%;}
+  .work-item .w-yr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--faint);}
+  .work-item .w-title{font-family:var(--serif);font-weight:400;font-size:clamp(21px,2.5vw,32px);line-height:1.1;letter-spacing:-.003em;}
+  .work-item .w-title em{font-style:italic;color:var(--green-deep);}
+  .work-item .w-tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:right;white-space:nowrap;}
+  @media(max-width:680px){ .work-item{grid-template-columns:64px 1fr;} .work-item .w-tag{display:none;} }
+  .assoc{margin-top:clamp(48px,6vw,80px);}
+  .assoc p{font-size:13.5px;color:var(--soft);line-height:2.1;max-width:64ch;}
+  .assoc .name{color:var(--ink);border-bottom:1px solid var(--line);transition:border-color .3s;}
+  .assoc .name:hover{border-color:var(--green);}
+
+  /* ---------- CONTACT — slate (polished floor) with green tile cap ---------- */
+  .footband{position:relative;background:var(--slate);color:#fff;overflow:hidden;}
+  /* thin green tiled strip capping the top edge, like the wall meeting the floor */
+  .footband .cap{position:absolute;top:0;left:0;right:0;height:clamp(46px,5vw,72px);background-color:var(--green);background-image:linear-gradient(var(--green-line) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--green-line) 1.5px,transparent 1.5px);background-size:clamp(46px,5vw,72px) clamp(46px,5vw,72px);}
+  .footband .wrap{position:relative;padding-top:clamp(120px,16vh,190px);padding-bottom:clamp(48px,6vw,72px);}
+  .footband .sec-tag .sec-no{color:var(--green);}
+  .footband .sec-tag .sec-name{color:var(--slate-soft);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);align-items:start;padding-top:8px;}
+  @media(max-width:680px){ .contact-grid{grid-template-columns:1fr;gap:36px;} }
+  .contact-grid .lead{font-family:var(--serif);font-weight:300;font-size:clamp(24px,3vw,38px);line-height:1.28;color:#fff;max-width:20ch;}
+  .contact-grid .lead em{font-style:italic;color:var(--green);}
+  .contact-lines{border-top:1px solid rgba(255,255,255,.16);}
+  .contact-lines .cl{display:flex;justify-content:space-between;gap:18px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.16);align-items:baseline;}
+  .contact-lines .cl .k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate-soft);}
+  .contact-lines .cl a,.contact-lines .cl .v{font-family:var(--serif);font-size:clamp(17px,1.8vw,21px);color:#fff;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;}
+  .contact-lines .cl a:hover{color:var(--green);border-color:var(--green);}
+  .footcoda{margin-top:clamp(64px,8vw,110px);padding-top:18px;border-top:1px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-soft);}
+  .footcoda .cjk{font-family:'Noto Sans SC',var(--mono);letter-spacing:.1em;}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+
+<div class="topnav" id="topnav">
+  <div class="bar">
+    <a href="#top" class="brand">Josephine&nbsp;Shen<span class="dot">.</span></a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="tilefield"></div>
+  <div class="concrete concrete-tex"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="portrait reveal" aria-label="portrait placeholder"></div>
+      <div class="hero-text">
+        <span class="eyebrow reveal">Tech Policy Research · Political Strategy</span>
+        <h1 class="reveal">Hi, I'm Josephine — I work where <em>statecraft</em> meets <em>computation</em>.</h1>
+        <p class="sub reveal">[ One quiet sentence of positioning — the through-line of the work, in your own voice. ]</p>
+        <div class="hero-foot reveal">
+          <span class="cjk">[ city ] · 北京 · 中欧</span>
+          <span>English · 中文</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BRIEF ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 01</span><span class="sec-name">About</span></div>
+    <div class="about-grid">
+      <p class="abstract reveal">[ A single, deliberate statement of what you do and the change you exist to make. Let <em>one phrase</em> carry the weight. ]</p>
+      <div class="notes">
+        <p class="reveal">[ Short paragraph — the systemic lens; reading interdependencies across the technology-governance ecosystem, working across the whole body rather than one domain. ]</p>
+        <p class="reveal">[ Short paragraph — reach; interdisciplinary, international, and where that vantage makes things happen. ]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D PLATE -->
+<div class="plate-zone">
+  <div class="wrap">
+    <div class="plate reveal">
+      <div class="pl-green"></div>
+      <div class="pl-concrete concrete-tex"></div>
+      <div class="note">[ reserved · custom three.js element ]<br>architecture of the policy stack</div>
+    </div>
+    <div class="plate-cap reveal">
+      <span class="fig">Fig. 1</span>
+      <span class="desc">[ caption — the policy landscape, seen as one architecture. ]</span>
+    </div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 02</span><span class="sec-name">Selected Work</span></div>
+    <div class="work-index reveal">
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Fellow, <em>AIxist</em></span><span class="w-tag">Fellowship</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Grassroots Facilitation</span><span class="w-tag">Facilitation</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Workshops &amp; Convening</span><span class="w-tag">Convening</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Organising</span><span class="w-tag">Organising</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Research</span><span class="w-tag">Research</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Industry &amp; ML</span><span class="w-tag">Industry</span></a>
+    </div>
+    <div class="assoc reveal">
+      <p>Selected affiliations — <a class="name" href="#">[ org one ]</a>, <a class="name" href="#">[ org two ]</a>, <a class="name" href="#">[ org three ]</a>, <a class="name" href="#">[ org four ]</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="footband" id="contact">
+  <div class="cap"></div>
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 03</span><span class="sec-name">Contact</span></div>
+    <div class="contact-grid">
+      <p class="lead reveal">[ One quiet line on availability or <em>fit</em>. ]</p>
+      <div class="contact-lines reveal">
+        <div class="cl"><span class="k">Email</span><a href="mailto:[ email ]">[ email ]</a></div>
+        <div class="cl"><span class="k">LinkedIn</span><a href="#">[ handle ]</a></div>
+        <div class="cl"><span class="k">Based in</span><span class="v">[ city ]</span></div>
+        <div class="cl"><span class="k">Languages</span><span class="v">English · 中文</span></div>
+      </div>
+    </div>
+    <div class="footcoda">
+      <span>© Josephine Shen · MMXXVI</span>
+      <span class="cjk">[ city ] · 北京 · 中欧</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const nav=document.getElementById('topnav');let t=false;
+  addEventListener('scroll',()=>{if(!t){requestAnimationFrame(()=>{nav.classList.toggle('scrolled',scrollY>40);t=false;});t=true;}},{passive:true});
+</script>
+</body>
+</html>

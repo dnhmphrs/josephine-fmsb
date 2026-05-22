@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Josephine Shen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Noto+Sans+SC:wght@300;400&family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f4f2eb;
+    --paper-2:#efece2;
+    --ink:#19180f;
+    --soft:#564f43;
+    --faint:#9a948a;
+    --line:#dcd6c8;
+    --line-2:#cdc6b5;
+    --accent:#8f5fa0;
+    --accent-deep:#7a4d8b;
+    --accent-bright:#a974ba;
+    --ink-deep:#1c1b14;
+    --ink-deeper:#141309;
+    --cream:#e9e2d1;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --serif-cjk:'Noto Serif SC', 'Cormorant Garamond', serif;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+    --sans-cjk:'Noto Sans SC', 'IBM Plex Sans', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;}
+  ::selection{background:var(--accent);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+
+  /* subtle grain + vignette over the whole page for paper warmth */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(143,95,160,.045), transparent 60%),
+      radial-gradient(100% 60% at 100% 110%, rgba(143,95,160,.035), transparent 55%);
+  }
+
+  /* cipher grid — gentle background texture, sits behind all content */
+  #cipher-grid{position:fixed;inset:0;z-index:0;pointer-events:none;user-select:none;}
+  .topnav,.hero,section,.footband{position:relative;z-index:1;}
+  .footband{z-index:1;}
+
+  /* Chinese typography adjustments */
+  body.lang-zh .hero-deck h1,
+  body.lang-zh .a-statement,
+  body.lang-zh .sec-tag .name,
+  body.lang-zh .contact-grid .lead,
+  body.lang-zh .work-item .w-title,
+  body.lang-zh .hero-deck .kicker{font-family:var(--serif-cjk);letter-spacing:0;}
+  body.lang-zh .hero-deck .lede,
+  body.lang-zh .a-notes p,
+  body.lang-zh .hero-roles{font-family:var(--serif-cjk);}
+  body.lang-zh .hero-deck h1 em,
+  body.lang-zh .a-statement em,
+  body.lang-zh .contact-grid .lead em,
+  body.lang-zh .lede em{font-style:normal;}
+
+  .wrap{max-width:1320px;margin:0 auto;padding:0 clamp(36px,9vw,180px);}
+
+  /* ---------- section tag ---------- */
+  .sec-tag{display:flex;align-items:baseline;gap:18px;margin-bottom:clamp(40px,5vw,72px);}
+  .sec-tag .n{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--accent-deep);position:relative;padding-left:34px;}
+  .sec-tag .n::before{content:"";position:absolute;left:0;top:50%;width:24px;height:1px;background:var(--accent);opacity:.5;}
+  .sec-tag .name{font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.6vw,23px);font-weight:400;color:var(--ink);}
+
+  /* ---------- nav ---------- */
+  .topnav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(244,242,235,.72);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line);transition:background .5s,box-shadow .5s;}
+  .topnav.scrolled{box-shadow:0 1px 30px -18px rgba(25,24,15,.5);}
+  .topnav .bar{max-width:1320px;margin:0 auto;padding:clamp(15px,1.8vw,21px) clamp(36px,9vw,180px);display:flex;justify-content:space-between;align-items:center;}
+  .brand{font-family:var(--serif);font-size:18px;font-weight:500;letter-spacing:.02em;display:inline-flex;align-items:center;}
+  .brand .dot{color:var(--accent);transition:color .3s;}
+  .brand:hover .dot{color:var(--accent-bright);}
+  .nav-right{display:flex;align-items:center;gap:clamp(20px,2.4vw,40px);}
+  .topnav .links{display:flex;gap:clamp(22px,2.4vw,40px);}
+  .topnav .links a{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);position:relative;transition:color .35s;}
+  .topnav .links a::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--accent);transition:width .4s var(--ease);}
+  .topnav .links a:hover{color:var(--ink);}
+  .topnav .links a:hover::after{width:100%;}
+  @media(max-width:680px){ .topnav .links{display:none;} }
+
+  /* language toggle */
+  .lang-toggle{position:relative;display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:999px;cursor:pointer;background:transparent;padding:3px;gap:0;user-select:none;transition:border-color .3s;}
+  .lang-toggle:hover{border-color:var(--accent);}
+  .lang-toggle .opt{position:relative;z-index:1;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding:5px 11px;line-height:1;transition:color .35s;}
+  .lang-toggle .opt.zh{font-family:var(--sans-cjk);letter-spacing:.04em;}
+  .lang-toggle .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);background:var(--accent);border-radius:999px;transition:transform .35s var(--ease);z-index:0;box-shadow:0 2px 8px -2px rgba(143,95,160,.6);}
+  .lang-toggle[data-lang="zh"] .knob{transform:translateX(100%);}
+  .lang-toggle[data-lang="en"] .opt.en{color:#fff;}
+  .lang-toggle[data-lang="zh"] .opt.zh{color:#fff;}
+
+  /* ---------- HERO ---------- */
+  .hero{min-height:100svh;display:flex;align-items:center;padding-top:clamp(96px,13vh,128px);padding-bottom:clamp(48px,7vh,80px);}
+  .hero > .wrap{display:block;width:100%;}
+  .hero-stand{display:grid;grid-template-columns:clamp(210px,24vw,320px) 1fr;gap:clamp(48px,7vw,118px);align-items:center;}
+  @media(max-width:760px){ .hero-stand{grid-template-columns:1fr;gap:44px;align-items:start;} }
+
+  /* portrait — refined frame with offset accent border + index marks */
+  .portrait-frame{position:relative;}
+  .portrait-frame::before{content:"";position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--accent);opacity:.4;z-index:0;transition:inset .6s var(--ease),opacity .6s;}
+  .portrait-frame:hover::before{inset:18px -18px -18px 18px;opacity:.65;}
+  .portrait{position:relative;width:100%;aspect-ratio:4/5;background:linear-gradient(160deg,var(--paper-2),var(--paper));overflow:hidden;z-index:1;}
+  .portrait::before{content:"";position:absolute;inset:0;border:1px solid var(--ink);z-index:2;pointer-events:none;}
+  .portrait::after{content:"PORTRAIT";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);}
+  .portrait .ticks{position:absolute;inset:0;z-index:3;pointer-events:none;}
+  .portrait .ticks span{position:absolute;width:7px;height:7px;border:1px solid var(--accent-deep);opacity:.55;}
+  .portrait .ticks span:nth-child(1){top:8px;left:8px;border-right:0;border-bottom:0;}
+  .portrait .ticks span:nth-child(2){top:8px;right:8px;border-left:0;border-bottom:0;}
+  .portrait .ticks span:nth-child(3){bottom:8px;left:8px;border-right:0;border-top:0;}
+  .portrait .ticks span:nth-child(4){bottom:8px;right:8px;border-left:0;border-top:0;}
+
+  .hero-deck{max-width:none;width:100%;}
+  .hero-deck .kicker{font-family:var(--mono);font-style:normal;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:clamp(20px,2vw,28px);display:flex;align-items:center;gap:14px;}
+  .hero-deck .kicker::before{content:"";width:clamp(28px,4vw,52px);height:1px;background:var(--accent);opacity:.6;}
+  .hero-deck h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.1;letter-spacing:-.015em;margin-bottom:clamp(24px,2.4vw,32px);}
+  .hero-deck h1 em{font-style:italic;font-weight:500;color:var(--accent-deep);position:relative;}
+  .hero-deck .lede{font-family:var(--sans);font-weight:300;font-size:clamp(15px,1.05vw,17px);line-height:1.65;color:var(--soft);max-width:52ch;}
+  .hero-deck .lede em{font-style:italic;color:var(--accent-deep);}
+  .hero-roles{margin-top:clamp(40px,5vw,64px);padding-top:20px;border-top:1px solid var(--line-2);font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.06em;line-height:1.9;color:var(--faint);display:flex;flex-wrap:wrap;gap:6px 0;}
+  .hero-roles .roles-line{font-weight:400;color:var(--soft);text-transform:uppercase;}
+  .hero-roles .roles-sep{margin:0 10px;color:var(--accent);opacity:.8;}
+  .hero-roles .roles-tail{display:block;width:100%;margin-top:8px;text-transform:none;letter-spacing:.04em;font-size:11px;color:var(--faint);}
+  body.lang-zh .hero-roles{font-family:var(--sans-cjk);}
+  @media(max-width:760px){ .hero{min-height:0;align-items:start;} }
+
+  /* word-by-word hero reveal */
+  .hero-deck h1 .w,.hero-deck h1 em{display:inline-block;}
+  .word-rise{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+  .word-rise.in{opacity:1;transform:none;}
+
+  /* ---------- section frame ---------- */
+  section{padding:clamp(96px,13vh,168px) 0;}
+
+  /* ---------- ABOUT ---------- */
+  .a-statement{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.2vw,42px);line-height:1.22;letter-spacing:-.01em;margin-bottom:clamp(44px,5vw,68px);max-width:26ch;}
+  .a-statement em{font-style:italic;color:var(--accent-deep);}
+  body.lang-zh .a-statement{max-width:30ch;}
+  .a-notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(44px,6vw,96px);align-items:start;}
+  @media(max-width:680px){ .a-notes{grid-template-columns:1fr;gap:36px;} }
+  .a-notes p{font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.75;color:var(--soft);position:relative;padding-top:24px;}
+  .a-notes p::before{content:"";position:absolute;top:0;left:0;width:28px;height:2px;background:var(--accent);opacity:.55;}
+  body.lang-zh .a-notes p{line-height:1.95;}
+
+  .about-plate{margin:clamp(64px,8vw,118px) 0 0;}
+  .about-plate .plate{position:relative;width:100%;min-height:clamp(340px,48vh,560px);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:clamp(24px,3.5vw,56px);background:
+      linear-gradient(180deg, rgba(239,236,226,.5), rgba(244,242,235,.2));}
+  .about-plate .plate::after{content:"";position:absolute;inset:0;border:1px solid var(--line);pointer-events:none;}
+  .about-plate .plate .plate-tag{position:absolute;top:18px;left:20px;font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);z-index:3;}
+  .about-plate .plate .plate-tag.r{left:auto;right:20px;color:var(--accent-deep);}
+  .about-plate .stack-svg{position:relative;z-index:2;width:100%;max-width:740px;height:auto;}
+  .about-plate .stack-svg .lyr-green{transition:stroke .4s;}
+
+  /* ---------- WORK ---------- */
+  .work-index{border-top:1px solid var(--ink);}
+  .work-item{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(16px,3vw,40px);align-items:baseline;padding:clamp(24px,2.8vw,36px) 0;border-bottom:1px solid var(--line);transition:padding-left .45s var(--ease),background .45s;position:relative;overflow:hidden;}
+  .work-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);}
+  .work-item:hover{padding-left:24px;}
+  .work-item:hover::before{transform:scaleY(1);transform-origin:top;}
+  .work-item .w-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--faint);transition:color .4s;}
+  .work-item:hover .w-num{color:var(--accent-deep);}
+  .work-item .w-title{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2vw,28px);line-height:1.1;letter-spacing:-.004em;transition:color .35s;}
+  .work-item .w-title em{font-style:italic;color:var(--accent-deep);}
+  .work-item .w-meta{display:flex;align-items:baseline;gap:18px;}
+  .work-item .w-yr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--faint);white-space:nowrap;}
+  .work-item .w-arrow{font-family:var(--serif);font-size:20px;color:var(--accent);opacity:0;transform:translateX(-8px);transition:opacity .4s var(--ease),transform .4s var(--ease);}
+  .work-item:hover .w-arrow{opacity:1;transform:none;}
+  @media(max-width:560px){ .work-item{grid-template-columns:auto 1fr;} .work-item .w-meta .w-arrow{display:none;} }
+
+  /* ---------- CONTACT ---------- */
+  .footband{background:var(--ink-deep);color:var(--cream);position:relative;overflow:hidden;}
+  .footband::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 120% at 100% 0%, rgba(143,95,160,.16), transparent 55%);pointer-events:none;}
+  .footband ::selection{background:var(--accent);color:#fff;}
+  .footband .sec-tag .n{color:var(--accent-bright);}
+  .footband .sec-tag .n::before{background:var(--accent-bright);}
+  .footband .sec-tag .name{color:var(--cream);}
+  .footband .wrap{padding-top:clamp(104px,15vh,180px);padding-bottom:clamp(48px,6vw,72px);position:relative;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:start;}
+  @media(max-width:680px){ .contact-grid{grid-template-columns:1fr;gap:44px;} }
+  .contact-grid .lead{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.22;color:var(--cream);max-width:18ch;}
+  .contact-grid .lead em{font-style:italic;color:var(--accent-bright);}
+  .contact-lines{border-top:1px solid #36332b;}
+  .contact-lines .cl{display:flex;justify-content:space-between;gap:18px;padding:17px 0;border-bottom:1px solid #36332b;align-items:baseline;transition:padding-left .4s var(--ease);}
+  .contact-lines .cl:hover{padding-left:8px;}
+  .contact-lines .cl .k{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a8576;}
+  body.lang-zh .contact-lines .cl .k{font-family:var(--sans-cjk);letter-spacing:.08em;}
+  .contact-lines .cl a,.contact-lines .cl .v{font-family:var(--serif);font-size:clamp(17px,1.5vw,20px);color:var(--cream);border-bottom:1px solid transparent;transition:color .3s,border-color .3s;}
+  .contact-lines .cl a:hover{color:var(--accent-bright);border-color:var(--accent-bright);}
+
+  .footer-tail{margin-top:clamp(56px,8vw,90px);padding-top:24px;border-top:1px solid #36332b;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  .footer-tail .ft-name{font-family:var(--serif);font-style:italic;font-size:16px;color:#8a8576;}
+  .footer-tail .ft-meta{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6f6a5d;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .85s var(--ease),transform .85s var(--ease);}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal,.word-rise{opacity:1!important;transform:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<canvas id="cipher-grid" aria-hidden="true"></canvas>
+
+<div class="topnav" id="topnav">
+  <div class="bar">
+    <a href="#top" class="brand" data-i18n="brand">Josephine&nbsp;Shen<span class="dot">.</span></a>
+    <div class="nav-right">
+      <div class="links">
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#work" data-i18n="nav_work">Work</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </div>
+      <button class="lang-toggle" id="langToggle" data-lang="en" role="switch" aria-label="Language — English / 中文" aria-checked="false">
+        <span class="knob" aria-hidden="true"></span>
+        <span class="opt en">EN</span>
+        <span class="opt zh">中</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-stand">
+      <div class="portrait-frame reveal">
+        <div class="portrait" aria-label="portrait placeholder">
+          <div class="ticks"><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="hero-deck">
+        <p class="kicker reveal" data-i18n="hero_kicker">Hi, I'm Josephine —</p>
+        <h1 id="heroTitle" data-i18n="hero_h1">I work where <em>statecraft</em> meets <em>computation</em>.</h1>
+        <p class="lede reveal" data-i18n="hero_lede">Across the whole body of technology governance — not a single domain — connecting the right people on the right problems. Research and strategy at the meeting point of AI, security, and the state.</p>
+      </div>
+    </div>
+    <p class="hero-roles reveal" data-i18n="hero_roles"><span class="roles-line">Researcher<span class="roles-sep">·</span>Facilitator<span class="roles-sep">·</span>Bridge-builder<span class="roles-sep">·</span>Sense-maker.</span><span class="roles-tail">Translating strategy into action, in the public interest.</span></p>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="n">01</span><span class="name" data-i18n="about_name">About</span></div>
+    <p class="a-statement reveal" data-i18n="about_statement">I make change happen at the level of <em>systems</em> — reading the interdependencies of the technology-governance ecosystem and scaling solutions across it.</p>
+    <div class="a-notes">
+      <p class="reveal" data-i18n="about_note1">My work is deliberately interdisciplinary: I pull together vocabularies from fields that rarely speak, connect the right people on the right problems, and build the talent to tackle them.</p>
+      <p class="reveal" data-i18n="about_note2">It is also international in scope, with working access across Europe and China, and grounded in commercial ML experience with European companies — close to AI weapons proliferation and the questions it raises.</p>
+    </div>
+
+    <figure class="about-plate reveal">
+      <div class="plate">
+        <span class="plate-tag">FIG. 01 — THE STACK</span>
+        <span class="plate-tag r" data-i18n="plate_layer">GOVERNANCE LAYER</span>
+        <svg class="stack-svg" viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg" aria-label="Diagonal view of the technology-policy stack">
+          <defs>
+            <style>
+              .lyr{fill:none;stroke:var(--ink);stroke-width:1.1;}
+              .lyr-fill{fill:var(--paper);opacity:.55;}
+              .lyr-green{fill:none;stroke:var(--accent);stroke-width:1.6;}
+              .lyr-glow{fill:var(--accent);opacity:.07;}
+              .conn{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 4;fill:none;}
+              .node{fill:var(--accent);}
+            </style>
+          </defs>
+          <g transform="translate(0,0)"><polygon class="lyr-fill" points="300,70 560,30 760,110 500,150"/><polygon class="lyr" points="300,70 560,30 760,110 500,150"/></g>
+          <g transform="translate(0,86)"><polygon class="lyr-fill" points="280,70 540,30 740,110 480,150"/><polygon class="lyr" points="280,70 540,30 740,110 480,150"/></g>
+          <g transform="translate(0,172)"><polygon class="lyr-glow" points="260,70 520,30 720,110 460,150"/><polygon class="lyr-green" points="260,70 520,30 720,110 460,150"/></g>
+          <g transform="translate(0,258)"><polygon class="lyr-fill" points="240,70 500,30 700,110 440,150"/><polygon class="lyr" points="240,70 500,30 700,110 440,150"/></g>
+          <g transform="translate(0,344)"><polygon class="lyr-fill" points="220,70 480,30 680,110 420,150"/><polygon class="lyr" points="220,70 480,30 680,110 420,150"/></g>
+          <line class="conn" x1="500" y1="110" x2="420" y2="494"/>
+          <circle class="node" cx="490" cy="232" r="3.4"/>
+          <circle class="node" cx="430" cy="488" r="2.6"/>
+        </svg>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="n">02</span><span class="name" data-i18n="work_name">Selected Work</span></div>
+    <div class="work-index reveal">
+      <a class="work-item" href="#"><span class="w-num">01</span><span class="w-title" data-i18n="work_1">Fellow, <em>AIxist</em></span><span class="w-meta"><span class="w-yr">[ yr ]</span><span class="w-arrow">&rarr;</span></span></a>
+      <a class="work-item" href="#"><span class="w-num">02</span><span class="w-title" data-i18n="work_2">Grassroots Facilitation</span><span class="w-meta"><span class="w-yr">[ yr ]</span><span class="w-arrow">&rarr;</span></span></a>
+      <a class="work-item" href="#"><span class="w-num">03</span><span class="w-title" data-i18n="work_3">Workshops &amp; Convening</span><span class="w-meta"><span class="w-yr">[ yr ]</span><span class="w-arrow">&rarr;</span></span></a>
+      <a class="work-item" href="#"><span class="w-num">04</span><span class="w-title" data-i18n="work_4">Organising</span><span class="w-meta"><span class="w-yr">[ yr ]</span><span class="w-arrow">&rarr;</span></span></a>
+      <a class="work-item" href="#"><span class="w-num">05</span><span class="w-title" data-i18n="work_5">Research</span><span class="w-meta"><span class="w-yr">[ yr ]</span><span class="w-arrow">&rarr;</span></span></a>
+      <a class="work-item" href="#"><span class="w-num">06</span><span class="w-title" data-i18n="work_6">Industry &amp; ML</span><span class="w-meta"><span class="w-yr">[ yr ]</span><span class="w-arrow">&rarr;</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="footband" id="contact">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="n">03</span><span class="name" data-i18n="contact_name">Contact</span></div>
+    <div class="contact-grid">
+      <p class="lead reveal" data-i18n="contact_lead">Let's find where the work <em>fits</em>.</p>
+      <div class="contact-lines reveal">
+        <div class="cl"><span class="k" data-i18n="contact_email">Email</span><a href="mailto:[ email ]">[ email ]</a></div>
+        <div class="cl"><span class="k" data-i18n="contact_linkedin">LinkedIn</span><a href="#">[ handle ]</a></div>
+        <div class="cl"><span class="k" data-i18n="contact_based">Based in</span><span class="v" data-i18n="contact_city">[ city ]</span></div>
+        <div class="cl"><span class="k" data-i18n="contact_lang">Languages</span><span class="v">English · 中文</span></div>
+      </div>
+    </div>
+    <div class="footer-tail reveal">
+      <span class="ft-name" data-i18n="brand_plain">Josephine Shen</span>
+      <span class="ft-meta">&copy; 2026 — STATECRAFT × COMPUTATION</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ============================================================
+     ALL SITE COPY
+     ============================================================ */
+  const COPY = {
+    brand:          { en: "Josephine&nbsp;Shen<span class='dot'>.</span>", zh: "沈约瑟芬<span class='dot'>.</span>" },
+    brand_plain:    { en: "Josephine Shen", zh: "沈约瑟芬" },
+    nav_about:      { en: "About",        zh: "简介" },
+    nav_work:       { en: "Work",         zh: "作品" },
+    nav_contact:    { en: "Contact",      zh: "联系" },
+
+    hero_kicker:    { en: "Hi, I'm Josephine —", zh: "你好，我是约瑟芬 —" },
+    hero_h1:        { en: "I work where <em>statecraft</em> meets <em>computation</em>.",
+                      zh: "我工作于<em>治国之道</em>与<em>计算</em>的交汇之处。" },
+    hero_lede:      { en: "Across the whole body of technology governance — not a single domain — connecting the right people on the right problems. Research and strategy at the meeting point of AI, security, and the state.",
+                      zh: "我关注技术治理的整体——而非单一领域——把合适的人聚到合适的议题上。在人工智能、安全与国家的交汇处从事研究与战略。" },
+    hero_roles:     { en: "<span class='roles-line'>Researcher<span class='roles-sep'>·</span>Facilitator<span class='roles-sep'>·</span>Bridge-builder<span class='roles-sep'>·</span>Sense-maker.</span><span class='roles-tail'>Translating strategy into action, in the public interest.</span>",
+                      zh: "<span class='roles-line'>研究者<span class='roles-sep'>·</span>协调者<span class='roles-sep'>·</span>搭桥者<span class='roles-sep'>·</span>释义者。</span><span class='roles-tail'>以公共利益为本，将战略转化为行动。</span>" },
+
+    about_name:     { en: "About",        zh: "简介" },
+    about_statement:{ en: "I make change happen at the level of <em>systems</em> — reading the interdependencies of the technology-governance ecosystem and scaling solutions across it.",
+                      zh: "我在<em>系统</em>层面推动改变——解读技术治理生态中的相互依存关系，并在其中扩展解决方案。" },
+    about_note1:    { en: "My work is deliberately interdisciplinary: I pull together vocabularies from fields that rarely speak, connect the right people on the right problems, and build the talent to tackle them.",
+                      zh: "我的工作有意跨越学科：我把鲜少对话的领域的语汇汇聚到一起，把合适的人连接到合适的议题，并培养能应对这些问题的人才。" },
+    about_note2:    { en: "It is also international in scope, with working access across Europe and China, and grounded in commercial ML experience with European companies — close to AI weapons proliferation and the questions it raises.",
+                      zh: "工作范围亦具国际性，在欧洲与中国均有实际接触，并以同欧洲企业合作的商业机器学习经验为基础——贴近人工智能武器扩散及其引发的问题。" },
+    plate_layer:    { en: "GOVERNANCE LAYER", zh: "治理层" },
+
+    work_name:      { en: "Selected Work", zh: "精选作品" },
+    work_1:         { en: "Fellow, <em>AIxist</em>",        zh: "<em>AIxist</em> 研究员" },
+    work_2:         { en: "Grassroots Facilitation",        zh: "基层协调" },
+    work_3:         { en: "Workshops &amp; Convening",      zh: "工作坊与召集" },
+    work_4:         { en: "Organising",                     zh: "组织工作" },
+    work_5:         { en: "Research",                       zh: "研究" },
+    work_6:         { en: "Industry &amp; ML",              zh: "产业与机器学习" },
+
+    contact_name:   { en: "Contact",      zh: "联系" },
+    contact_lead:   { en: "Let's find where the work <em>fits</em>.", zh: "一起找到合作的<em>契合点</em>。" },
+    contact_email:  { en: "Email",        zh: "邮箱" },
+    contact_linkedin:{ en: "LinkedIn",    zh: "领英" },
+    contact_based:  { en: "Based in",     zh: "所在地" },
+    contact_city:   { en: "[ city ]",     zh: "[ 城市 ]" },
+    contact_lang:   { en: "Languages",    zh: "语言" }
+  };
+
+  const titles = { en: "Josephine Shen", zh: "沈约瑟芬" };
+
+  /* split the hero title into word spans for staggered reveal */
+  function splitHero(){
+    const h1 = document.getElementById('heroTitle');
+    if(!h1) return;
+    // walk child nodes, wrapping plain-text words in .w spans, leaving <em> intact
+    const frag = document.createDocumentFragment();
+    h1.childNodes.forEach(node=>{
+      if(node.nodeType === 3){ // text
+        node.textContent.split(/(\s+)/).forEach(tok=>{
+          if(tok.trim()===''){ frag.appendChild(document.createTextNode(tok)); }
+          else{ const s=document.createElement('span'); s.className='w word-rise'; s.textContent=tok; frag.appendChild(s); }
+        });
+      } else {
+        node.classList && node.classList.add('word-rise');
+        frag.appendChild(node);
+      }
+    });
+    h1.innerHTML=''; h1.appendChild(frag);
+    // stagger reveal on load
+    const words = h1.querySelectorAll('.word-rise');
+    words.forEach((w,i)=> setTimeout(()=> w.classList.add('in'), 120 + i*70));
+  }
+
+  function setLang(lang){
+    document.documentElement.lang = (lang === 'zh') ? 'zh-CN' : 'en';
+    document.body.classList.toggle('lang-zh', lang === 'zh');
+    document.title = titles[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k = el.getAttribute('data-i18n');
+      if(COPY[k] && COPY[k][lang] != null){ el.innerHTML = COPY[k][lang]; }
+    });
+    const tog = document.getElementById('langToggle');
+    tog.setAttribute('data-lang', lang);
+    tog.setAttribute('aria-checked', String(lang === 'zh'));
+    // re-split hero after language swap so words reveal again
+    splitHero();
+  }
+  document.getElementById('langToggle').addEventListener('click', ()=>{
+    const current = document.getElementById('langToggle').getAttribute('data-lang');
+    setLang(current === 'en' ? 'zh' : 'en');
+  });
+
+  /* run hero split on first paint */
+  splitHero();
+
+  /* ============================================================
+     CIPHER GRID — gentle background texture
+     ============================================================ */
+  (function () {
+    const canvas = document.getElementById('cipher-grid');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const POOL = (
+      '0123456789ABCDEF' +
+      '·∙▪◦/—' +
+      '政策权力国家治理战略情报机构网络数据信息技术' +
+      '外交协商之间翻译桥系统结构层级研究'
+    );
+    const FONT_SIZE = 12, CELL_W = 16, CELL_H = 20, PADDING = 24;
+
+    /* warm paper-grey base, soft accent highlight */
+    const BASE = [154,148,138], HOT = [143,95,160];
+    const BASE_ALPHA = 0.085;
+    const HOT_ALPHA  = 0.30;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let cols, rows, cells, chars, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const waves = [];
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = window.innerWidth, h = window.innerHeight;
+      canvas.width = Math.floor(w*dpr); canvas.height = Math.floor(h*dpr);
+      canvas.style.width = w+'px'; canvas.style.height = h+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.textBaseline='top'; ctx.textAlign='center';
+      cols = Math.ceil((w-PADDING*2)/CELL_W);
+      rows = Math.ceil((h-PADDING*2)/CELL_H);
+      const n = cols*rows;
+      cells = new Float32Array(n); chars = new Uint8Array(n);
+      for(let i=0;i<n;i++){ chars[i]=Math.floor(Math.random()*POOL.length); cells[i]=Math.random()*0.06; }
+    }
+    function spawnWave(){
+      waves.push({ col: Math.floor(Math.random()*cols), t:0, speed:0.22+Math.random()*0.30, life:rows+12 });
+    }
+    let lastSpawn=0, lastPermute=0;
+    function frame(now){
+      const decay = 0.006;
+      for(let i=0;i<cells.length;i++){ if(cells[i]>0) cells[i]=Math.max(0,cells[i]-decay); }
+
+      if(now-lastPermute > 90){
+        lastPermute = now;
+        const nP = Math.max(1, Math.floor(cells.length*0.0004));
+        for(let k=0;k<nP;k++){
+          const i = Math.floor(Math.random()*cells.length);
+          chars[i] = Math.floor(Math.random()*POOL.length);
+          cells[i] = 0.4 + Math.random()*0.2;
+        }
+      }
+      if(!reduceMotion && now-lastSpawn > 4200 + Math.random()*4000){
+        lastSpawn = now; spawnWave();
+      }
+      for(let w=waves.length-1;w>=0;w--){
+        const wave = waves[w]; wave.t += wave.speed;
+        const row = Math.floor(wave.t);
+        if(row>=0 && row<rows){
+          const i = row*cols + wave.col;
+          if(Math.random()<0.45){ chars[i]=Math.floor(Math.random()*POOL.length); cells[i]=0.7; }
+        }
+        if(wave.t>wave.life) waves.splice(w,1);
+      }
+
+      ctx.clearRect(0,0,canvas.width/dpr,canvas.height/dpr);
+      const cjk = `300 ${FONT_SIZE-1}px 'Noto Sans SC','PingFang SC',system-ui,sans-serif`;
+      const mono = `300 ${FONT_SIZE}px 'IBM Plex Mono',ui-monospace,monospace`;
+      let lastFont='';
+      for(let r=0;r<rows;r++){
+        const y = PADDING + r*CELL_H;
+        for(let c=0;c<cols;c++){
+          const i = r*cols+c, f = cells[i];
+          const a = BASE_ALPHA + (HOT_ALPHA-BASE_ALPHA)*f;
+          const rC = Math.round(BASE[0]+(HOT[0]-BASE[0])*f);
+          const gC = Math.round(BASE[1]+(HOT[1]-BASE[1])*f);
+          const bC = Math.round(BASE[2]+(HOT[2]-BASE[2])*f);
+          ctx.fillStyle = `rgba(${rC},${gC},${bC},${a})`;
+          const ch = POOL[chars[i]], code = ch.charCodeAt(0);
+          const wantFont = (code>=0x4E00 && code<=0x9FFF) ? cjk : mono;
+          if(wantFont!==lastFont){ ctx.font = wantFont; lastFont = wantFont; }
+          ctx.fillText(ch, PADDING + c*CELL_W + CELL_W/2, y);
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    resize();
+    let rt; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(resize,150); });
+    requestAnimationFrame(frame);
+  })();
+
+  /* reveal on scroll */
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  /* nav border on scroll */
+  const nav=document.getElementById('topnav');let t=false;
+  addEventListener('scroll',()=>{if(!t){requestAnimationFrame(()=>{nav.classList.toggle('scrolled',scrollY>40);t=false;});t=true;}},{passive:true});
+</script>
+</body>
+</html>

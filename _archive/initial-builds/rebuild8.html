@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Josephine Shen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f3f1ea;        /* warm gallery white */
+    --ink:#1b1a16;
+    --soft:#5d574c;
+    --faint:#9a948a;
+    --line:#ddd7ca;
+
+    --green:#5f9e34;        /* vivid but composed grass-green */
+    --green-deep:#4f8a2b;
+    --green-ink:#274a1c;    /* deep green for dark band */
+    --green-band:#21401a;
+    --green-soft:#a9c098;
+    --green-faint:#728a64;
+
+    /* charcoal footer (warmer than off-black) */
+    --ink-deep:#26251f;
+    --cream:#e8e1d0;
+    --gold:#c9a86a;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;}
+  ::selection{background:var(--green);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1440px;margin:0 auto;padding:0 clamp(28px,5vw,96px);}
+  .mono{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);font-weight:400;}
+
+  /* ---------- nav ---------- */
+  .topnav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(243,241,234,.84);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .4s;}
+  .topnav.scrolled{border-bottom:1px solid var(--line);}
+  .topnav .bar{max-width:1440px;margin:0 auto;padding:clamp(16px,1.9vw,22px) clamp(28px,5vw,96px);display:flex;justify-content:space-between;align-items:center;}
+  .brand{font-family:var(--serif);font-size:16px;font-weight:500;letter-spacing:.03em;}
+  .brand .dot{color:var(--green);}
+  .topnav .links{display:flex;gap:clamp(20px,2.2vw,38px);}
+  .topnav .links a{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);position:relative;transition:color .3s;}
+  .topnav .links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--green);transition:width .35s;}
+  .topnav .links a:hover{color:var(--ink);}
+  .topnav .links a:hover::after{width:100%;}
+  @media(max-width:680px){ .topnav .links{display:none;} }
+
+  /* ---------- HERO — full bleed, image left / text right, well spaced ---------- */
+  .hero{min-height:100vh;display:flex;align-items:center;padding-top:150px;padding-bottom:120px;}
+  .hero-inner{display:grid;grid-template-columns:auto 1fr;gap:clamp(60px,9vw,150px);align-items:center;width:100%;}
+  @media(max-width:860px){ .hero-inner{grid-template-columns:1fr;gap:52px;} }
+
+  .portrait{
+    position:relative;width:clamp(180px,18vw,260px);aspect-ratio:4/5;
+    background:linear-gradient(165deg,#e4e0d6,#cfcabd);
+    overflow:hidden;filter:grayscale(1) contrast(1.03);
+  }
+  .portrait::before{content:"";position:absolute;inset:0;border:1px solid var(--line);z-index:2;pointer-events:none;}
+  .portrait::after{content:"[ image ]";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#8c877e;}
+  .portrait-frame{position:relative;}
+  .portrait-cap{margin-top:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
+
+  .hero-text{max-width:none;}
+  .hero-text .eyebrow{display:block;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:clamp(40px,4.5vw,60px);}
+  .hero-text h1{font-family:var(--serif);font-weight:300;font-size:clamp(38px,5vw,76px);line-height:1.08;letter-spacing:-.01em;margin-bottom:clamp(34px,4vw,48px);max-width:18ch;}
+  .hero-text h1 em{font-style:italic;font-weight:400;color:var(--green-deep);}
+  .hero-text .sub{font-family:var(--serif);font-weight:300;font-size:clamp(19px,1.9vw,26px);line-height:1.55;color:var(--soft);max-width:40ch;}
+  .hero-foot{margin-top:clamp(48px,6vw,80px);padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);}
+  .hero-foot .cjk{font-family:'Noto Sans SC',var(--mono);letter-spacing:.12em;}
+
+  /* ---------- section frame ---------- */
+  section{padding:clamp(100px,15vh,180px) 0;}
+  .sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(38px,4.5vw,60px);}
+  .sec-tag .sec-no{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:var(--green-deep);text-transform:uppercase;}
+  .sec-tag .sec-name{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:var(--faint);text-transform:uppercase;}
+
+  /* ---------- ABOUT — Aesop-style: asymmetric, indexed, airy ---------- */
+  .about-aesop{display:grid;grid-template-columns:minmax(110px,0.5fr) 3fr;gap:clamp(40px,7vw,130px);align-items:start;}
+  @media(max-width:760px){ .about-aesop{grid-template-columns:1fr;gap:36px;} }
+  .about-aesop .a-label{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);padding-top:14px;line-height:2;}
+  .about-aesop .a-label .pin{color:var(--green-deep);}
+  .about-aesop .a-body{max-width:none;}
+  .about-aesop .a-statement{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4vw,54px);line-height:1.18;letter-spacing:-.008em;margin-bottom:clamp(40px,5vw,68px);max-width:22ch;}
+  .about-aesop .a-statement em{font-style:italic;color:var(--green-deep);}
+  .about-aesop .a-notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,90px);}
+  @media(max-width:680px){ .about-aesop .a-notes{grid-template-columns:1fr;gap:22px;} }
+  .about-aesop .a-notes p{font-family:var(--serif);font-weight:300;font-size:clamp(16px,1.5vw,20px);line-height:1.7;color:var(--soft);max-width:42ch;}
+  /* indexed detail rows — the apothecary "ingredients" list */
+  .about-index{margin-top:clamp(48px,6vw,88px);border-top:1px solid var(--line);}
+  .about-index .ix{display:grid;grid-template-columns:minmax(110px,180px) 1fr;gap:clamp(24px,4vw,72px);align-items:baseline;padding:clamp(16px,1.8vw,22px) 0;border-bottom:1px solid var(--line);}
+  .about-index .ix .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-deep);}
+  .about-index .ix .v{font-family:var(--serif);font-size:clamp(17px,1.7vw,22px);font-weight:300;color:var(--ink);line-height:1.5;}
+
+  /* ---------- 3D PLATE — clean reserved figure, no fill ---------- */
+  .plate-zone{padding:clamp(60px,9vh,120px) 0;}
+  .plate{
+    position:relative;width:100%;min-height:clamp(400px,58vh,620px);
+    background:transparent;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .plate .note{position:relative;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);text-align:center;line-height:2.4;}
+  /* one fine keyline marking the reserved area, nothing more */
+  .plate::after{content:"";position:absolute;inset:0;border:1px solid var(--line);pointer-events:none;}
+  .plate-cap{margin-top:16px;display:flex;gap:18px;align-items:baseline;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);}
+  .plate-cap .fig{color:var(--green-deep);}
+  .plate-cap .desc{text-transform:none;letter-spacing:.02em;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--soft);}
+
+  /* ---------- WORK ---------- */
+  .work-index{border-top:1px solid var(--ink);}
+  .work-item{display:grid;grid-template-columns:90px 1fr 200px;gap:clamp(16px,3vw,40px);align-items:baseline;padding:clamp(22px,2.6vw,32px) 0;border-bottom:1px solid var(--line);}
+  .work-item .w-yr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--faint);}
+  .work-item .w-title{font-family:var(--serif);font-weight:400;font-size:clamp(21px,2.5vw,32px);line-height:1.1;letter-spacing:-.003em;}
+  .work-item .w-title em{font-style:italic;color:var(--green-deep);}
+  .work-item .w-tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:right;white-space:nowrap;}
+  @media(max-width:680px){ .work-item{grid-template-columns:64px 1fr;} .work-item .w-tag{display:none;} }
+  .assoc{margin-top:clamp(48px,6vw,80px);}
+  .assoc p{font-size:13.5px;color:var(--soft);line-height:2.1;max-width:64ch;}
+  .assoc .name{color:var(--ink);border-bottom:1px solid var(--line);transition:border-color .3s;}
+  .assoc .name:hover{border-color:var(--green);}
+
+  /* ---------- CONTACT — off-black band, flat & clean ---------- */
+  .footband{background:var(--ink-deep);color:var(--cream);}
+  .footband .wrap{padding-top:clamp(104px,15vh,170px);padding-bottom:clamp(48px,6vw,72px);}
+  .footband .sec-tag .sec-no{color:var(--green);}
+  .footband .sec-tag .sec-name{color:#8a8576;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);align-items:start;padding-top:8px;}
+  @media(max-width:680px){ .contact-grid{grid-template-columns:1fr;gap:36px;} }
+  .contact-grid .lead{font-family:var(--serif);font-weight:300;font-size:clamp(24px,3vw,40px);line-height:1.26;color:var(--cream);max-width:19ch;}
+  .contact-grid .lead em{font-style:italic;color:var(--green);}
+  .contact-lines{border-top:1px solid #34312a;}
+  .contact-lines .cl{display:flex;justify-content:space-between;gap:18px;padding:16px 0;border-bottom:1px solid #34312a;align-items:baseline;}
+  .contact-lines .cl .k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a8576;}
+  .contact-lines .cl a,.contact-lines .cl .v{font-family:var(--serif);font-size:clamp(17px,1.8vw,22px);color:var(--cream);border-bottom:1px solid transparent;transition:color .3s,border-color .3s;}
+  .contact-lines .cl a:hover{color:var(--green);border-color:var(--green);}
+  .footcoda{margin-top:clamp(64px,8vw,110px);padding-top:18px;border-top:1px solid #34312a;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8a8576;}
+  .footcoda .cjk{font-family:'Noto Sans SC',var(--mono);letter-spacing:.1em;}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+
+<div class="topnav" id="topnav">
+  <div class="bar">
+    <a href="#top" class="brand">Josephine&nbsp;Shen<span class="dot">.</span></a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO : image left, text right -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="portrait-frame reveal">
+        <div class="portrait" aria-label="portrait placeholder"></div>
+        <div class="portrait-cap"><span>[ fig. 0 ]</span><span>[ portrait ]</span></div>
+      </div>
+      <div class="hero-text">
+        <span class="mono eyebrow reveal">Tech Policy Research · Political Strategy</span>
+        <h1 class="reveal">[ A measured one-line positioning statement. ]</h1>
+        <p class="sub reveal">[ One further sentence of context, in your own academic voice. ]</p>
+        <div class="hero-foot reveal">
+          <span class="cjk">[ city ] · 北京 · 中欧</span>
+          <span>English · 中文</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 3D PLATE -->
+<div class="plate-zone">
+  <div class="wrap">
+    <div class="plate reveal">
+      <div class="note">[ reserved · custom three.js element ]<br>architecture of the policy stack</div>
+    </div>
+    <div class="plate-cap reveal">
+      <span class="fig">Fig. 1</span>
+      <span class="desc">[ caption — the policy landscape, seen as one architecture. ]</span>
+    </div>
+  </div>
+</div>
+
+<!-- BRIEF ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 01</span><span class="sec-name">About</span></div>
+    <div class="about-aesop">
+      <div class="a-label reveal"><span class="pin">—</span> On the work</div>
+      <div class="a-body">
+        <p class="a-statement reveal">[ A single, deliberate statement of what you do and the change you exist to make. Let <em>one phrase</em> carry the weight. ]</p>
+        <div class="a-notes">
+          <p class="reveal">[ Short paragraph — the systemic lens; reading interdependencies across the technology-governance ecosystem, working across the whole body rather than one domain. ]</p>
+          <p class="reveal">[ Short paragraph — reach; interdisciplinary, international, and where that vantage makes things happen. ]</p>
+        </div>
+        <div class="about-index reveal">
+          <div class="ix"><span class="k">Focus</span><span class="v">[ research focus — e.g. AI proliferation &amp; technology governance ]</span></div>
+          <div class="ix"><span class="k">Method</span><span class="v">[ systemic · interdisciplinary · cross-regional ]</span></div>
+          <div class="ix"><span class="k">Reach</span><span class="v">[ where you operate — regions &amp; access ]</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 02</span><span class="sec-name">Selected Work</span></div>
+    <div class="work-index reveal">
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Fellow, <em>AIxist</em></span><span class="w-tag">Fellowship</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Grassroots Facilitation</span><span class="w-tag">Facilitation</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Workshops &amp; Convening</span><span class="w-tag">Convening</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Organising</span><span class="w-tag">Organising</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Research</span><span class="w-tag">Research</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Industry &amp; ML</span><span class="w-tag">Industry</span></a>
+    </div>
+    <div class="assoc reveal">
+      <p>Selected affiliations — <a class="name" href="#">[ org one ]</a>, <a class="name" href="#">[ org two ]</a>, <a class="name" href="#">[ org three ]</a>, <a class="name" href="#">[ org four ]</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="footband" id="contact">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 03</span><span class="sec-name">Contact</span></div>
+    <div class="contact-grid">
+      <p class="lead reveal">[ One quiet line on availability or <em>fit</em>. ]</p>
+      <div class="contact-lines reveal">
+        <div class="cl"><span class="k">Email</span><a href="mailto:[ email ]">[ email ]</a></div>
+        <div class="cl"><span class="k">LinkedIn</span><a href="#">[ handle ]</a></div>
+        <div class="cl"><span class="k">Based in</span><span class="v">[ city ]</span></div>
+        <div class="cl"><span class="k">Languages</span><span class="v">English · 中文</span></div>
+      </div>
+    </div>
+    <div class="footcoda">
+      <span>© Josephine Shen · MMXXVI</span>
+      <span class="cjk">[ city ] · 北京 · 中欧</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const nav=document.getElementById('topnav');let t=false;
+  addEventListener('scroll',()=>{if(!t){requestAnimationFrame(()=>{nav.classList.toggle('scrolled',scrollY>40);t=false;});t=true;}},{passive:true});
+</script>
+</body>
+</html>

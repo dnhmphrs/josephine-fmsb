@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Josephine Shen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f3f1ea;
+    --ink:#1b1a16;
+    --soft:#5d574c;
+    --faint:#9a948a;
+    --line:#ddd7ca;
+
+    --green:#5f9e34;
+    --green-deep:#4f8a2b;
+    --green-ink:#274a1c;
+    --green-band:#21401a;
+    --green-soft:#a9c098;
+    --green-faint:#728a64;
+
+    --ink-deep:#26251f;
+    --cream:#e8e1d0;
+    --gold:#c9a86a;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;}
+  ::selection{background:var(--green);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1440px;margin:0 auto;padding:0 clamp(28px,5vw,96px);}
+  .mono{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);font-weight:400;}
+
+  /* ---------- nav ---------- */
+  .topnav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(243,241,234,.84);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .4s;}
+  .topnav.scrolled{border-bottom:1px solid var(--line);}
+  .topnav .bar{max-width:1440px;margin:0 auto;padding:clamp(16px,1.9vw,22px) clamp(28px,5vw,96px);display:flex;justify-content:space-between;align-items:center;}
+  .brand{font-family:var(--serif);font-size:16px;font-weight:500;letter-spacing:.03em;}
+  .brand .dot{color:var(--green);}
+  .topnav .links{display:flex;gap:clamp(20px,2.2vw,38px);}
+  .topnav .links a{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);position:relative;transition:color .3s;}
+  .topnav .links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--green);transition:width .35s;}
+  .topnav .links a:hover{color:var(--ink);}
+  .topnav .links a:hover::after{width:100%;}
+  @media(max-width:680px){ .topnav .links{display:none;} }
+
+  /* ---------- HERO — broadsheet masthead, full width ---------- */
+  .hero{display:block;padding-top:clamp(120px,16vh,170px);padding-bottom:clamp(40px,6vh,72px);}
+  .hero .eyebrow{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--ink);margin-bottom:clamp(40px,5vw,64px);font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);}
+  .hero .eyebrow .cjk{font-family:'Noto Sans SC',var(--mono);letter-spacing:.12em;color:var(--faint);}
+  /* the masthead headline — wide, journal-grade, spans the full column */
+  .hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,7.4vw,80px);line-height:1.0;letter-spacing:-.018em;margin-bottom:clamp(36px,4.5vw,60px);max-width:none;}
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--green-deep);}
+  /* standfirst row: photo plate + deck, top-aligned so text starts level with photo */
+  .hero-stand{display:grid;grid-template-columns:auto 1fr;gap:clamp(40px,6vw,90px);align-items:start;border-top:1px solid var(--line);padding-top:clamp(28px,3vw,40px);}
+  @media(max-width:760px){ .hero-stand{grid-template-columns:1fr;gap:32px;} }
+  .portrait{position:relative;width:clamp(180px,19vw,250px);aspect-ratio:4/5;background:var(--paper);overflow:hidden;}
+  .portrait::before{content:"";position:absolute;inset:0;border:1px solid var(--ink);z-index:2;pointer-events:none;}
+  .portrait::after{content:"[ image ]";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);}
+  .portrait-frame{position:relative;}
+  .portrait-cap{margin-top:12px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
+  /* deck stacks vertically: lede, then roles always underneath; fills its column */
+  .hero-deck{max-width:none;width:100%;}
+  .hero-deck .lede{font-family:var(--serif);font-weight:300;font-size:clamp(20px,2.4vw,34px);line-height:1.4;color:var(--ink);max-width:46ch;}
+  .hero-deck .lede em{font-style:italic;color:var(--green-deep);}
+  .hero-deck .roles{margin-top:clamp(22px,2.6vw,34px);padding-top:18px;border-top:1px solid var(--line);font-family:var(--sans);font-weight:300;font-size:clamp(13px,1.2vw,15px);line-height:1.7;color:var(--soft);max-width:none;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .hero-deck .roles b{font-weight:400;color:var(--ink);}
+  .hero-deck .roles .tail{color:var(--faint);}
+
+  /* ---------- section frame ---------- */
+  section{padding:clamp(88px,12vh,150px) 0;}
+  .sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(38px,4.5vw,60px);}
+  .sec-tag .sec-no{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:var(--green-deep);text-transform:uppercase;}
+  .sec-tag .sec-name{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:var(--faint);text-transform:uppercase;}
+
+  /* ---------- ABOUT — journal body, full width, with embedded figure ---------- */
+  .about-aesop{width:100%;}
+  .about-aesop .a-body{max-width:none;}
+  .about-aesop .a-statement{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.6vw,46px);line-height:1.2;letter-spacing:-.01em;margin-bottom:clamp(34px,4vw,52px);max-width:48ch;}
+  .about-aesop .a-statement em{font-style:italic;color:var(--green-deep);}
+  .about-aesop .a-notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,90px);}
+  @media(max-width:680px){ .about-aesop .a-notes{grid-template-columns:1fr;gap:22px;} }
+  .about-aesop .a-notes p{font-family:var(--serif);font-weight:300;font-size:clamp(15px,1.4vw,19px);line-height:1.6;color:var(--soft);max-width:48ch;}
+  /* embedded figure plate between paragraphs and the index */
+  .about-plate{margin:clamp(44px,6vw,80px) 0;}
+  .about-plate .plate{position:relative;width:100%;min-height:clamp(320px,46vh,500px);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:clamp(24px,3.5vw,48px);}
+  .about-plate .plate::after{content:"";position:absolute;inset:0;border:1px solid var(--line);pointer-events:none;}
+  .about-plate .stack-svg{position:relative;z-index:2;width:100%;max-width:700px;height:auto;}
+  .about-plate .note{position:relative;z-index:2;margin-top:22px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);text-align:center;line-height:1.8;}
+  .about-plate .plate-cap{margin-top:16px;display:flex;gap:18px;align-items:baseline;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);}
+  .about-plate .plate-cap .fig{color:var(--green-deep);}
+  .about-plate .plate-cap .desc{text-transform:none;letter-spacing:.02em;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--soft);}
+  /* indexed detail rows */
+  .about-index{margin-top:0;border-top:1px solid var(--ink);}
+  .about-index .ix{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:clamp(24px,4vw,64px);align-items:baseline;padding:clamp(14px,1.6vw,20px) 0;border-bottom:1px solid var(--line);}
+  .about-index .ix .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-deep);}
+  .about-index .ix .v{font-family:var(--serif);font-size:clamp(16px,1.6vw,21px);font-weight:300;color:var(--ink);line-height:1.45;}
+
+  /* ---------- WORK ---------- */
+  .work-index{border-top:1px solid var(--ink);}
+  .work-item{display:grid;grid-template-columns:90px 1fr 200px;gap:clamp(16px,3vw,40px);align-items:baseline;padding:clamp(22px,2.6vw,32px) 0;border-bottom:1px solid var(--line);}
+  .work-item .w-yr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--faint);}
+  .work-item .w-title{font-family:var(--serif);font-weight:400;font-size:clamp(21px,2.5vw,32px);line-height:1.1;letter-spacing:-.003em;}
+  .work-item .w-title em{font-style:italic;color:var(--green-deep);}
+  .work-item .w-tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:right;white-space:nowrap;}
+  @media(max-width:680px){ .work-item{grid-template-columns:64px 1fr;} .work-item .w-tag{display:none;} }
+  .assoc{margin-top:clamp(48px,6vw,80px);}
+  .assoc p{font-size:13.5px;color:var(--soft);line-height:2.1;max-width:64ch;}
+  .assoc .name{color:var(--ink);border-bottom:1px solid var(--line);transition:border-color .3s;}
+  .assoc .name:hover{border-color:var(--green);}
+
+  /* ---------- CONTACT — charcoal band ---------- */
+  .footband{background:var(--ink-deep);color:var(--cream);}
+  .footband .wrap{padding-top:clamp(104px,15vh,170px);padding-bottom:clamp(48px,6vw,72px);}
+  .footband .sec-tag .sec-no{color:var(--green);}
+  .footband .sec-tag .sec-name{color:#8a8576;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);align-items:start;padding-top:8px;}
+  @media(max-width:680px){ .contact-grid{grid-template-columns:1fr;gap:36px;} }
+  .contact-grid .lead{font-family:var(--serif);font-weight:300;font-size:clamp(24px,3vw,40px);line-height:1.26;color:var(--cream);max-width:19ch;}
+  .contact-grid .lead em{font-style:italic;color:var(--green);}
+  .contact-lines{border-top:1px solid #34312a;}
+  .contact-lines .cl{display:flex;justify-content:space-between;gap:18px;padding:16px 0;border-bottom:1px solid #34312a;align-items:baseline;}
+  .contact-lines .cl .k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a8576;}
+  .contact-lines .cl a,.contact-lines .cl .v{font-family:var(--serif);font-size:clamp(17px,1.8vw,22px);color:var(--cream);border-bottom:1px solid transparent;transition:color .3s,border-color .3s;}
+  .contact-lines .cl a:hover{color:var(--green);border-color:var(--green);}
+  .footcoda{margin-top:clamp(64px,8vw,110px);padding-top:18px;border-top:1px solid #34312a;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8a8576;}
+  .footcoda .cjk{font-family:'Noto Sans SC',var(--mono);letter-spacing:.1em;}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+
+<div class="topnav" id="topnav">
+  <div class="bar">
+    <a href="#top" class="brand">Josephine&nbsp;Shen<span class="dot">.</span></a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO : broadsheet masthead -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow reveal">
+      <span>Tech Policy Research · Political Strategy</span>
+      <span class="cjk">[ city ] · 北京 · 中欧 — English · 中文</span>
+    </div>
+    <h1 class="reveal">Where <em>statecraft</em> meets <em>computation</em>.</h1>
+    <div class="hero-stand">
+      <div class="portrait-frame reveal">
+        <div class="portrait" aria-label="portrait placeholder"></div>
+        <div class="portrait-cap"><span>[ fig. 0 ]</span><span>Josephine Shen</span></div>
+      </div>
+      <div class="hero-deck">
+        <p class="lede reveal">I work across the whole body of <em>technology governance</em> — not a single domain — connecting the right people on the right problems.</p>
+        <p class="roles reveal">
+          <span><b>Researcher · Facilitator · Bridge-builder · Sense-maker.</b> Translating strategy into action, in the public interest.</span>
+          <span class="tail">[ tune titles ]</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BRIEF ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 01</span><span class="sec-name">About</span></div>
+    <div class="about-aesop">
+      <div class="a-body">
+        <p class="a-statement reveal">I make change happen at the level of <em>systems</em> — reading the interdependencies of the technology-governance ecosystem and scaling solutions across it.</p>
+        <div class="a-notes">
+          <p class="reveal">My work is deliberately interdisciplinary: I pull together vocabularies from fields that rarely speak, connect the right people on the right problems, and build the talent to tackle them. [ — interdisciplinary / connecting / building. ]</p>
+          <p class="reveal">It is also international in scope, with working access across Europe and China, and grounded in commercial ML experience with European companies — close to AI weapons proliferation and the questions it raises. [ — reach, industry, relevance. ]</p>
+        </div>
+
+        <!-- 3D PLATE — inside About, between paragraphs and the index -->
+        <figure class="about-plate reveal">
+          <div class="plate">
+            <svg class="stack-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" aria-label="Diagonal view of the technology-policy stack">
+              <defs>
+                <style>
+                  .lyr{fill:none;stroke:var(--ink);stroke-width:1.1;}
+                  .lyr-fill{fill:var(--paper);opacity:.55;}
+                  .lyr-green{fill:none;stroke:var(--green);stroke-width:1.4;}
+                  .conn{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4;fill:none;}
+                  .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;fill:var(--soft);}
+                  .lbl-no{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;fill:var(--green-deep);}
+                </style>
+              </defs>
+              <g transform="translate(0,0)">
+                <polygon class="lyr-fill" points="300,70 560,30 760,110 500,150"/>
+                <polygon class="lyr" points="300,70 560,30 760,110 500,150"/>
+                <line class="conn" x1="760" y1="110" x2="830" y2="110"/>
+                <text class="lbl" x="838" y="114">Geopolitics</text>
+                <text class="lbl-no" x="300" y="64">05</text>
+              </g>
+              <g transform="translate(0,86)">
+                <polygon class="lyr-fill" points="280,70 540,30 740,110 480,150"/>
+                <polygon class="lyr" points="280,70 540,30 740,110 480,150"/>
+                <line class="conn" x1="740" y1="110" x2="830" y2="110"/>
+                <text class="lbl" x="838" y="114">Governance</text>
+                <text class="lbl-no" x="280" y="64">04</text>
+              </g>
+              <g transform="translate(0,172)">
+                <polygon class="lyr-fill" points="260,70 520,30 720,110 460,150"/>
+                <polygon class="lyr-green" points="260,70 520,30 720,110 460,150"/>
+                <line class="conn" x1="720" y1="110" x2="830" y2="110"/>
+                <text class="lbl" x="838" y="114" style="fill:var(--green-deep)">Standards</text>
+                <text class="lbl-no" x="260" y="64">03</text>
+              </g>
+              <g transform="translate(0,258)">
+                <polygon class="lyr-fill" points="240,70 500,30 700,110 440,150"/>
+                <polygon class="lyr" points="240,70 500,30 700,110 440,150"/>
+                <line class="conn" x1="700" y1="110" x2="830" y2="110"/>
+                <text class="lbl" x="838" y="114">Compute</text>
+                <text class="lbl-no" x="240" y="64">02</text>
+              </g>
+              <g transform="translate(0,344)">
+                <polygon class="lyr-fill" points="220,70 480,30 680,110 420,150"/>
+                <polygon class="lyr" points="220,70 480,30 680,110 420,150"/>
+                <line class="conn" x1="680" y1="110" x2="830" y2="110"/>
+                <text class="lbl" x="838" y="114">Models</text>
+                <text class="lbl-no" x="220" y="64">01</text>
+              </g>
+              <line class="conn" x1="500" y1="110" x2="420" y2="494"/>
+            </svg>
+            <div class="note">[ reserved · custom three.js element — diagonal view of the tech-policy stack ]</div>
+          </div>
+          <figcaption class="plate-cap">
+            <span class="fig">Fig. 1</span>
+            <span class="desc">The technology-policy stack, seen on the diagonal — models to geopolitics, as one architecture.</span>
+          </figcaption>
+        </figure>
+
+        <div class="about-index reveal">
+          <div class="ix"><span class="k">Systemic</span><span class="v">[ ecosystem thinking — interdependencies, scaling governance solutions ]</span></div>
+          <div class="ix"><span class="k">Interdisciplinary</span><span class="v">[ juxtaposing distant fields; making things happen by connecting people ]</span></div>
+          <div class="ix"><span class="k">Premise</span><span class="v">[ reliable in method, flexible in form — and happy to disagree on one thing; knows when to hand to technical expertise ]</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 02</span><span class="sec-name">Selected Work</span></div>
+    <div class="work-index reveal">
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Fellow, <em>AIxist</em></span><span class="w-tag">Fellowship</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Grassroots Facilitation</span><span class="w-tag">Facilitation</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Workshops &amp; Convening</span><span class="w-tag">Convening</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Organising</span><span class="w-tag">Organising</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Research</span><span class="w-tag">Research</span></a>
+      <a class="work-item" href="#"><span class="w-yr">[ yr ]</span><span class="w-title">Industry &amp; ML</span><span class="w-tag">Industry</span></a>
+    </div>
+    <div class="assoc reveal">
+      <p>Selected affiliations — <a class="name" href="#">[ org one ]</a>, <a class="name" href="#">[ org two ]</a>, <a class="name" href="#">[ org three ]</a>, <a class="name" href="#">[ org four ]</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="footband" id="contact">
+  <div class="wrap">
+    <div class="sec-tag reveal"><span class="sec-no">§ 03</span><span class="sec-name">Contact</span></div>
+    <div class="contact-grid">
+      <p class="lead reveal">[ One quiet line on availability or <em>fit</em>. ]</p>
+      <div class="contact-lines reveal">
+        <div class="cl"><span class="k">Email</span><a href="mailto:[ email ]">[ email ]</a></div>
+        <div class="cl"><span class="k">LinkedIn</span><a href="#">[ handle ]</a></div>
+        <div class="cl"><span class="k">Based in</span><span class="v">[ city ]</span></div>
+        <div class="cl"><span class="k">Languages</span><span class="v">English · 中文</span></div>
+      </div>
+    </div>
+    <div class="footcoda">
+      <span>© Josephine Shen · MMXXVI</span>
+      <span class="cjk">[ city ] · 北京 · 中欧</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const nav=document.getElementById('topnav');let t=false;
+  addEventListener('scroll',()=>{if(!t){requestAnimationFrame(()=>{nav.classList.toggle('scrolled',scrollY>40);t=false;});t=true;}},{passive:true});
+</script>
+</body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josephine Tran — Tech Policy & Political Strategy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream:        #e8e1d0;   /* warmer cream */
+    --cream-deep:   #ddd5c0;
+    --charcoal:     #232323;   /* hero & accent blocks */
+    --ink:          #0e0e0c;   /* off-black, not pure */
+    --ink-soft:     #1a1a17;
+    --muted:        #5a564c;
+    --rule:         #2a2823;   /* darker rules for edge */
+    --rule-soft:    #a8a294;
+    --accent:       #5a2418;   /* deeper umber, more bite */
+    --grid-num:     #8e8877;
+    --grid-active:  #2a2823;
+
+    --serif: 'Cormorant Garamond', 'Cormorant', Garamond, 'EB Garamond', serif;
+    --mono:  'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* ============================================================
+     CRYPTIC NUMBERS GRID — canvas layer
+     ============================================================ */
+  #cipher-grid {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ============================================================
+     PAGE STRUCTURE
+     ============================================================ */
+  .page {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* full-bleed band — extends edge to edge */
+  .band {
+    position: relative;
+    width: 100%;
+  }
+  .band--dark {
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+  .band--ink {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  /* inner content wrapper, same constraints as main */
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+
+  .page > .nav-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 0;
+    background: var(--charcoal);
+    transition: box-shadow 0.4s ease;
+  }
+  .page > .nav-wrap.is-scrolled {
+    box-shadow: 0 1px 0 rgba(0,0,0,0.18), 0 8px 24px -16px rgba(0,0,0,0.4);
+  }
+  .page > .nav-wrap .wrap {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .hero-gap {
+    height: clamp(180px, 30vh, 320px);
+    background: transparent;
+  }
+
+  main {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 64px 96px;
+  }
+  main > section:first-child {
+    padding-top: 96px;
+  }
+
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  header.top .mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+  }
+  header.top nav {
+    display: flex;
+    gap: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8a8576;
+  }
+  header.top nav a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  header.top nav a:hover { color: var(--cream); }
+
+  section.hero {
+    position: relative;
+    padding: 96px 0 96px;
+  }
+  .hero-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #3a3833;
+    margin-bottom: 56px;
+  }
+  .hero-head .folio {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #6f6a5d;
+  }
+  .hero .eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a8576;
+    margin-bottom: 0;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(50px, 6.4vw, 92px);
+    line-height: 1.04;
+    letter-spacing: -0.012em;
+    max-width: 14ch;
+    margin-bottom: 32px;
+    color: var(--cream);
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: #c47a55;
+  }
+  .hero .deck {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.55;
+    max-width: 56ch;
+    color: #c9c3b3;
+  }
+
+  .hero-foot {
+    margin-top: 96px;
+    padding-top: 18px;
+    border-top: 1px solid #3a3833;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8a8576;
+  }
+
+  /* ============================================================
+     SHARED BLOCK — cream tile that sits above the grid
+     Used by all middle-section content so text reads cleanly.
+     ============================================================ */
+  .block {
+    position: relative;
+    background: rgba(232, 225, 208, 0.82);
+    border: 1px solid var(--rule);
+    backdrop-filter: blur(2px);
+  }
+
+  /* ============================================================
+     THREE-LEVEL STRUCTURE
+     ============================================================ */
+  section.tiers {
+    position: relative;
+    margin-bottom: 120px;
+    padding-top: 24px;
+  }
+  .tiers .section-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 56px;
+  }
+
+  .tier {
+    position: relative;
+    padding: 38px 44px 44px;
+    background: rgba(232, 225, 208, 0.82);
+    border: 1px solid var(--rule);
+    margin-bottom: 28px;
+    backdrop-filter: blur(2px);
+    transition: background 0.4s ease, transform 0.4s ease;
+  }
+  .tier:hover {
+    background: rgba(232, 225, 208, 0.96);
+    transform: translateX(-3px);
+  }
+
+  /* dark contrast variant — used on the middle tier */
+  .tier--dark {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+  .tier--dark:hover {
+    background: #1a1a17;
+    transform: translateX(-3px);
+  }
+  .tier--dark h2 { color: var(--cream); }
+  .tier--dark p  { color: #c9c3b3; }
+  .tier--dark .marker { color: #8a8576; }
+  .tier--dark .marker .num { color: #b8704f; }
+  .tier--dark h2 em { color: #c47a55; }
+
+  .tier .marker {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .tier .marker .num {
+    color: var(--accent);
+  }
+  .tier h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .tier h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .tier p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 58ch;
+  }
+
+  /* ============================================================
+     PRACTICE / ABOUT  (wrapped in .block)
+     ============================================================ */
+  section.practice {
+    padding: 48px 44px 52px;
+    margin-bottom: 96px;
+  }
+  section.practice .practice-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+  }
+  section.practice .heading {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  section.practice .body p {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+  section.practice .body p:last-child { margin-bottom: 0; }
+  section.practice .body p:first-child::first-letter {
+    font-size: 56px;
+    float: left;
+    line-height: 0.9;
+    padding: 6px 10px 0 0;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  section.practice .body em {
+    font-style: italic;
+  }
+
+  /* ============================================================
+     SELECTED WORK  (wrapped in .block)
+     ============================================================ */
+  section.work {
+    padding: 48px 44px 24px;
+    margin-bottom: 96px;
+  }
+  section.work .heading {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+  .work-list {
+    list-style: none;
+    border-top: 1px solid var(--rule);
+  }
+  .work-list li {
+    display: grid;
+    grid-template-columns: 100px 1fr 220px;
+    gap: 40px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+    transition: padding-left 0.4s ease;
+  }
+  .work-list li:last-child { border-bottom: none; }
+  .work-list li:hover {
+    padding-left: 14px;
+  }
+  .work-list .yr {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .work-list .title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .work-list .title em { font-style: italic; color: var(--accent); }
+  .work-list .tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* ============================================================
+     CONTACT
+     ============================================================ */
+  section.contact {
+    position: relative;
+    padding: 88px 0 32px;
+  }
+  section.contact .heading {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a8576;
+    margin-bottom: 32px;
+  }
+  section.contact h3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(36px, 4.5vw, 64px);
+    line-height: 1.15;
+    max-width: 18ch;
+    margin-bottom: 32px;
+    color: var(--cream);
+  }
+  section.contact a.email {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cream);
+    padding-bottom: 2px;
+  }
+  section.contact a.email:hover {
+    color: #c47a55;
+    border-color: #c47a55;
+  }
+
+  section.contact footer {
+    margin-top: 96px;
+    padding-top: 18px;
+    border-top: 1px solid #3a3833;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8a8576;
+  }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 24px; }
+    main { padding: 0 24px 72px; }
+    main > section:first-child { padding-top: 64px; }
+    header.top nav { gap: 18px; font-size: 10px; }
+    .page > .nav-wrap .wrap { padding-top: 14px; padding-bottom: 14px; }
+    .hero-gap { height: 120px; }
+    section.practice { padding: 32px 24px 36px; }
+    section.practice .practice-inner { grid-template-columns: 1fr; gap: 28px; }
+    section.work { padding: 32px 24px 16px; }
+    .work-list li { grid-template-columns: 60px 1fr; }
+    .work-list .tag { display: none; }
+    section.hero { padding: 64px 0 24px; }
+    .hero-foot { margin-top: 64px; }
+    section.contact { padding: 64px 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="cipher-grid" aria-hidden="true"></canvas>
+
+<div class="page">
+
+  <div class="nav-wrap">
+    <div class="wrap">
+      <header class="top">
+        <div class="mark">Josephine Tran</div>
+        <nav>
+          <a href="#practice">Practice</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+    </div>
+  </div>
+
+  <div class="hero-gap"></div>
+
+  <div class="band band--dark">
+    <div class="wrap">
+      <section class="hero">
+        <div class="hero-head">
+          <div class="eyebrow">Tech Policy Research · Political Strategy</div>
+          <div class="folio">№ 01 · Practice</div>
+        </div>
+        <h1>Strategy for the spaces <em>between</em> grassroots and government.</h1>
+        <p class="deck">
+          Independent research and counsel at the intersection of emerging technology
+          and political power — translating between organisers, institutions, and the
+          rooms where rules get written.
+        </p>
+        <div class="hero-foot">
+          <span>Berlin · 北京 · 中欧</span>
+          <span>English · 中文</span>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <main>
+
+    <section class="tiers" id="practice">
+      <div class="section-label">Three tiers of intervention</div>
+
+      <div class="tier tier--top">
+        <div class="marker"><span class="num">03 ——</span> Government · UN · Davos</div>
+        <h2>Strategy for the <em>statecraft</em> level.</h2>
+        <p>
+          Briefings, position papers, and back-channel advice for ministers, multilateral
+          bodies, and the convening forums where global tech regulation is negotiated
+          before it is announced.
+        </p>
+      </div>
+
+      <div class="tier tier--middle">
+        <div class="marker"><span class="num">02 ——</span> Industry · Institutions</div>
+        <h2>Translation for <em>incumbents</em> and challengers.</h2>
+        <p>
+          Policy positioning, regulatory foresight, and stakeholder strategy for
+          technology firms, foundations, and research institutes navigating an
+          increasingly political operating environment.
+        </p>
+      </div>
+
+      <div class="tier tier--ground">
+        <div class="marker"><span class="num">01 ——</span> Grassroots · Labour</div>
+        <h2>Movement-led <em>power-building</em>.</h2>
+        <p>
+          Field research and campaign strategy with organisers, trade unions, and
+          community coalitions — making sure the people most affected by new technology
+          shape the rules that govern it.
+        </p>
+      </div>
+    </section>
+
+    <section class="practice block">
+      <div class="practice-inner">
+        <div class="heading">On the practice</div>
+        <div class="body">
+          <p>
+            The work moves vertically — a question raised on a picket line might be
+            carried into a regulator's consultation, then into a multilateral working
+            group, then back down as policy that has to survive contact with the people
+            it governs.
+          </p>
+          <p>
+            Most failures in tech policy are <em>translation failures</em>: a misread
+            of who has leverage, which institution actually decides, what language a
+            room can hear. The brief is to reduce that gap.
+          </p>
+          <p>
+            Based in Berlin and working across Europe and Asia. Fluent in English
+            and Mandarin, with a Chinese background and a working understanding of
+            how policy is made — and unmade — inside those systems.
+          </p>
+          <p>
+            Clients have included national governments, international organisations,
+            labour federations, philanthropic funders, and a small number of technology
+            firms working on questions of public interest.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="work block" id="work">
+      <div class="heading">Selected work</div>
+      <ul class="work-list">
+        <li>
+          <span class="yr">2026</span>
+          <span class="title"><em>Foresight brief</em> on frontier-model governance for a G7 delegation</span>
+          <span class="tag">Government</span>
+        </li>
+        <li>
+          <span class="yr">2025</span>
+          <span class="title">Cross-union research programme on algorithmic management in logistics</span>
+          <span class="tag">Labour</span>
+        </li>
+        <li>
+          <span class="yr">2025</span>
+          <span class="title">Stakeholder strategy for a multilateral AI safety convening</span>
+          <span class="tag">Institutions</span>
+        </li>
+        <li>
+          <span class="yr">2024</span>
+          <span class="title"><em>White paper</em> — public-interest infrastructure for compute</span>
+          <span class="tag">Research</span>
+        </li>
+        <li>
+          <span class="yr">2024</span>
+          <span class="title">Field study with platform-worker organisers across four cities</span>
+          <span class="tag">Grassroots</span>
+        </li>
+        <li>
+          <span class="yr">2023</span>
+          <span class="title">Regulatory positioning for a major foundation model developer</span>
+          <span class="tag">Industry</span>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <div class="band band--dark">
+    <div class="wrap">
+      <section class="contact" id="contact">
+        <div class="heading">Working with me</div>
+        <h3>Available for select engagements, briefings, and advisory.</h3>
+        <a class="email" href="mailto:josephine@example.com">josephine@example.com</a>
+
+        <footer>
+          <span>© Josephine Tran MMXXVI</span>
+          <span>Berlin · Brussels · Beijing</span>
+        </footer>
+      </section>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /* Nav: subtle shadow once you scroll past the hero */
+  (function () {
+    const nav = document.querySelector('.nav-wrap');
+    if (!nav) return;
+    let ticking = false;
+    function update() {
+      if (window.scrollY > 40) nav.classList.add('is-scrolled');
+      else nav.classList.remove('is-scrolled');
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+</script>
+
+<script>
+  /* ============================================================
+     Cryptic cipher grid — Canvas 2D
+     ============================================================ */
+  (function () {
+    const canvas = document.getElementById('cipher-grid');
+    const ctx = canvas.getContext('2d');
+
+    const POOL = (
+      '0123456789ABCDEF' +
+      '·∙▪◦/—' +
+      '政策权力国家治理战略情报机构网络数据信息技术' +
+      '运动劳工声音变革人民工人组织联盟' +
+      '外交协商之间翻译桥' +
+      '中文方法系统结构层级研究'
+    );
+    const FONT_SIZE = 12;
+    const CELL_W    = 15;
+    const CELL_H    = 19;
+    const PADDING   = 24;
+
+    const BASE_R = 138, BASE_G = 130, BASE_B = 112;
+    const HOT_R  = 196, HOT_G  = 122, HOT_B  = 85;
+
+    const BASE_ALPHA = 0.22;
+    const HOT_ALPHA  = 0.85;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let cols, rows, cells, chars;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const waves = [];
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width  = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width  = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.scale(dpr, dpr);
+      ctx.font = `300 ${FONT_SIZE}px 'JetBrains Mono', ui-monospace, monospace`;
+      ctx.textBaseline = 'top';
+      ctx.textAlign = 'center';
+
+      cols = Math.ceil((w - PADDING * 2) / CELL_W);
+      rows = Math.ceil((h - PADDING * 2) / CELL_H);
+      const n = cols * rows;
+      cells = new Float32Array(n);
+      chars = new Uint8Array(n);
+      for (let i = 0; i < n; i++) {
+        chars[i] = Math.floor(Math.random() * POOL.length);
+        cells[i] = Math.random() * 0.15;
+      }
+    }
+
+    function spawnWave() {
+      waves.push({
+        col: Math.floor(Math.random() * cols),
+        t: 0,
+        speed: 0.6 + Math.random() * 0.9,
+        life: rows + 12
+      });
+    }
+
+    let lastSpawn = 0;
+    let lastPermute = 0;
+
+    function frame(now) {
+      const decay = 0.012;
+      for (let i = 0; i < cells.length; i++) {
+        if (cells[i] > 0) cells[i] = Math.max(0, cells[i] - decay);
+      }
+
+      if (now - lastPermute > 30) {
+        lastPermute = now;
+        const nPermute = Math.max(2, Math.floor(cells.length * 0.0015));
+        for (let k = 0; k < nPermute; k++) {
+          const i = Math.floor(Math.random() * cells.length);
+          chars[i] = Math.floor(Math.random() * POOL.length);
+          cells[i] = 0.7 + Math.random() * 0.3;
+        }
+      }
+
+      if (!reduceMotion && now - lastSpawn > 1400 + Math.random() * 2200) {
+        lastSpawn = now;
+        spawnWave();
+      }
+
+      for (let w = waves.length - 1; w >= 0; w--) {
+        const wave = waves[w];
+        wave.t += wave.speed;
+        const row = Math.floor(wave.t);
+        if (row >= 0 && row < rows) {
+          const i = row * cols + wave.col;
+          if (Math.random() < 0.6) {
+            chars[i] = Math.floor(Math.random() * POOL.length);
+            cells[i] = 1.0;
+          }
+          if (wave.col > 0 && Math.random() < 0.18) {
+            const i2 = row * cols + (wave.col - 1);
+            cells[i2] = Math.max(cells[i2], 0.55);
+          }
+          if (wave.col < cols - 1 && Math.random() < 0.18) {
+            const i2 = row * cols + (wave.col + 1);
+            cells[i2] = Math.max(cells[i2], 0.55);
+          }
+        }
+        if (wave.t > wave.life) waves.splice(w, 1);
+      }
+
+      ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+      const cjkFont = `300 ${FONT_SIZE - 1}px 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif`;
+      const monoFont = `300 ${FONT_SIZE}px 'JetBrains Mono', ui-monospace, monospace`;
+      let lastFont = '';
+      for (let r = 0; r < rows; r++) {
+        const y = PADDING + r * CELL_H;
+        for (let c = 0; c < cols; c++) {
+          const i = r * cols + c;
+          const f = cells[i];
+          const a = BASE_ALPHA + (HOT_ALPHA - BASE_ALPHA) * f;
+          const rC = Math.round(BASE_R + (HOT_R - BASE_R) * f);
+          const gC = Math.round(BASE_G + (HOT_G - BASE_G) * f);
+          const bC = Math.round(BASE_B + (HOT_B - BASE_B) * f);
+          ctx.fillStyle = `rgba(${rC},${gC},${bC},${a})`;
+          const ch = POOL[chars[i]];
+          const code = ch.charCodeAt(0);
+          const isCJK = code >= 0x4E00 && code <= 0x9FFF;
+          const wantFont = isCJK ? cjkFont : monoFont;
+          if (wantFont !== lastFont) {
+            ctx.font = wantFont;
+            lastFont = wantFont;
+          }
+          ctx.fillText(ch, PADDING + c * CELL_W + CELL_W / 2, y);
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    resize();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
+    });
+
+    requestAnimationFrame(frame);
+  })();
+</script>
+
+</body>
+</html>
