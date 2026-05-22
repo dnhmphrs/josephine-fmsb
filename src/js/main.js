@@ -175,46 +175,35 @@
       Apply a language: swap all [data-i18n] text, the page title/meta, the
       toggle state, and re-render the work list + hero.
       --------------------------------------------------------------------------- */
-      function setLang(next, revealHero = true) {
-        lang = next;
-      
-        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-        document.body.classList.toggle('lang-zh', lang === 'zh');
-        document.title = siteTitle[lang];
-      
-        const meta = document.querySelector('meta[name="description"]');
-        if (meta && metaDescription[lang]) meta.setAttribute('content', metaDescription[lang]);
-      
-        document.querySelectorAll('[data-i18n]').forEach((el) => {
-          const key = el.getAttribute('data-i18n');
-          if (ui[key] && ui[key][lang] != null) el.innerHTML = ui[key][lang];
-        });
-      
-        const heroEl = document.getElementById('heroH2');
-        if (heroEl) delete heroEl.dataset.heroText;
-      
-        document.querySelectorAll('[data-city]').forEach((el) => {
-          el.textContent = contact.city[lang];
-        });
-      
-        document.getElementById('langToggle').setAttribute('data-lang', lang);
-      
-        renderWork();
-      
-        // Wait for the fonts this language actually needs before measuring the hero,
-        // so the line-split runs against real metrics (no fallback→real-font jump).
-        const heroFonts = lang === 'zh'
-          ? ['700 4rem "Noto Sans SC"', '500 2rem "Noto Serif SC"']
-          : ['700 4rem Inconsolata', '500 2rem Newsreader'];
-      
-        if (document.fonts) {
-          Promise.all(heroFonts.map((f) => document.fonts.load(f)))
-            .then(() => splitHero(revealHero))
-            .catch(() => splitHero(revealHero));
-        } else {
-          splitHero(revealHero);
-        }
-      }
+   function setLang(next, revealHero = true) {
+     lang = next;
+   
+     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+     document.body.classList.toggle('lang-zh', lang === 'zh');
+     document.title = siteTitle[lang];
+   
+     const meta = document.querySelector('meta[name="description"]');
+     if (meta && metaDescription[lang]) meta.setAttribute('content', metaDescription[lang]);
+   
+     // swap every element tagged with a UI key
+     document.querySelectorAll('[data-i18n]').forEach((el) => {
+       const key = el.getAttribute('data-i18n');
+       if (ui[key] && ui[key][lang] != null) el.innerHTML = ui[key][lang];
+     });
+   
+     const heroEl = document.getElementById('heroH2');
+     if (heroEl) delete heroEl.dataset.heroText;
+   
+     // city sits under contact (per-language) rather than ui
+     document.querySelectorAll('[data-city]').forEach((el) => {
+       el.textContent = contact.city[lang];
+     });
+   
+     document.getElementById('langToggle').setAttribute('data-lang', lang);
+   
+     renderWork();
+     splitHero(revealHero);
+   }
    
    /* ---------------------------------------------------------------------------
       Boot.
