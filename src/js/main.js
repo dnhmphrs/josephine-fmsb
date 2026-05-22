@@ -97,7 +97,10 @@ function splitHero(reveal = true) {
   const h = document.getElementById('heroH2');
   if (!h) return;
 
-  const text = h.textContent.trim();
+  if (!h.dataset.heroText) {
+    h.dataset.heroText = h.textContent.trim();
+  }
+  const text = h.dataset.heroText;
   const isCJK = /[\u4e00-\u9fff]/.test(text);
   const atoms = isCJK
     ? Array.from(text)
@@ -187,6 +190,9 @@ function setLang(next, revealHero = true) {
     const key = el.getAttribute('data-i18n');
     if (ui[key] && ui[key][lang] != null) el.innerHTML = ui[key][lang];
   });
+
+  const heroEl = document.getElementById('heroH2');
+  if (heroEl) delete heroEl.dataset.heroText;
 
   // city sits under contact (per-language) rather than ui
   document.querySelectorAll('[data-city]').forEach((el) => {
