@@ -28,8 +28,8 @@
 
     "about_head": { "en": "Profile", "zh": "简介" },
     "about_p1": {
-      "en": "I work across the whole body of technology governance — not a single domain — connecting the right people on the right problems. My work is deliberately interdisciplinary: I pull together vocabularies from fields that rarely speak, and build the talent to tackle them.",
-      "zh": "我关注技术治理的整体——而非单一领域——把合适的人聚到合适的议题上。我的工作有意跨越学科：把鲜少对话的领域的语汇汇聚到一起，并培养能应对这些问题的人才。"
+      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "zh": "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。"
     },
     "about_p2": {
       "en": "It is international in scope, with working access across Europe and China, and grounded in commercial ML experience with European companies — close to AI weapons proliferation and the questions it raises. I make change at the level of systems.",
