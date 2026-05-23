@@ -67,6 +67,29 @@
     --ease:cubic-bezier(.2,.7,.2,1);
 }
 
+/* BONE - DARK MODE */
+
+:root{
+    --bg:#1c1b18;
+    --panel:#1c1b18;
+    --fg:#ebe7dd;
+    --fg-2:#b8b2a4;
+    --muted:#827d70;
+    --line:#ebe7dd;
+    --hair:#3a3832;
+    --invert-bg:#f3f0e8;
+    --invert-fg:#211f1b;
+    --lilac:#a98fe6;
+    --lilac-soft:#7a55cf;
+    --lilac-deep:#c4b2f0;
+    --mono:'Inconsolata', ui-monospace, 'IBM Plex Mono', monospace;
+    --mono-cjk:'Noto Sans SC', 'Inconsolata', monospace;
+    --prose:'Newsreader', Georgia, serif;
+    --prose-cjk:'Noto Serif SC', 'Newsreader', serif;
+    --gut:clamp(20px,4.5vw,64px);
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+
 /* SLATE */
 
 :root{
