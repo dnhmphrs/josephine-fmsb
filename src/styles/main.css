@@ -11,12 +11,14 @@
   --lilac:#7a55cf;
   --lilac-soft:#a98fe6;
   --lilac-deep:#5d3db4;
-  --mono:'Inconsolata', ui-monospace, 'IBM Plex Mono', monospace;
-  --mono-cjk:'Noto Sans SC', 'Inconsolata', monospace;
+  --mono:'Inconsolata', 'IBM Plex Mono', ui-monospace, monospace;
   --prose:'Newsreader', Georgia, serif;
-  --prose-cjk:'Noto Serif SC', 'Newsreader', serif;
   --gut:clamp(20px,4.5vw,64px);
   --ease:cubic-bezier(.2,.7,.2,1);
+}
+:root:lang(zh){
+  --mono:'Noto Sans SC', 'Inconsolata', monospace;
+  --prose:'Noto Serif SC', 'Newsreader', serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{
@@ -58,8 +60,11 @@ body > *{opacity:1;transition:opacity .5s ease;}
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;}
 
-body.lang-zh{font-family:var(--mono-cjk);}
-body.lang-zh .mono-en-keep{font-family:var(--mono);}
+/* CJK leading: Han text wants more line-height than Latin. Language-specific,
+   so it stays — but keyed off :lang(zh) rather than a body class. */
+:lang(zh) .fig-caption .cap-text{line-height:1.7;}
+:lang(zh) .w-panel-in .w-body p{line-height:1.95;}
+:lang(zh) .hero h2{letter-spacing:0;line-height:1.16;max-width:20ch;}
 
 /* ---------- layout shell ---------- */
 .shell{width:100%;padding:0 var(--gut);}
@@ -80,7 +85,10 @@ body.lang-zh .mono-en-keep{font-family:var(--mono);}
 
 .lang-toggle{display:inline-flex;border:1.5px solid var(--line);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;overflow:hidden;cursor:pointer;background:transparent;user-select:none;}
 .lang-toggle .seg{padding:5px 9px 4px;line-height:1;background:transparent;color:var(--fg);transition:background .25s,color .25s;border:0;font:inherit;cursor:pointer;}
-.lang-toggle .seg.zh{font-family:var(--mono-cjk);}
+/* The 中 glyph is a Han character that must render in Noto even while the page
+   is in English (lang="en"). Force the CJK face here regardless of locale —
+   add lang="zh" on the .seg.zh span in the HTML so it's also announced right. */
+.lang-toggle .seg.zh{font-family:'Noto Sans SC', sans-serif;}
 .lang-toggle[data-lang="en"] .seg.en,
 .lang-toggle[data-lang="zh"] .seg.zh{background:var(--fg);color:var(--bg);}
 
@@ -100,7 +108,6 @@ body.lang-zh .mono-en-keep{font-family:var(--mono);}
   /* font-family: var(--prose); */
 }
 .hero h2.ready{opacity:1;}
-body.lang-zh .hero h2{letter-spacing:0;line-height:1.16;max-width:20ch;}
 .hero h2 .dot{color:var(--lilac);}
 
 /* hero reveal — line-based clip+rise, identical feel in both languages */
@@ -133,7 +140,6 @@ body.lang-zh .hero h2{letter-spacing:0;line-height:1.16;max-width:20ch;}
 .fig-caption{display:flex;gap:16px;margin-top:16px;width:100%;}
 .fig-caption .cap-no{flex:0 0 auto;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--lilac-deep);}
 .fig-caption .cap-text{flex:1 1 auto;font-family:var(--mono);font-size:13.5px;line-height:1.55;color:var(--fg-2);}
-body.lang-zh .fig-caption .cap-text{font-family:var(--mono-cjk);line-height:1.7;}
 
 #stack-mount{ position:relative; width:100%; min-height:clamp(640px,80vh,800px); }
 
@@ -153,7 +159,6 @@ body.lang-zh .fig-caption .cap-text{font-family:var(--mono-cjk);line-height:1.7;
 .w-row .w-no{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--muted);transition:color .3s;}
 .w-item.open .w-row .w-no,.w-row:hover .w-no{color:var(--lilac-deep);}
 .w-row .w-title{font-family:var(--prose);font-weight:500;font-size:clamp(18px,2vw,26px);line-height:1.1;letter-spacing:-.005em;}
-body.lang-zh .w-row .w-title{font-family:var(--prose-cjk);}
 .w-row .w-meta{display:flex;align-items:center;gap:clamp(14px,2vw,22px);white-space:nowrap;}
 .w-row .w-yr{font-size:12px;letter-spacing:.06em;color:var(--muted);}
 .w-row .w-sign{position:relative;width:13px;height:13px;flex:0 0 auto;}
@@ -166,10 +171,8 @@ body.lang-zh .w-row .w-title{font-family:var(--prose-cjk);}
 .w-panel-in{padding:0 0 clamp(28px,3.4vw,44px) 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,3vw,36px);}
 .w-panel-in .w-body{max-width:62ch;}
 .w-panel-in .w-body p{font-family:var(--prose);font-size:clamp(15px,1.15vw,17px);line-height:1.62;color:var(--fg-2);}
-body.lang-zh .w-panel-in .w-body p{font-family:var(--prose-cjk);line-height:1.95;}
 .w-panel-in .w-body p + p{margin-top:1em;}
 .w-panel-in .w-readmore{margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lilac-deep);border-bottom:1.5px solid transparent;transition:border-color .25s;}
-body.lang-zh .w-panel-in .w-readmore{font-family:var(--mono-cjk);}
 .w-panel-in .w-readmore:hover{border-color:var(--lilac-deep);}
 @media(max-width:560px){
   .w-panel-in{grid-template-columns:1fr;}
