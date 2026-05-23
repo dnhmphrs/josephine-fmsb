@@ -64,7 +64,7 @@ img{display:block;max-width:100%;}
    so it stays — but keyed off :lang(zh) rather than a body class. */
 :lang(zh) .fig-caption .cap-text{line-height:1.7;}
 :lang(zh) .w-panel-in .w-body p{line-height:1.95;}
-:lang(zh) .hero h2{letter-spacing:0;line-height:1.16;max-width:20ch;}
+:lang(zh) .hero h2{letter-spacing:0;line-height:1.16;}
 
 /* ---------- layout shell ---------- */
 .shell{width:100%;padding:0 var(--gut);}
