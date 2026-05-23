@@ -6,7 +6,7 @@
   --muted:#827e72;
   --line:#211f1b;
   --hair:#cbc6ba;
-  --invert-bg:#1c1b18;
+  --invert-bg:#22211d;
   --invert-fg:#ebe7dd;
   --lilac:#7a55cf;
   --lilac-soft:#a98fe6;
@@ -93,19 +93,19 @@ img{display:block;max-width:100%;}
 .lang-toggle[data-lang="zh"] .seg.zh{background:var(--fg);color:var(--bg);}
 
 /* ---------- HERO STATEMENT ---------- */
-.hero{padding:clamp(56px,11vh,150px) var(--gut) clamp(44px,7vw,96px);}
+.hero{padding:clamp(56px,11vh,96px) var(--gut) clamp(44px,7vw,72px);}
 .hero .eyebrow{display:flex;gap:14px;align-items:center;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:clamp(28px,4vw,52px);}
 .hero .eyebrow::before{content:"";width:36px;height:2px;background:var(--lilac);}
 .hero h2{
   font-weight:500;
-  font-size:clamp(28px,5.4vw,54px);
+  font-size:clamp(28px,5.4vw,48px);
   line-height:1.04;
   letter-spacing:-.02em;
   /* text-transform:uppercase; */
-  max-width:25ch;
+  /* max-width:19ch; */
   opacity:0;
   transition:opacity .3s var(--ease);
-  /* font-family: var(--prose); */
+  font-family: var(--prose);
 }
 .hero h2.ready{opacity:1;}
 .hero h2 .dot{color:var(--lilac);}
@@ -117,7 +117,7 @@ img{display:block;max-width:100%;}
 @media(prefers-reduced-motion:reduce){ .hero h2 .line .inner{transform:none!important;} }
 
 /* ---------- INTRO COLUMNS ---------- */
-.intro{padding:clamp(40px,6vw,72px) var(--gut) clamp(48px,6.5vw,84px);background:var(--panel);border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);}
+/* .intro{padding:clamp(40px,6vw,72px) var(--gut) clamp(48px,6.5vw,84px);background:var(--panel);border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);}
 .intro-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:clamp(24px,3.5vw,56px);}
 @media(max-width:860px){ .intro-grid{grid-template-columns:1fr 1fr;gap:36px 28px;} .intro-grid .col-bio{grid-column:1 / -1;} }
 @media(max-width:520px){ .intro-grid{grid-template-columns:1fr;gap:32px;} }
@@ -128,7 +128,23 @@ img{display:block;max-width:100%;}
 .col-list .row{display:flex;justify-content:space-between;gap:14px;}
 .contact-link{font-size:clamp(14px,1.1vw,16px);color:var(--fg);border-bottom:1.5px solid transparent;transition:border-color .25s,color .25s;display:inline-block;word-break:break-word;}
 .contact-link:hover{border-color:var(--lilac);color:var(--lilac-deep);}
-.contact-note{margin-top:16px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+.contact-note{margin-top:16px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);} */
+
+/* ---------- INTRO COLUMNS -- DARK ---------- */
+.intro{padding:clamp(40px,6vw,72px) var(--gut) clamp(48px,6.5vw,84px);background:var(--invert-bg);color:var(--invert-fg);border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);}
+.intro ::selection{background:var(--invert-fg);color:var(--invert-bg);}
+.intro-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:clamp(24px,3.5vw,56px);}
+@media(max-width:860px){ .intro-grid{grid-template-columns:1fr 1fr;gap:36px 28px;} .intro-grid .col-bio{grid-column:1 / -1;} }
+@media(max-width:520px){ .intro-grid{grid-template-columns:1fr;gap:32px;} }
+.col-head{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--invert-fg);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid #36353a;}
+.col-bio p{font-size:clamp(14px,1.05vw,15.5px);line-height:1.62;color:#b8b4a9;max-width:48ch;}
+.col-bio p + p{margin-top:1.1em;}
+.col-list{font-size:14.5px;line-height:1.85;color:#b8b4a9;}
+.col-list .row{display:flex;justify-content:space-between;gap:14px;}
+.contact-link{font-size:clamp(14px,1.1vw,16px);color:var(--invert-fg);border-bottom:1.5px solid transparent;transition:border-color .25s,color .25s;display:inline-block;word-break:break-word;}
+.contact-link:hover{border-color:var(--lilac-soft);color:var(--lilac-soft);}
+.contact-note{margin-top:16px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#79786f;}
+
 
 /* ---------- FIGURE / ISOMETRIC STACK ---------- */
 .figure{padding:clamp(48px,7vw,96px) var(--gut) clamp(48px,7vw,96px);}
