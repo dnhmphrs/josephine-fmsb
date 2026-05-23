@@ -17,8 +17,8 @@
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 :root:lang(zh){
-  --mono:'Noto Sans SC', 'Inconsolata', monospace;
-  --prose:'Noto Serif SC', 'Newsreader', serif;
+  --mono:'Inconsolata', 'Noto Sans SC',  monospace;    /* latin first for english words in cjk in correct font */
+  --prose:'Newsreader', 'Noto Serif SC', serif;    /* latin first for english words in cjk in correct font */
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{
