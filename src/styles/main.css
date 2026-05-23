@@ -1,13 +1,13 @@
 :root{
-  --bg:#eeece3;
-  --panel:#eeece3;
-  --fg:#1c1b1a;
-  --fg-2:#46443f;
-  --muted:#7e7b72;
-  --line:#1c1b1a;
-  --hair:#c4c1b7;
-  --invert-bg:#1a1a1c;
-  --invert-fg:#e6e4dc;
+  --bg:#f3f0e8;
+  --panel:#f3f0e8;
+  --fg:#211f1b;
+  --fg-2:#4b473f;
+  --muted:#827e72;
+  --line:#211f1b;
+  --hair:#cbc6ba;
+  --invert-bg:#1c1b18;
+  --invert-fg:#ebe7dd;
   --lilac:#7a55cf;
   --lilac-soft:#a98fe6;
   --lilac-deep:#5d3db4;

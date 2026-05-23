@@ -1,0 +1,114 @@
+/* ORIGINAL */
+
+:root{
+    --bg:#ecedea;
+    --panel:#ecedea;
+    --fg:#1a1b1c;
+    --fg-2:#43454a;
+    --muted:#797b78;
+    --line:#1a1b1c;
+    --hair:#c3c5c2;
+    --invert-bg:#181819;
+    --invert-fg:#e4e5e2;
+    --lilac:#7a55cf;
+    --lilac-soft:#a98fe6;
+    --lilac-deep:#5d3db4;
+    --mono:'Inconsolata', ui-monospace, 'IBM Plex Mono', monospace;
+    --mono-cjk:'Noto Sans SC', 'Inconsolata', monospace;
+    --prose:'Newsreader', Georgia, serif;
+    --prose-cjk:'Noto Serif SC', 'Newsreader', serif;
+    --gut:clamp(20px,4.5vw,64px);
+    --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* COOL FOG */
+
+:root{
+    --bg:#ecedea;
+    --panel:#ecedea;
+    --fg:#1a1b1c;
+    --fg-2:#43454a;
+    --muted:#797b78;
+    --line:#1a1b1c;
+    --hair:#c3c5c2;
+    --invert-bg:#181819;
+    --invert-fg:#e4e5e2;
+    --lilac:#7a55cf;
+    --lilac-soft:#a98fe6;
+    --lilac-deep:#5d3db4;
+    --mono:'Inconsolata', ui-monospace, 'IBM Plex Mono', monospace;
+    --mono-cjk:'Noto Sans SC', 'Inconsolata', monospace;
+    --prose:'Newsreader', Georgia, serif;
+    --prose-cjk:'Noto Serif SC', 'Newsreader', serif;
+    --gut:clamp(20px,4.5vw,64px);
+    --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* BONE */
+
+:root{
+    --bg:#f3f0e8;
+    --panel:#f3f0e8;
+    --fg:#211f1b;
+    --fg-2:#4b473f;
+    --muted:#827e72;
+    --line:#211f1b;
+    --hair:#cbc6ba;
+    --invert-bg:#1c1b18;
+    --invert-fg:#ebe7dd;
+    --lilac:#7a55cf;
+    --lilac-soft:#a98fe6;
+    --lilac-deep:#5d3db4;
+    --mono:'Inconsolata', ui-monospace, 'IBM Plex Mono', monospace;
+    --mono-cjk:'Noto Sans SC', 'Inconsolata', monospace;
+    --prose:'Newsreader', Georgia, serif;
+    --prose-cjk:'Noto Serif SC', 'Newsreader', serif;
+    --gut:clamp(20px,4.5vw,64px);
+    --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* SLATE */
+
+:root{
+    --bg:#e9eaee;
+    --panel:#e9eaee;
+    --fg:#191a1f;
+    --fg-2:#40424a;
+    --muted:#787a82;
+    --line:#191a1f;
+    --hair:#c0c2c8;
+    --invert-bg:#161719;
+    --invert-fg:#e2e3e7;
+    --lilac:#7a55cf;
+    --lilac-soft:#a98fe6;
+    --lilac-deep:#5d3db4;
+    --mono:'Inconsolata', ui-monospace, 'IBM Plex Mono', monospace;
+    --mono-cjk:'Noto Sans SC', 'Inconsolata', monospace;
+    --prose:'Newsreader', Georgia, serif;
+    --prose-cjk:'Noto Serif SC', 'Newsreader', serif;
+    --gut:clamp(20px,4.5vw,64px);
+    --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* PUTTY */
+
+:root{
+    --bg:#ece7dc;
+    --panel:#ece7dc;
+    --fg:#211d17;
+    --fg-2:#4e4738;
+    --muted:#857f70;
+    --line:#211d17;
+    --hair:#cbc4b3;
+    --invert-bg:#1c1813;
+    --invert-fg:#ebe4d6;
+    --lilac:#7a55cf;
+    --lilac-soft:#a98fe6;
+    --lilac-deep:#5d3db4;
+    --mono:'Inconsolata', ui-monospace, 'IBM Plex Mono', monospace;
+    --mono-cjk:'Noto Sans SC', 'Inconsolata', monospace;
+    --prose:'Newsreader', Georgia, serif;
+    --prose-cjk:'Noto Serif SC', 'Newsreader', serif;
+    --gut:clamp(20px,4.5vw,64px);
+    --ease:cubic-bezier(.2,.7,.2,1);
+}
