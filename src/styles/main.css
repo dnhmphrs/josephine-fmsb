@@ -154,8 +154,8 @@ img{display:block;max-width:100%;}
 .fig-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:clamp(300px,42vh,460px);padding:clamp(28px,4vw,56px);}
 .stack-svg{position:relative;z-index:1;width:100%;max-width:720px;height:auto;}
 .fig-caption{display:flex;gap:16px;margin-top:16px;width:100%;}
-.fig-caption .cap-no{flex:0 0 auto;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--lilac-deep);}
-.fig-caption .cap-text{flex:1 1 auto;font-family:var(--mono);font-size:13.5px;line-height:1.55;color:var(--fg-2);}
+.fig-caption .cap-no{flex:0 0 auto;font-size:13px;font-weight:700;line-height:1.55;letter-spacing:.08em;color:var(--lilac-deep);}
+.fig-caption .cap-text{flex:1 1 auto;font-family:var(--mono);font-size:13px;line-height:1.55;color:var(--fg-2);}
 
 #stack-mount{ position:relative; width:100%; min-height:clamp(640px,80vh,800px); }
 
