@@ -136,7 +136,7 @@ img{display:block;max-width:100%;}
 .intro-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:clamp(24px,3.5vw,56px);}
 @media(max-width:860px){ .intro-grid{grid-template-columns:1fr 1fr;gap:36px 28px;} .intro-grid .col-bio{grid-column:1 / -1;} }
 @media(max-width:520px){ .intro-grid{grid-template-columns:1fr;gap:32px;} }
-.col-head{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--invert-fg);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid #36353a;}
+.col-head{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--invert-fg);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--lilac);}
 .col-bio p{font-size:clamp(14px,1.05vw,15.5px);line-height:1.62;color:#b8b4a9;max-width:48ch;}
 .col-bio p + p{margin-top:1.1em;}
 .col-list{font-size:14.5px;line-height:1.85;color:#b8b4a9;}
