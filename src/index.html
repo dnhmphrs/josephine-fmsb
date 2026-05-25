@@ -4,113 +4,164 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Josephine Shen</title>
-  <meta name="description" content="Josephine Shen — Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+  <meta name="description" content="Josephine Shen — research and strategy at the meeting point of AI, security, and the state." />
   <meta name="author" content="Josephine Shen" />
 
-  <!-- favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
 
-  <!-- share / link-preview card (Open Graph — used by iMessage, Slack, LinkedIn, Facebook) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Josephine Shen" />
-  <meta property="og:description" content="Josephine Shen — Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-  <meta property="og:image" content="https://josephine-fmsb.vercel.app/square.png" />
+  <meta property="og:description" content="Research and strategy at the meeting point of AI, security, and the state." />
   <meta property="og:url" content="https://josephine-fmsb.vercel.app" />
 
-  <!-- share / link-preview card (Twitter / X) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Josephine Shen" />
-  <meta name="twitter:description" content="Josephine Shen — Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-  <meta name="twitter:image" content="https://josephine-fmsb.vercel.app/square.png" />
+  <meta name="twitter:description" content="Research and strategy at the meeting point of AI, security, and the state." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
 <body class="fonts-loading">
- 
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-in">
-      <a href="#top" class="logo" id="logo" data-i18n="logo">JOSEPHINE SHEN</a>
-      <div class="nav-meta">
+
+  <!-- =====================================================================
+       SPARK GLYPH — an original four-point concave star, defined once.
+       Referenced everywhere via <svg class="spark"><use href="#spark"/></svg>.
+       (Not a copy of any other site's path — its own concave-quatrefoil form.)
+       ===================================================================== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="spark" viewBox="0 0 100 100">
+      <path d="M50 0
+               C50 38 38 50 0 50
+               C38 50 50 62 50 100
+               C50 62 62 50 100 50
+               C62 50 50 38 50 0 Z"/>
+    </symbol>
+  </svg>
+
+  <div class="frame">
+
+    <!-- NAV -->
+    <nav class="nav">
+      <a href="#top" class="nav-logo">
+        <svg class="spark"><use href="#spark"/></svg>
+        <span data-i18n="logo">Josephine Shen</span>
+      </a>
+      <div class="nav-right">
         <div class="nav-links">
-          <a href="#about" data-i18n="nav_about">Index</a>
-          <a href="#work" data-i18n="nav_work">Work</a>
+          <a href="#about"   data-i18n="nav_index">Index</a>
+          <a href="#areas"   data-i18n="nav_areas">Areas</a>
+          <a href="#work"    data-i18n="nav_work">Work</a>
           <a href="#contact" data-i18n="nav_contact">Contact</a>
         </div>
         <button class="lang-toggle" id="langToggle" data-lang="en" aria-label="Language — English / 中文">
-          <span class="seg en">EN</span><span class="seg zh">中</span>
+          <span class="seg en">EN</span><span class="seg zh" lang="zh">中</span>
         </button>
       </div>
-    </div>
-  </nav>
- 
-  <!-- HERO -->
-  <header class="hero" id="top">
-    <p class="eyebrow reveal" data-i18n="eyebrow">Research &amp; strategy / AI · security · the state</p>
-    <h2 id="heroH2" data-i18n="hero">Working where statecraft meets computation.</h2>
-  </header>
- 
-  <!-- INTRO / INDEX -->
-  <section class="intro" id="about">
-    <div class="intro-grid">
-      <div class="col-bio reveal">
-        <div class="col-head"><span data-i18n="about_head">Profile</span></div>
-        <p data-i18n="about_p1"></p>
-        <p data-i18n="about_p2"></p>
+    </nav>
+
+    <!-- HERO / MISSION -->
+    <header class="hero" id="top">
+      <div class="mod-label reveal">
+        <svg class="spark"><use href="#spark"/></svg>
+        <span data-i18n="hero_label">Mission</span>
       </div>
-      <div class="col-contact reveal">
-        <div class="col-head"><span data-i18n="contact_head">Contact</span></div>
-        <a href="#" class="contact-link mono-en-keep" data-email>[ email ]</a>
-        <!-- <div class="contact-note" data-i18n="contact_note"></div> -->
+      <h1 class="hero-statement" id="heroH1" data-i18n="hero">Building the connective tissue between AI policy, security, and the state.</h1>
+      <p class="hero-sub reveal" data-i18n="hero_sub"></p>
+    </header>
+
+    <!-- PROFILE -->
+    <section class="module" id="about">
+      <div class="mod-split">
+        <div class="mod-label reveal">
+          <svg class="spark"><use href="#spark"/></svg>
+          <span data-i18n="about_label">Profile</span>
+        </div>
+        <div class="prose reveal">
+          <p><span class="lead" data-i18n="about_p1"></span></p>
+          <p data-i18n="about_p2"></p>
+          <a href="#work" class="read-more">
+            <svg class="spark"><use href="#spark"/></svg>
+            <span class="lab" data-i18n="read_more">Read more</span>
+          </a>
+        </div>
       </div>
-      <div class="col-roles reveal">
-        <div class="col-head"><span data-i18n="roles_head">Practice</span></div>
-        <div class="col-list" data-i18n="roles_list"></div>
+    </section>
+
+    <!-- KEY AREAS -->
+    <section class="module" id="areas">
+      <div class="mod-label reveal">
+        <svg class="spark"><use href="#spark"/></svg>
+        <span data-i18n="areas_label">Key Areas</span>
       </div>
-    </div>
-  </section>
- 
-  <!-- FIGURE: ISOMETRIC STACK (interactive — three.js mounts into #stack-mount) -->
-  <section class="figure" id="figure">
-    <figure class="fig-frame reveal">
-      <span class="fig-tag"><span class="ft-dot"></span><span class="mono-en-keep">FIG. 01</span></span>
-      <div class="fig-inner" id="stack-mount"></div>
-    </figure>
-    <figcaption class="fig-caption reveal">
-      <span class="cap-no mono-en-keep">FIG. 01</span>
-      <span class="cap-text" data-i18n="fig_caption"></span>
-    </figcaption>
-  </section>
- 
-  <!-- WORK -->
-  <section class="work" id="work">
-    <div class="work-head">
-      <span class="wt" data-i18n="work_head">Selected Work</span>
-      <span class="wh-note" data-i18n="work_note">Select to read</span>
-    </div>
-    <div class="work-list" id="workList"><!-- items injected from content.json --></div>
-  </section>
- 
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <div class="footer-head reveal">
-      <span class="fh-label" data-i18n="foot_label">Contact</span>
-      <span class="fh-code mono-en-keep">//</span>
-    </div>
-    <div class="footer-grid">
-      <div class="reveal"><div class="fk" data-i18n="f_email">Email</div><div class="fv"><a href="#" class="mono-en-keep" data-email>[ email ]</a></div></div>
-      <div class="reveal"><div class="fk" data-i18n="f_linkedin">LinkedIn</div><div class="fv"><a href="#" class="mono-en-keep" data-linkedin>[ handle ]</a></div></div>
-      <div class="reveal"><div class="fk" data-i18n="f_based">Based in</div><div class="fv" data-city></div></div>
-      <div class="reveal"><div class="fk" data-i18n="f_lang">Languages</div><div class="fv mono-en-keep" data-languages></div></div>
-    </div>
-    <div class="footer-bar">
-      <span data-i18n="foot_name">Josephine Shen</span>
-      <span class="mono-en-keep" data-year></span>
-    </div>
-  </footer>
- 
+      <p class="areas-intro reveal" data-i18n="areas_intro"></p>
+      <div class="areas-grid reveal" id="areasGrid"><!-- injected --></div>
+    </section>
+
+    <!-- FIGURE / INTERACTIVE STACK -->
+    <section class="module" id="figure">
+      <div class="mod-label reveal">
+        <svg class="spark"><use href="#spark"/></svg>
+        <span data-i18n="diagram_label">Fig. 01 / The Stack</span>
+      </div>
+      <figure class="fig-frame reveal">
+        <span class="fig-tag">
+          <svg class="spark"><use href="#spark"/></svg>
+          <span class="mono-en-keep">FIG. 01</span>
+        </span>
+        <div class="fig-inner" id="stack-mount"></div>
+      </figure>
+      <figcaption class="fig-caption reveal">
+        <span class="cap-no">[01]</span>
+        <span class="cap-text" data-i18n="fig_caption"></span>
+      </figcaption>
+    </section>
+
+    <!-- WORK -->
+    <section class="module" id="work">
+      <div class="mod-label reveal">
+        <svg class="spark"><use href="#spark"/></svg>
+        <span data-i18n="work_label">Selected Work</span>
+        <span style="flex:1"></span>
+        <span class="wh-note" data-i18n="work_note" style="letter-spacing:.1em;text-transform:none;font-size:11px;">Select to read</span>
+      </div>
+      <div class="work-list" id="workList"><!-- injected --></div>
+    </section>
+
+    <!-- PRACTICE -->
+    <section class="module" id="practice">
+      <div class="mod-split">
+        <div class="mod-label reveal">
+          <svg class="spark"><use href="#spark"/></svg>
+          <span data-i18n="roles_label">Practice</span>
+        </div>
+        <div class="capsules reveal" id="capsules"><!-- injected --></div>
+      </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer class="footer" id="contact">
+      <div class="footer-top reveal">
+        <div class="footer-statement" data-i18n="contact_label">Contact <svg class="spark"><use href="#spark"/></svg></div>
+        <p class="footer-blurb" data-i18n="contact_blurb"></p>
+      </div>
+      <div class="footer-grid">
+        <div class="reveal"><div class="fk" data-i18n="f_email">Email</div><div class="fv"><a data-email>[ email ]</a></div></div>
+        <div class="reveal"><div class="fk" data-i18n="f_linkedin">LinkedIn</div><div class="fv"><a data-linkedin>[ handle ]</a></div></div>
+        <div class="reveal"><div class="fk" data-i18n="f_based">Based in</div><div class="fv" data-city></div></div>
+        <div class="reveal"><div class="fk" data-i18n="f_lang">Languages</div><div class="fv" data-languages></div></div>
+      </div>
+      <div class="footer-bar">
+        <span data-i18n="logo">Josephine Shen</span>
+        <span style="display:inline-flex;align-items:center;gap:.6em;">
+          <svg class="spark"><use href="#spark"/></svg>
+          <span data-year></span>
+        </span>
+      </div>
+    </footer>
+
+  </div><!-- /.frame -->
+
   <script type="module" src="/js/main.js"></script>
 </body>
 </html>
