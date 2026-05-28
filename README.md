@@ -3,7 +3,6 @@
 Personal index site. Static, bilingual (EN / 中), content-driven. Newspaper /
 archival layout: a masthead, then numbered sections — About, Themes, Artefacts,
 Projects, Contact — with expanding dropdown entries. One lilac accent on paper.
-A separate working-paper template lives at `/article.html`.
 
 ## Stack
 
@@ -26,12 +25,11 @@ Deploys on Vercel as a static build (`outputDirectory: dist`).
 ```
 src/
   index.html            # the index page (shell; lists are rendered from JSON)
-  article.html          # standalone working-paper template (links to /article.html)
+  404.html              # self-contained error page (own inline styles)
   content/content.json  # ALL text, EN + ZH — edit here
   js/main.js            # i18n toggle, dropdowns, render, font gate
   styles/
-    main.css            # index styles
-    article.css         # working-paper styles (bundled into the same styles.css)
+    main.css            # all styling
 public/                 # favicon, square.png, other static assets
 ```
 
@@ -43,8 +41,8 @@ filled. Simple HTML is allowed in values (`<br/>`, `<b>…</b>`, `&amp;`,
 
 - `ui.*` — fixed labels, masthead, marginalia, footer mark.
 - `themes` (3), `artefacts` (2), `projects` (6) — the dropdown lists. Each item
-  has `title`, `venue`, optional `yr`, optional `hot: true` (lilac star), optional
-  `url` (adds a "Read in full" link, e.g. to `/article.html`), and a `body`.
+  has `title`, `venue`, optional `yr`, optional `hot: true` (lilac star), and a
+  `body`. (Adding a `url` to an item would render a "Read in full →" link.)
 - `contact.email` — used everywhere the email appears.
 
 To add a list item, copy one object in the array (mind the commas). To remove

@@ -27,16 +27,10 @@
       display:flex; align-items:center; justify-content:center;
       padding:var(--pad); position:relative; overflow:hidden;
     }
-    .err-watermark{ position:fixed; inset:0; z-index:0; pointer-events:none; display:flex; align-items:center; justify-content:center; }
-    .err-watermark svg{ width:min(620px,120vw); height:auto; opacity:0.10; }
-    .ew-ring{ fill:none; stroke:var(--ink); stroke-width:1.5; }
-    .ew-fill{ fill:var(--hot); opacity:.35; }
-    .ew-core{ fill:var(--hot); opacity:.55; }
-    .ew-label{ font-family:var(--sans); font-weight:600; font-size:15px; letter-spacing:-0.01em; fill:var(--ink); text-anchor:middle; text-transform:uppercase; }
 
     .err{ position:relative; z-index:1; text-align:center; max-width:40ch; }
     .err-code{ font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--hot-2); margin-bottom:clamp(14px,2vw,22px); }
-    .err-msg{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(38px,8vw,92px); line-height:1.0; letter-spacing:-0.025em; color:var(--ink); }
+    .err-msg{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(38px,8vw,56px); line-height:1.0; letter-spacing:-0.025em; color:var(--ink); }
     .err-home{
       display:inline-flex; align-items:center; gap:9px; margin-top:clamp(28px,4vw,44px);
       font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase;
@@ -50,22 +44,6 @@
   </style>
 </head>
 <body>
-
-  <!-- faint domain-map watermark (no "where I work" marker / leader line) -->
-  <div class="err-watermark" aria-hidden="true">
-    <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
-      <circle class="ew-fill" cx="190" cy="150" r="125"/>
-      <circle class="ew-fill" cx="290" cy="150" r="125"/>
-      <circle class="ew-fill" cx="240" cy="245" r="125"/>
-      <circle class="ew-core" cx="240" cy="183" r="42"/>
-      <circle class="ew-ring" cx="190" cy="150" r="125"/>
-      <circle class="ew-ring" cx="290" cy="150" r="125"/>
-      <circle class="ew-ring" cx="240" cy="245" r="125"/>
-      <text class="ew-label" id="ewState"      x="120" y="95">State</text>
-      <text class="ew-label" id="ewIndustry"   x="360" y="95">Industry</text>
-      <text class="ew-label" id="ewGrassroots" x="240" y="335">Grassroots</text>
-    </svg>
-  </div>
 
   <main class="err">
     <p class="err-code" id="errCode">Error</p>
@@ -95,11 +73,6 @@
         var pick = function(k, fb){ return (ui[k] && ui[k][lang] != null) ? ui[k][lang] : fb; };
         document.getElementById('errMsg').textContent      = pick('error_msg', 'Aiyo, méiyǒu!');
         document.getElementById('errHomeLabel').textContent = pick('error_back', 'Back home');
-        if (lang === 'zh') {
-          document.getElementById('ewState').textContent      = '国家';
-          document.getElementById('ewIndustry').textContent   = '产业';
-          document.getElementById('ewGrassroots').textContent = '基层';
-        }
       })
       .catch(function(){});
   })();

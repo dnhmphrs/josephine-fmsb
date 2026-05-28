@@ -9,12 +9,11 @@ import livereload from 'rollup-plugin-livereload';
    Build
    ---------------------------------------------------------------------------
    Entry is src/js/main.js. It imports content.json (bundled by @rollup/plugin-json)
-   and the two stylesheets (main.css then article.css), which rollup-plugin-postcss
-   extracts and concatenates into a single dist/assets/styles.css. The HTML pages,
-   the content folder, and anything in public/ are copied across verbatim.
+   and the stylesheet (main.css), which rollup-plugin-postcss extracts into
+   dist/assets/styles.css. The HTML pages, the content folder, and anything in
+   public/ are copied across verbatim.
 
-   index.html links  /js/main.js  (the bundle)  →  pulls in styles.css.
-   article.html links /assets/styles.css directly (it has no JS of its own).
+   index.html links /js/main.js (the bundle) and /assets/styles.css directly.
 
    `yarn dev`  → rollup -c -w  : watches, rebuilds into dist/, AND serves it at
                  http://localhost:5173 with live reload (serve + livereload below,
@@ -27,22 +26,27 @@ const dev = process.env.ROLLUP_WATCH === 'true';
 export default {
   input: 'src/js/main.js',
   output: {
-    file: 'dist/js/main.js',
+    dir: 'dist',
     format: 'es',
+    // Pin stable, unhashed names so the hand-written HTML can link them
+    // directly: JS at /js/main.js, CSS (extracted below) at /assets/styles.css.
+    entryFileNames: 'js/[name].js',
+    assetFileNames: 'assets/[name][extname]',
     sourcemap: dev,
   },
   plugins: [
     nodeResolve(),
     json(),
     postcss({
-      extract: 'assets/styles.css',   // → dist/assets/styles.css
+      // Relative to output.dir (dist/), so this writes dist/assets/styles.css —
+      // which is exactly what index.html links to.
+      extract: 'assets/styles.css',
       minimize: !dev,
       sourceMap: dev,
     }),
     copy({
       targets: [
         { src: 'src/index.html',   dest: 'dist' },
-        { src: 'src/article.html', dest: 'dist' },
         { src: 'src/404.html',     dest: 'dist' },   // Vercel serves this for not-found routes
         { src: 'src/content',      dest: 'dist' },   // content.json shipped for reference/edits
         { src: 'public/*',         dest: 'dist' },   // favicon, square.png, etc.

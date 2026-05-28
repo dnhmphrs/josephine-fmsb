@@ -79,6 +79,7 @@
     line-height: 0.87;
     letter-spacing: -0.035em;
     margin: 0;
+    margin-top: 40px;
   }
   h1 .a { font-style: normal; }
   h1 .b { font-style: italic; }
@@ -90,7 +91,7 @@
     line-height: 1.32;
     color: var(--ink);
     margin: 26px 0 0;
-    max-width: 40ch;
+    max-width: 48ch;
   }
   
   /* right column — status metadata, FAE-style. This is also the block the
@@ -285,24 +286,61 @@
   }
   .yr { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-left: 6px; }
   
-  /* ---------------- CONTACT ---------------- */
-  .contact-content {
+  /* ---------------- CONTACT ROW (email 50%, portrait 25%, diagram 25%) ----------------
+     Three in a row across the full width — no card, no border. Email leads at
+     half width; the portrait and domain map sit small and equal beside it. */
+  .contact-row3 {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(150px, 20vw, 210px);
+    grid-template-columns: 2fr 1fr 2fr;   /* 50% / 25% / 25% */
     gap: clamp(24px, 4vw, 56px);
-    align-items: end;
+    align-items: safe;
   }
-  .contact-content .contact-text { min-width: 0; }
+  .cc-main { min-width: 0; }
+  .cc-mail-wrap { margin: 0 0 14px; }
+  .cc-main .sub { margin-top: 0; }
+  
   a.mail {
     font-family: var(--serif); font-style: italic;
-    font-size: clamp(20px, 2.6vw, 30px); font-weight: 500;
+    font-size: clamp(20px, 3vw, 26px); font-weight: 500;
     letter-spacing: -0.02em;
+    line-height: 1.05;
     color: var(--ink);
     text-decoration: none;
     border-bottom: 2px solid var(--rule);
     word-break: break-all;
   }
   a.mail:hover { color: var(--hot-2); border-color: var(--hot); }
+  
+  .contact-row3 .portrait { width: 100%; }
+  .cc-figure {
+    margin: 0;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 7px;
+    min-width: 0;
+  }
+  .cc-figure .domain-svg {
+    width: 100%;
+    height: auto; overflow: visible;
+    aspect-ratio: 480 / 380;
+  }
+  .cc-figcap {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-3); line-height: 1.5;
+  }
+  
+  /* domain-map drawing styles */
+  .domain-svg .dom-ring  { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+  .domain-svg .dom-fill  { fill: var(--hot); opacity: .07; }
+  .domain-svg .dom-core  { fill: var(--hot); opacity: .17; }
+  .domain-svg .dom-label {
+    font-family: var(--sans); font-weight: 600; font-size: 15px; letter-spacing: -0.01em;
+    fill: var(--ink); text-anchor: middle; text-transform: uppercase;
+  }
+  .domain-svg .dom-core-label {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    fill: var(--hot-2); text-anchor: middle;
+  }
+  .domain-svg .dom-tick { stroke: var(--hot); stroke-width: 1.25; }
+  .domain-svg .dom-core-dot { fill: var(--hot); }
   
   /* ---------------- FOOTER MARK ---------------- */
   .wrap::after {
@@ -340,8 +378,9 @@
     .label { position: static; }
     .row::after { text-align: left; }
     .content .lede { max-width: none; }
-    .contact-content { grid-template-columns: 1fr; gap: 24px; align-items: start; }
-    .contact-content .portrait { max-width: 200px; }
+    .contact-row3 { grid-template-columns: 1fr; gap: 24px; align-items: start; }
+    .contact-row3 .portrait { max-width: 200px; }
+    .cc-figure .domain-svg { max-width: 240px; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; scroll-behavior: auto; }
