@@ -1,221 +1,153 @@
 {
-  "_readme": "This file holds ALL text shown on the site. Edit the values, not the keys. Every entry has an English (en) and Chinese (zh) version — keep both filled in. You can use simple HTML inside the text: <br/> makes a line break, and &amp; is the & symbol. Don't rename keys or remove commas/quotes/brackets. After editing, save and redeploy.",
+  "_readme": "This file holds ALL text shown on the site. Edit the values, not the keys. Every entry has an English (en) and Chinese (zh) version — keep both filled in. You can use simple HTML inside the text: <br/> is a line break, <b>…</b> is bold, &amp; is the & symbol, <sup>…</sup> is superscript. Don't rename keys or remove commas/quotes/brackets. After editing, save and redeploy.",
 
   "siteTitle": {
     "en": "Josephine Shen",
     "zh": "沈约瑟芬"
   },
-
   "metaDescription": {
-    "en": "Josephine Shen — research and strategy at the meeting point of AI, security, and the state.",
-    "zh": "沈约瑟芬——研究与战略，立于人工智能、安全与国家的交汇之处。"
+    "en": "Josephine Shen — research, facilitation and strategy across AI, security, and the state.",
+    "zh": "沈约瑟芬——横跨人工智能、安全与国家的研究、协调与战略。"
   },
 
   "ui": {
-    "logo":        { "en": "JOSEPHINE SHEN", "zh": "沈约瑟芬" },
-    "nav_about":   { "en": "Index",   "zh": "概览" },
-    "nav_work":    { "en": "Work",    "zh": "作品" },
-    "nav_contact": { "en": "Contact", "zh": "联系" },
-
-    "eyebrow": {
-      "en": "Research &amp; strategy / AI · security",
-      "zh": "研究与战略 / 人工智能 · 安全"
+    "indexMark": {
+      "en": "Josephine Shen<sup>®</sup> &nbsp;/&nbsp; 沈约瑟芬 &nbsp;/&nbsp; index p.(01—04)",
+      "zh": "沈约瑟芬<sup>®</sup> &nbsp;/&nbsp; Josephine Shen &nbsp;/&nbsp; 概览 p.(01—04)"
     },
-    "hero": {
-      "en": "AI Policy from Grassroots to Governance.",
-      "zh": "人工智能政策：从基层到治理。"
+    "nameA":  { "en": "Josephine", "zh": "约瑟芬" },
+    "nameB":  { "en": "Shen",      "zh": "沈" },
+    "role": {
+      "en": "Research, facilitation &amp; strategy across AI, security &amp; the state.<br>A practice for the institutions, communities and companies shaping how advanced AI meets the public good.",
+      "zh": "横跨人工智能、安全与国家的研究、协调与战略。<br>为塑造先进人工智能如何服务公共利益的机构、社区与企业而工作。"
     },
 
-    "about_head": { "en": "Profile", "zh": "简介" },
+    "meta_avail": { "en": "Available for collaboration", "zh": "开放合作" },
+    "meta_city":  { "en": "Berlin, DE", "zh": "德国 · 柏林" },
+    "meta_dates": { "en": "Dates &amp; dimensions variable", "zh": "日期与规格可变" },
+    "portrait_tag": { "en": "Portrait", "zh": "肖像" },
+
+    "about_label": { "en": "About", "zh": "简介" },
+    "about_marg":  { "en": "Statement", "zh": "声明" },
+    "about_lede": {
+      "en": "Research, facilitation and strategy for the institutions, communities and companies shaping how advanced AI meets the public good.",
+      "zh": "为塑造先进人工智能如何服务公共利益的机构、社区与企业，提供研究、协调与战略支持。"
+    },
     "about_p1": {
       "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "zh": "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。"
     },
     "about_p2": {
-      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "zh": "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。"
+      "en": "Embedded across the seams between sectors, the work facilitates the emergence of new systems for <b>AI</b>, <b>security</b> and <b>society</b> — translating between the people who build capability, the bodies that govern it, and the communities who live with its consequences.",
+      "zh": "在各部门的接缝之间展开工作，促成<b>人工智能</b>、<b>安全</b>与<b>社会</b>新系统的形成——在构建能力的人、治理能力的机构，以及承受其后果的社区之间进行转译。"
+    },
+    "about_sub": {
+      "en": "Practice — Researcher / Facilitator / Strategist / Libertine / Provocateur / Arsonist. Based in Berlin. Working across English &amp; 中文.",
+      "zh": "实践 — 研究者 / 促进者 / 战略家 / 风流者 / 煽动者 / 纵火者。常驻柏林。工作语言：English &amp; 中文。"
     },
 
-    "contact_head": { "en": "Contact", "zh": "联系" },
+    "themes_label": { "en": "Themes", "zh": "主题" },
+    "themes_marg":  { "en": "Themes", "zh": "主题" },
+    "artefacts_label": { "en": "Artefacts", "zh": "器物" },
+    "artefacts_marg":  { "en": "Artefacts", "zh": "器物" },
+    "projects_label": { "en": "Projects", "zh": "项目" },
+    "projects_marg":  { "en": "Projects", "zh": "项目" },
 
-    "roles_head": { "en": "Practice", "zh": "实践" },
-    "roles_list": {
-      "en": "Researcher<br/>Facilitator<br/>Strategist<br/>Libertine<br/>Provocateur<br/>Arsonist",
-      "zh": "研究者<br/>促进者<br/>战略家<br/>风流者<br/>煽动者<br/>纵火者"
+    "contact_label": { "en": "Contact", "zh": "联系" },
+    "contact_sub": {
+      "en": "For collaborations, briefings, convenings, or correspondence. &nbsp;—&nbsp; linkedin.com/in/josephinesb",
+      "zh": "合作、简报、召集或来函，欢迎联系。 &nbsp;—&nbsp; linkedin.com/in/josephinesb"
     },
 
-    "fig_caption": {
-      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "zh": "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。"
+    "footer_mark": {
+      "en": "Josephine Shen — Index · Berlin · Dates &amp; dimensions variable",
+      "zh": "沈约瑟芬 — 概览 · 柏林 · 日期与规格可变"
     },
 
-    "work_head": { "en": "Selected Work", "zh": "精选作品" },
-    "work_note": { "en": "Select to read", "zh": "点击展开" },
-    "read_more": { "en": "Read in full", "zh": "阅读全文" },
-
-    "foot_label": { "en": "Contact",  "zh": "联系" },
-    "f_email":    { "en": "Email",    "zh": "邮箱" },
-    "f_linkedin": { "en": "LinkedIn", "zh": "领英" },
-    "f_based":    { "en": "Based in", "zh": "所在地" },
-    "f_lang":     { "en": "Languages","zh": "语言" },
-    "foot_name":  { "en": "Josephine Shen", "zh": "沈约瑟芬" }
+    "error_msg": {
+      "en": "Aiyo, méiyǒu!",
+      "zh": "哎哟，没有！"
+    },
+    "error_back": {
+      "en": "Back home",
+      "zh": "返回首页"
+    }
   },
 
   "contact": {
-    "email":         "josephine.fmsb@gmail.com",
-    "linkedinLabel": "https://linkedin.com/in/josephinesb",
-    "linkedinUrl":   "#",
-    "city":          { "en": "Berlin", "zh": "柏林" },
-    "languages":     "English · 中文",
-    "year":          "2026"
+    "email": "josephine.fmsb@gmail.com"
   },
 
-  "diagram": {
-    "_note": "The interactive figure. Three top layers (one word each), each with three sublayers. Each sublayer has a label and a short note shown in a card to its right. Keep three layers × three subs, and both languages filled.",
-    "en": [
-      {
-        "label": "State",
-        "subs": [
-          { "label": "Regulatory Design",      "note": "Rules, mandates, and the levers of compliance." },
-          { "label": "Institutional Strategy", "note": "How agencies and bodies actually move." },
-          { "label": "Standards & Norms",       "note": "The soft architecture that hardens over time." }
-        ]
-      },
-      {
-        "label": "Industry",
-        "subs": [
-          { "label": "Commercial ML",       "note": "Where capability is built and shipped." },
-          { "label": "Deployment & Safety", "note": "Getting systems into the world responsibly." },
-          { "label": "Procurement",         "note": "The contracts that shape what gets made." }
-        ]
-      },
-      {
-        "label": "Grassroots",
-        "subs": [
-          { "label": "Community Convening", "note": "Bringing the right people to the table." },
-          { "label": "Field-Building",      "note": "Growing the talent the work requires." },
-          { "label": "Public Interest",     "note": "Keeping the public in public policy." }
-        ]
-      }
-    ],
-    "zh": [
-      {
-        "label": "国家",
-        "subs": [
-          { "label": "监管设计",   "note": "规则、授权与合规的杠杆。" },
-          { "label": "制度战略",   "note": "各机构与组织如何真正行动。" },
-          { "label": "标准与规范", "note": "随时间固化的软性架构。" }
-        ]
-      },
-      {
-        "label": "产业",
-        "subs": [
-          { "label": "商业机器学习", "note": "能力在此构建并交付。" },
-          { "label": "部署与安全",   "note": "以负责任的方式将系统落地。" },
-          { "label": "采购",         "note": "塑造产出的合同与采买。" }
-        ]
-      },
-      {
-        "label": "基层",
-        "subs": [
-          { "label": "社区召集", "note": "把合适的人聚到一起。" },
-          { "label": "领域建设", "note": "培养工作所需的人才。" },
-          { "label": "公共利益", "note": "让公共政策守住公共。" }
-        ]
-      }
-    ]
-  },
-
-  "work": [
+  "themes": [
     {
-      "yr": "2025—",
+      "title": { "en": "Regulatory Design", "zh": "监管设计" },
+      "venue": { "en": "rules &amp; compliance", "zh": "规则与合规" },
+      "body":  { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该主题的简短描述，说明所涉及的工作与判断。" }
+    },
+    {
+      "title": { "en": "Institutional Strategy", "zh": "制度战略" },
+      "venue": { "en": "agencies &amp; leverage", "zh": "机构与杠杆" },
+      "body":  { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该主题的简短描述，说明所涉及的工作与判断。" }
+    },
+    {
+      "title": { "en": "Public-Interest AI", "zh": "公共利益人工智能" },
+      "venue": { "en": "measurement &amp; safety", "zh": "测量与安全" },
+      "body":  { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该主题的简短描述，说明所涉及的工作与判断。" }
+    }
+  ],
+
+  "artefacts": [
+    {
+      "title": { "en": "Lorem Ipsum Artefact I", "zh": "Lorem Ipsum 器物 I" },
+      "venue": { "en": "briefing", "zh": "简报" },
+      "url": "/article.html",
+      "body":  { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该器物的简短说明，列出形式、范围与受众。" }
+    },
+    {
+      "title": { "en": "Lorem Ipsum Artefact II", "zh": "Lorem Ipsum 器物 II" },
+      "venue": { "en": "working paper", "zh": "工作论文" },
+      "url": "/article.html",
+      "body":  { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该器物的简短说明，列出形式、范围与受众。" }
+    }
+  ],
+
+  "projects": [
+    {
       "title": { "en": "Fellow, AIxist", "zh": "AIxist 研究员" },
-      "body": {
-        "en": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        ],
-        "zh": [
-          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
-          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
-        ]
-      },
-      "readMoreUrl": "#"
+      "venue": { "en": "fellowship", "zh": "研究员" },
+      "yr": "(2025—)",
+      "hot": true,
+      "body": { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该项目的简短描述。" }
     },
     {
-      "yr": "2024—",
       "title": { "en": "Grassroots Facilitation", "zh": "基层协调" },
-      "body": {
-        "en": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        ],
-        "zh": [
-          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
-          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
-        ]
-      },
-      "readMoreUrl": "#"
+      "venue": { "en": "grassroots", "zh": "基层" },
+      "yr": "(2024—)",
+      "body": { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该项目的简短描述。" }
     },
     {
-      "yr": "2023—",
-      "title": { "en": "Workshops & Convening", "zh": "工作坊与召集" },
-      "body": {
-        "en": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        ],
-        "zh": [
-          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
-          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
-        ]
-      },
-      "readMoreUrl": "#"
+      "title": { "en": "Workshops &amp; Convening", "zh": "工作坊与召集" },
+      "venue": { "en": "convening", "zh": "召集" },
+      "yr": "(2023—)",
+      "body": { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该项目的简短描述。" }
     },
     {
-      "yr": "2023",
       "title": { "en": "Organising", "zh": "组织工作" },
-      "body": {
-        "en": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        ],
-        "zh": [
-          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
-          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
-        ]
-      },
-      "readMoreUrl": "#"
+      "venue": { "en": "organising", "zh": "组织" },
+      "yr": "(2023)",
+      "body": { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该项目的简短描述。" }
     },
     {
-      "yr": "2022—",
       "title": { "en": "Research", "zh": "研究" },
-      "body": {
-        "en": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        ],
-        "zh": [
-          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
-          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
-        ]
-      },
-      "readMoreUrl": "#"
+      "venue": { "en": "research", "zh": "研究" },
+      "yr": "(2022—)",
+      "body": { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该项目的简短描述。" }
     },
     {
-      "yr": "2020—22",
-      "title": { "en": "Industry & ML", "zh": "产业与机器学习" },
-      "body": {
-        "en": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        ],
-        "zh": [
-          "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。",
-          "占位文本。研究写作通常先界定问题，再厘清相关方与制度约束，最后给出可操作的判断与建议。此段落仅为示意。"
-        ]
-      },
-      "readMoreUrl": "#"
+      "title": { "en": "Industry &amp; ML", "zh": "产业与机器学习" },
+      "venue": { "en": "industry", "zh": "产业" },
+      "yr": "(2020—22)",
+      "body": { "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "zh": "占位文本。此处展开为该项目的简短描述。" }
     }
   ]
 }

@@ -1,279 +1,142 @@
 /* ===========================================================================
    Josephine Shen — site behaviour
    ---------------------------------------------------------------------------
-   All visible text lives in ../content/content.json. Nothing here is
-   hardcoded copy — this file only reads from that JSON and wires up the
-   interactions (language toggle, work accordion, hero animation, scroll
-   reveals, and the interactive stack diagram). To change wording, edit
-   content.json, not this file.
+   All visible text lives in ../content/content.json. This file only reads from
+   that JSON and wires the interactions: language toggle (EN / 中), the
+   expanding dropdown lists (Themes / Artefacts / Projects), and the font-load
+   gate. To change wording, edit content.json — not this file.
    =========================================================================== */
 
-   import content from '../content/content.json';
-   import '../styles/main.css';
-   import { StackDiagram } from './stack-diagram.js';
+import content from '../content/content.json';
+import '../styles/main.css';
+import '../styles/article.css';   /* bundled into assets/styles.css for article.html */
 
-   const { ui, work, contact, siteTitle, metaDescription } = content;
+const { ui, contact, themes, artefacts, projects } = content;
 
-   /* current language — starts in English */
-   let lang = 'en';
+/* current language — starts in English, persists in localStorage */
+let lang = 'en';
+try { lang = localStorage.getItem('lang') || 'en'; } catch (e) {}
 
-   /* the interactive figure (created in init once the mount exists) */
-   let stackDiagram = null;
+/* ---- helpers ------------------------------------------------------------- */
+const t = (entry) => (entry && entry[lang] != null ? entry[lang] : '');
 
-   /* becomes true once the hero clip-and-rise animation has played, so later
-      re-layouts (resize, language toggle) snap into place instead of replaying */
-   let heroRevealed = false;
+/* Build one dropdown <li>. `item` has {title, venue, yr?, hot?, url?, body}. */
+function dropItem(item) {
+  const li = document.createElement('li');
+  const hot = item.hot ? ' is-hot' : '';
+  const yr = item.yr ? `<span class="yr">${item.yr}</span>` : '';
+  const more = item.url
+    ? `<a class="more" href="${item.url}">${lang === 'zh' ? '阅读全文 →' : 'Read in full →'}</a>`
+    : '';
+  li.innerHTML = `
+    <button class="tag tag-drop${hot}" type="button" aria-expanded="false">
+      <span class="tag-text">${t(item.title)}</span>
+      <span class="venue">${t(item.venue)}</span>
+      ${yr}
+      <span class="drop-mark" aria-hidden="true">＋</span>
+    </button>
+    <div class="drop-body" hidden>
+      <p>${t(item.body)}</p>
+      ${more}
+    </div>`;
+  return li;
+}
 
-   /* ---------------------------------------------------------------------------
-      Scroll reveal: fade/slide elements in as they enter the viewport.
-      --------------------------------------------------------------------------- */
-   const revealObserver = new IntersectionObserver((entries) => {
-     entries.forEach((entry) => {
-       if (entry.isIntersecting) {
-         entry.target.classList.add('in');
-         revealObserver.unobserve(entry.target);
-       }
-     });
-   }, { threshold: 0.12 });
+function renderList(id, items) {
+  const ol = document.getElementById(id);
+  if (!ol) return;
+  ol.innerHTML = '';
+  items.forEach((it) => ol.appendChild(dropItem(it)));
+}
 
-   function observeReveals(root = document) {
-     root.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
-   }
+/* Wire dropdown open/close (delegated, so it survives re-render on lang swap) */
+function wireDropdowns() {
+  document.querySelectorAll('.tag-drop').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      const body = btn.nextElementSibling;
+      if (body && body.classList.contains('drop-body')) {
+        if (open) body.setAttribute('hidden', '');
+        else body.removeAttribute('hidden');
+      }
+    });
+  });
+}
 
-   /* ---------------------------------------------------------------------------
-      Work index: build the expanding accordion list from content.work.
-      One panel open at a time.
-      --------------------------------------------------------------------------- */
-   function renderWork() {
-     const list = document.getElementById('workList');
+/* ---- apply a language --------------------------------------------------- */
+function setLang(next) {
+  lang = next;
+  document.documentElement.lang = lang === 'zh' ? 'zh' : 'en';
+  document.title = t(content.siteTitle);
 
-     list.innerHTML = work.map((entry, i) => {
-       const no = String(i + 1).padStart(2, '0');
-       const paragraphs = entry.body[lang].map((p) => `<p>${p}</p>`).join('');
-       return `
-         <div class="w-item reveal" data-i="${i}">
-           <button class="w-row" type="button" aria-expanded="false">
-             <span class="w-no mono-en-keep">${no}</span>
-             <span class="w-title">${entry.title[lang]}</span>
-             <span class="w-meta">
-               <span class="w-yr mono-en-keep">${entry.yr}</span>
-               <span class="w-sign" aria-hidden="true"></span>
-             </span>
-           </button>
-           <div class="w-panel">
-             <div class="w-panel-in">
-               <div class="pad"></div>
-               <div class="w-body">
-                 ${paragraphs}
-                 <a class="w-readmore" href="${entry.readMoreUrl || '#'}">${ui.read_more[lang]} &rarr;</a>
-               </div>
-             </div>
-           </div>
-         </div>`;
-     }).join('');
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.setAttribute('content', t(content.metaDescription));
 
-     // wire the accordion behaviour (one open at a time)
-     list.querySelectorAll('.w-item').forEach((item) => {
-       const row = item.querySelector('.w-row');
-       const panel = item.querySelector('.w-panel');
-       row.addEventListener('click', () => {
-         const isOpen = item.classList.contains('open');
-         list.querySelectorAll('.w-item.open').forEach((open) => {
-           open.classList.remove('open');
-           open.querySelector('.w-panel').style.maxHeight = '0px';
-           open.querySelector('.w-row').setAttribute('aria-expanded', 'false');
-         });
-         if (!isOpen) {
-           item.classList.add('open');
-           panel.style.maxHeight = `${panel.scrollHeight}px`;
-           row.setAttribute('aria-expanded', 'true');
-         }
-       });
-     });
+  // fixed [data-i18n] text
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.getAttribute('data-i18n');
+    if (ui[key] && ui[key][lang] != null) el.innerHTML = ui[key][lang];
+  });
 
-     observeReveals(list);
-   }
+  // section marginalia (CSS reads .row[data-marg]::after { content: attr(data-marg) })
+  document.querySelectorAll('[data-marg-key]').forEach((el) => {
+    const key = el.getAttribute('data-marg-key');
+    if (ui[key] && ui[key][lang] != null) el.setAttribute('data-marg', ui[key][lang]);
+  });
 
-   /* ---------------------------------------------------------------------------
-      Hero animation: split the headline into lines and clip+rise each one.
-      Works the same way for English (word atoms) and Chinese (character atoms).
-      --------------------------------------------------------------------------- */
-   function splitHero(reveal = true) {
-     const h = document.getElementById('heroH2');
-     if (!h) return;
+  // footer mark (CSS reads .wrap::after { content: attr(data-footer-mark) })
+  const wrap = document.getElementById('wrap');
+  if (wrap) wrap.setAttribute('data-footer-mark', stripTags(ui.footer_mark[lang]));
 
-     if (!h.dataset.heroText) {
-       h.dataset.heroText = h.textContent.trim();
-     }
-     const text = h.dataset.heroText;
-     const isCJK = /[\u4e00-\u9fff]/.test(text);
-     const atoms = isCJK
-       ? Array.from(text)
-       : text.split(/(\s+)/).filter((t) => t !== '');
+  // email (static, but label text depends on nothing — fill href + text)
+  document.querySelectorAll('[data-email]').forEach((el) => {
+    el.textContent = contact.email;
+    if (el.tagName === 'A') el.setAttribute('href', `mailto:${contact.email}`);
+  });
 
-     // temporarily wrap each atom so we can measure which line it lands on
-     h.innerHTML = atoms.map((a) => {
-       if (/^\s+$/.test(a)) return a;
-       return `<span class="probe" style="display:inline-block">${a}</span>`;
-     }).join(isCJK ? '' : ' ');
+  // re-render the lists in the new language, then re-wire
+  renderList('themesList', themes);
+  renderList('artefactsList', artefacts);
+  renderList('projectsList', projects);
+  wireDropdowns();
 
-     const probes = Array.from(h.querySelectorAll('.probe'));
-     const lines = [];
-     let current = null;
-     let lastTop = null;
+  // toggle button state
+  const btn = document.getElementById('langToggle');
+  btn.querySelector('.seg.en').classList.toggle('on', lang === 'en');
+  btn.querySelector('.seg.zh').classList.toggle('on', lang === 'zh');
 
-     probes.forEach((p) => {
-       const top = p.offsetTop;
-       if (lastTop === null || Math.abs(top - lastTop) > 4) {
-         current = [];
-         lines.push(current);
-         lastTop = top;
-       }
-       current.push(p.textContent);
-     });
+  try { localStorage.setItem('lang', lang); } catch (e) {}
+}
 
-     h.innerHTML = lines.map((words) => {
-       let str = isCJK ? words.join('') : words.join(' ');
-       str = str.replace(/([.。])\s*$/, '<span class="dot">$1</span>');
-       return `<span class="line"><span class="inner">${str}</span></span>`;
-     }).join('');
+/* footer mark goes into an attr(), which can't contain markup — strip tags */
+function stripTags(s) {
+  return s.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&');
+}
 
-     h.classList.add('ready');
-     const lineEls = h.querySelectorAll('.line');
-     if (reveal) {
-       // staggered clip-and-rise
-       heroRevealed = true;
-       lineEls.forEach((el, i) => {
-         setTimeout(() => el.classList.add('in'), 120 + i * 140);
-       });
-     } else if (heroRevealed) {
-       // re-layout (e.g. on resize) after the reveal already played:
-       // snap lines into their final position with no animation
-       lineEls.forEach((el) => el.classList.add('in'));
-     }
-     // if !reveal and not yet revealed, leave lines clipped — the font-ready
-     // pass will call splitHero(true) to play the reveal.
-   }
+/* ---- boot --------------------------------------------------------------- */
+function init() {
+  setLang(lang);
 
-   /* ---------------------------------------------------------------------------
-      Static (non-i18n) content pulled from content.json — emails, links, etc.
-      Filled once on load; doesn't change with language.
-      --------------------------------------------------------------------------- */
-   function fillStatic() {
-     document.querySelectorAll('[data-email]').forEach((el) => {
-       el.textContent = contact.email;
-       if (el.tagName === 'A') el.setAttribute('href', `mailto:${contact.email}`);
-     });
-     document.querySelectorAll('[data-linkedin]').forEach((el) => {
-       el.textContent = contact.linkedinLabel;
-       if (el.tagName === 'A') el.setAttribute('href', contact.linkedinUrl);
-     });
-     document.querySelectorAll('[data-languages]').forEach((el) => {
-       el.textContent = contact.languages;
-     });
-     document.querySelectorAll('[data-year]').forEach((el) => {
-       el.textContent = contact.year;
-     });
-   }
+  document.getElementById('langToggle').addEventListener('click', () => {
+    setLang(lang === 'en' ? 'zh' : 'en');
+  });
 
-   /* ---------------------------------------------------------------------------
-      Apply a language: swap all [data-i18n] text, the page title/meta, the
-      toggle state, and re-render the work list + hero + diagram labels.
-      --------------------------------------------------------------------------- */
-   function setLang(next, revealHero = true) {
-     lang = next;
+  // reveal once fonts are ready (avoids fallback-font reflow); safety net at 2s
+  let revealed = false;
+  const reveal = () => {
+    if (revealed) return;
+    revealed = true;
+    document.body.classList.remove('fonts-loading');
+  };
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(reveal);
+  }
+  setTimeout(reveal, 2000);
+}
 
-     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-     document.body.classList.toggle('lang-zh', lang === 'zh');
-     document.title = siteTitle[lang];
-
-     const meta = document.querySelector('meta[name="description"]');
-     if (meta && metaDescription[lang]) meta.setAttribute('content', metaDescription[lang]);
-
-     // swap every element tagged with a UI key
-     document.querySelectorAll('[data-i18n]').forEach((el) => {
-       const key = el.getAttribute('data-i18n');
-       if (ui[key] && ui[key][lang] != null) el.innerHTML = ui[key][lang];
-     });
-
-     const heroEl = document.getElementById('heroH2');
-     if (heroEl) delete heroEl.dataset.heroText;
-
-     // city sits under contact (per-language) rather than ui
-     document.querySelectorAll('[data-city]').forEach((el) => {
-       el.textContent = contact.city[lang];
-     });
-
-     document.getElementById('langToggle').setAttribute('data-lang', lang);
-
-     renderWork();
-     splitHero(revealHero);
-
-     // keep the interactive diagram's labels in the current language
-     if (stackDiagram && content.diagram && content.diagram[lang]) {
-       stackDiagram.setModel(content.diagram[lang], lang);
-     }
-   }
-
-   /* ---------------------------------------------------------------------------
-      Boot.
-      --------------------------------------------------------------------------- */
-   function init() {
-     fillStatic();
-     observeReveals();
-
-     document.getElementById('langToggle').addEventListener('click', () => {
-       setLang(lang === 'en' ? 'zh' : 'en');
-     });
-
-     // Lay out the page (text, work list, hero) up front. It's still hidden by the
-     // `fonts-loading` gate on <body>, so nothing is visible yet — which means the
-     // user never sees the fallback-font layout. We don't play the hero reveal yet.
-     setLang('en', false);
-
-     // Mount the interactive stack diagram into the figure (if present).
-     const stackMount = document.getElementById('stack-mount');
-     if (stackMount) {
-       stackDiagram = new StackDiagram(stackMount, {
-         model: (content.diagram && content.diagram[lang]) || undefined,
-         lang,
-       });
-     }
-
-     // Reveal the page once the web fonts are ready: drop the gate so the content
-     // fades in (already in the correct fonts, so no reflow/jump), then play the
-     // hero animation now that everything is measured against the real fonts.
-     let revealed = false;
-     const revealPage = () => {
-       if (revealed) return;
-       revealed = true;
-       document.body.classList.remove('fonts-loading');
-       splitHero(true); // re-measure against real fonts + play the rise
-     };
-
-     const fontsReady = document.fonts && document.fonts.ready;
-     if (fontsReady) {
-       // nudge the browser to fetch the weights the hero actually uses
-       Promise.all([
-         document.fonts.load('700 4rem Inconsolata'),
-         document.fonts.load('500 2rem Newsreader'),
-       ]).catch(() => {});
-       document.fonts.ready.then(revealPage);
-     }
-     // safety net: reveal anyway after 2s if fonts.ready never resolves
-     // (or if the Font Loading API is unavailable)
-     setTimeout(revealPage, 2000);
-
-     // re-measure hero line breaks on resize (layout only, no re-animation)
-     let resizeTimer;
-     window.addEventListener('resize', () => {
-       clearTimeout(resizeTimer);
-       resizeTimer = setTimeout(() => splitHero(false), 200);
-     });
-   }
-
-   if (document.readyState === 'loading') {
-     document.addEventListener('DOMContentLoaded', init);
-   } else {
-     init();
-   }
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}

@@ -4,113 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Josephine Shen</title>
-  <meta name="description" content="Josephine Shen — Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+  <meta name="description" content="Josephine Shen — research, facilitation and strategy across AI, security, and the state." />
   <meta name="author" content="Josephine Shen" />
+  <meta name="keywords" content="Josephine Shen, AI policy, AI governance, security, research, facilitation, strategy, Berlin" />
 
-  <!-- favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
 
-  <!-- share / link-preview card (Open Graph — used by iMessage, Slack, LinkedIn, Facebook) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Josephine Shen" />
-  <meta property="og:description" content="Josephine Shen — Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-  <meta property="og:image" content="https://josephine-fmsb.vercel.app/square.png" />
-  <meta property="og:url" content="https://josephine-fmsb.vercel.app" />
-
-  <!-- share / link-preview card (Twitter / X) -->
+  <meta property="og:description" content="Josephine Shen — research, facilitation and strategy across AI, security, and the state." />
+  <meta property="og:image" content="https://josephine-shen.vercel.app/square.png" />
+  <meta property="og:url" content="https://josephine-shen.vercel.app" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Josephine Shen" />
-  <meta name="twitter:description" content="Josephine Shen — Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-  <meta name="twitter:image" content="https://josephine-fmsb.vercel.app/square.png" />
+  <meta name="twitter:description" content="Josephine Shen — research, facilitation and strategy across AI, security, and the state." />
+  <meta name="twitter:image" content="https://josephine-shen.vercel.app/square.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body class="fonts-loading">
- 
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-in">
-      <a href="#top" class="logo" id="logo" data-i18n="logo">JOSEPHINE SHEN</a>
-      <div class="nav-meta">
-        <div class="nav-links">
-          <a href="#about" data-i18n="nav_about">Index</a>
-          <a href="#work" data-i18n="nav_work">Work</a>
-          <a href="#contact" data-i18n="nav_contact">Contact</a>
-        </div>
-        <button class="lang-toggle" id="langToggle" data-lang="en" aria-label="Language — English / 中文">
-          <span class="seg en">EN</span><span class="seg zh">中</span>
-        </button>
+<div class="wrap" id="wrap">
+
+  <div class="masthead">
+    <div class="mast-main">
+      <p class="index-mark" data-i18n="indexMark"></p>
+      <h1><span class="a" data-i18n="nameA">Josephine</span> <span class="b" data-i18n="nameB">Shen</span></h1>
+      <p class="role" data-i18n="role"></p>
+    </div>
+    <div class="meta">
+      <span class="avail" data-i18n="meta_avail"></span>
+      <span data-i18n="meta_city"></span>
+      <span>English · 中文</span>
+      <span data-i18n="meta_dates"></span>
+      <a href="#" data-email>[ email ]</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="row is-about" data-marg-key="about_marg">
+    <div class="label" data-i18n="about_label"></div>
+    <div class="content">
+      <p class="lede" data-i18n="about_lede"></p>
+      <p data-i18n="about_p1"></p>
+      <p data-i18n="about_p2"></p>
+      <p class="sub" data-i18n="about_sub"></p>
+    </div>
+  </div>
+
+  <!-- THEMES -->
+  <div class="row" data-marg-key="themes_marg">
+    <div class="label" data-i18n="themes_label"></div>
+    <div class="content"><ol class="cites cites-drop" id="themesList"></ol></div>
+  </div>
+
+  <!-- ARTEFACTS -->
+  <div class="row" data-marg-key="artefacts_marg">
+    <div class="label" data-i18n="artefacts_label"></div>
+    <div class="content"><ol class="cites cites-drop" id="artefactsList"></ol></div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="row" data-marg-key="projects_marg">
+    <div class="label" data-i18n="projects_label"></div>
+    <div class="content"><ol class="cites cites-drop" id="projectsList"></ol></div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="row r-end contact-row" data-marg="→">
+    <div class="label" data-i18n="contact_label"></div>
+    <div class="content contact-content">
+      <div class="contact-text">
+        <p><a class="mail" href="#" data-email>[ email ]</a></p>
+        <p class="sub" data-i18n="contact_sub"></p>
       </div>
+      <figure class="portrait" aria-label="Portrait placeholder">
+        <span class="portrait-tag" data-i18n="portrait_tag"></span>
+      </figure>
     </div>
-  </nav>
- 
-  <!-- HERO -->
-  <header class="hero" id="top">
-    <p class="eyebrow reveal" data-i18n="eyebrow">Research &amp; strategy / AI · security · the state</p>
-    <h2 id="heroH2" data-i18n="hero">Working where statecraft meets computation.</h2>
-  </header>
- 
-  <!-- INTRO / INDEX -->
-  <section class="intro" id="about">
-    <div class="intro-grid">
-      <div class="col-bio reveal">
-        <div class="col-head"><span data-i18n="about_head">Profile</span></div>
-        <p data-i18n="about_p1"></p>
-        <p data-i18n="about_p2"></p>
-      </div>
-      <div class="col-contact reveal">
-        <div class="col-head"><span data-i18n="contact_head">Contact</span></div>
-        <a href="#" class="contact-link mono-en-keep" data-email>[ email ]</a>
-        <!-- <div class="contact-note" data-i18n="contact_note"></div> -->
-      </div>
-      <div class="col-roles reveal">
-        <div class="col-head"><span data-i18n="roles_head">Practice</span></div>
-        <div class="col-list" data-i18n="roles_list"></div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- FIGURE: ISOMETRIC STACK (interactive — three.js mounts into #stack-mount) -->
-  <section class="figure" id="figure">
-    <figure class="fig-frame reveal">
-      <span class="fig-tag"><span class="ft-dot"></span><span class="mono-en-keep">FIG. 01</span></span>
-      <div class="fig-inner" id="stack-mount"></div>
-    </figure>
-    <figcaption class="fig-caption reveal">
-      <span class="cap-no mono-en-keep">FIG. 01</span>
-      <span class="cap-text" data-i18n="fig_caption"></span>
-    </figcaption>
-  </section>
- 
-  <!-- WORK -->
-  <section class="work" id="work">
-    <div class="work-head">
-      <span class="wt" data-i18n="work_head">Selected Work</span>
-      <span class="wh-note" data-i18n="work_note">Select to read</span>
-    </div>
-    <div class="work-list" id="workList"><!-- items injected from content.json --></div>
-  </section>
- 
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <div class="footer-head reveal">
-      <span class="fh-label" data-i18n="foot_label">Contact</span>
-      <span class="fh-code mono-en-keep">//</span>
-    </div>
-    <div class="footer-grid">
-      <div class="reveal"><div class="fk" data-i18n="f_email">Email</div><div class="fv"><a href="#" class="mono-en-keep" data-email>[ email ]</a></div></div>
-      <div class="reveal"><div class="fk" data-i18n="f_linkedin">LinkedIn</div><div class="fv"><a href="#" class="mono-en-keep" data-linkedin>[ handle ]</a></div></div>
-      <div class="reveal"><div class="fk" data-i18n="f_based">Based in</div><div class="fv" data-city></div></div>
-      <div class="reveal"><div class="fk" data-i18n="f_lang">Languages</div><div class="fv mono-en-keep" data-languages></div></div>
-    </div>
-    <div class="footer-bar">
-      <span data-i18n="foot_name">Josephine Shen</span>
-      <span class="mono-en-keep" data-year></span>
-    </div>
-  </footer>
- 
-  <script type="module" src="/js/main.js"></script>
+  </div>
+
+</div>
+
+<button class="lang-toggle" id="langToggle" aria-label="Language — English / 中文">
+  <span class="seg en on">EN</span><span class="seg zh" lang="zh">中</span>
+</button>
+
+<script type="module" src="/js/main.js"></script>
 </body>
 </html>
