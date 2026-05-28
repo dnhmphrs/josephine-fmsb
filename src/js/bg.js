@@ -46,7 +46,7 @@
       uniform float uScroll;  // device px scrolled from doc top
       uniform float uDocH;    // device px, full document height
   
-      const vec3 paper = vec3(0.875, 0.863, 0.827);     // #dfdcd3
+      const vec3 paper    = vec3(0.937, 0.925, 0.890);  // #efece3
       const vec3 murasaki = vec3(0.416, 0.298, 0.769);  // #6a4cc4
       const vec3 usuzumi  = vec3(0.330, 0.330, 0.360);  // faint ink
       const vec3 gofun    = vec3(0.980, 0.975, 0.960);  // warm shell white
