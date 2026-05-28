@@ -9,7 +9,6 @@
 
 import content from '../content/content.json';
 import '../styles/main.css';
-import '../styles/article.css';   /* bundled into assets/styles.css for article.html */
 
 const { ui, contact, themes, artefacts, projects } = content;
 

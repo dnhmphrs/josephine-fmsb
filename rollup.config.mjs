@@ -2,6 +2,8 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
 import postcss from 'rollup-plugin-postcss';
 import copy from 'rollup-plugin-copy';
+import serve from 'rollup-plugin-serve';
+import livereload from 'rollup-plugin-livereload';
 
 /* ---------------------------------------------------------------------------
    Build
@@ -13,21 +15,29 @@ import copy from 'rollup-plugin-copy';
 
    index.html links  /js/main.js  (the bundle)  →  pulls in styles.css.
    article.html links /assets/styles.css directly (it has no JS of its own).
+
+   `yarn dev`  → rollup -c -w  : watches, rebuilds into dist/, AND serves it at
+                 http://localhost:5173 with live reload (serve + livereload below,
+                 active only when ROLLUP_WATCH is set).
+   `yarn build`→ rollup -c     : one-off production build (minified, no server).
    --------------------------------------------------------------------------- */
+
+const dev = process.env.ROLLUP_WATCH === 'true';
 
 export default {
   input: 'src/js/main.js',
   output: {
     file: 'dist/js/main.js',
     format: 'es',
-    sourcemap: false,
+    sourcemap: dev,
   },
   plugins: [
     nodeResolve(),
     json(),
     postcss({
       extract: 'assets/styles.css',   // → dist/assets/styles.css
-      minimize: true,
+      minimize: !dev,
+      sourceMap: dev,
     }),
     copy({
       targets: [
@@ -37,6 +47,12 @@ export default {
         { src: 'src/content',      dest: 'dist' },   // content.json shipped for reference/edits
         { src: 'public/*',         dest: 'dist' },   // favicon, square.png, etc.
       ],
+      copyOnce: false,
     }),
-  ],
+    // dev-only: live server + reload. http://localhost:5173, SPA-style fallback
+    // so deep links resolve. Not included in production builds.
+    dev && serve({ contentBase: 'dist', port: 5173, historyApiFallback: true }),
+    dev && livereload('dist'),
+  ].filter(Boolean),
 };
+

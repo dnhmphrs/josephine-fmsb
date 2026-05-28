@@ -14,9 +14,9 @@ visible text lives in `src/content/content.json`. No framework, no Three.js.
 
 ```bash
 npm install
-npm run dev      # watch + rebuild into dist/
-npm run preview  # serve the built dist/ locally
-npm run build    # one-off production build
+npm run dev      # live server + reload at http://localhost:5173
+npm run build    # one-off production build into dist/
+npm run preview  # serve the built dist/ locally to check the production build
 ```
 
 Deploys on Vercel as a static build (`outputDirectory: dist`).
