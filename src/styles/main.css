@@ -111,7 +111,7 @@
     content: "●"; color: var(--hot); font-size: 9px; margin-right: 8px; vertical-align: 1px;
   }
   .masthead .meta a { color: var(--ink); border-bottom: 1px solid var(--rule); width: max-content; max-width: 100%; word-break: break-all; }
-  .masthead .meta a:hover { border-color: var(--hot); color: var(--hot-2); }
+  .masthead .meta a:hover { border-color: var(--hot); color: var(--hot-2) ; }
   
   /* ---------------- PORTRAIT PLACEHOLDER ----------------
      Option C: a calm sign-off portrait in the Contact row — the spot the diagram
