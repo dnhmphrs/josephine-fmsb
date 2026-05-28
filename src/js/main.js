@@ -9,6 +9,7 @@
 
    import content from '../content/content.json';
    import '../styles/main.css';
+   import './bg.js';   /* +bg : background shader (self-initialising) */
    
    const { ui, contact, themes, artefacts, projects } = content;
    

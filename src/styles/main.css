@@ -8,7 +8,7 @@
    =========================================================== */
 
    :root {
-    --paper:  #dfdcd3;
+    --paper:  #dfdfdf;
     --ink:    #111114;
     --ink-2:  #54555b;
     --ink-3:  #8e8f95;
@@ -29,25 +29,38 @@
   }
   
   * { box-sizing: border-box; }
+  /* +bg : paper is the page background on <html> — it stays the fallback that
+     paints *behind* the shader canvas. */
   html { -webkit-text-size-adjust: 100%; background: var(--paper); scroll-behavior: smooth; }
   ::selection { background: var(--hot); color: #fff; }
   
   body {
     margin: 0; padding: 0;
-    background: var(--paper); color: var(--ink);
+    background: transparent;   /* +bg : was var(--paper) — let the canvas show through */
+    color: var(--ink);
     font-family: var(--serif);
     font-size: 17px; line-height: 1.5;
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
   }
   a { color: inherit; }
   sup { font-size: 0.5em; vertical-align: super; color: var(--hot); }
+
+  /* +bg : background shader canvas — fixed, behind all content, non-interactive */
+  #bg {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    display: block;
+    pointer-events: none;
+  }
   
   /* font-loading gate: hide content until webfonts are ready (no FOUT reflow) */
   body.fonts-loading .wrap, body.fonts-loading .lang-toggle { opacity: 0; }
   .wrap, .lang-toggle { opacity: 1; transition: opacity .5s ease; }
   @media (prefers-reduced-motion: reduce) { .wrap, .lang-toggle { transition: none; } }
   
-  .wrap { width: 100%; counter-reset: row; }
+  /* +bg : sit content above the canvas (z-index:0). lang-toggle already fixed at 100. */
+  .wrap { position: relative; z-index: 1; width: 100%; counter-reset: row; }
   
   /* ---------------- MASTHEAD ---------------- */
   .masthead {
