@@ -111,7 +111,7 @@
     content: "●"; color: var(--hot); font-size: 9px; margin-right: 8px; vertical-align: 1px;
   }
   .masthead .meta a { color: var(--ink); border-bottom: 1px solid var(--rule); width: max-content; max-width: 100%; word-break: break-all; }
-  .masthead .meta a:hover { border-color: var(--hot); color: var(--hot-2) ; }
+  .masthead .meta a:hover { border-color: var(--hot); color: var(--hot-2); }
   
   /* ---------------- PORTRAIT PLACEHOLDER ----------------
      Option C: a calm sign-off portrait in the Contact row — the spot the diagram
@@ -214,7 +214,7 @@
     align-self: start;
     line-height: 1.6;
   }
-  .row[data-marg]::after { content: attr(data-marg); color: var(--hot); } /* idk if color lilac or not is better */
+  .row[data-marg]::after { content: attr(data-marg); } /* idk if color lilac or not is better */
   /* .row.r-end::after { color: var(--hot); } */
   
   /* ---------------- CITATION / DROPDOWN LISTS ---------------- */
