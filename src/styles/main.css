@@ -214,7 +214,7 @@
     align-self: start;
     line-height: 1.6;
   }
-  .row[data-marg]::after { content: attr(data-marg); } /* idk if color lilac or not is better */
+  .row[data-marg]::after { content: attr(data-marg); color: var(--hot); } /* idk if color lilac or not is better */
   /* .row.r-end::after { color: var(--hot); } */
   
   /* ---------------- CITATION / DROPDOWN LISTS ---------------- */
