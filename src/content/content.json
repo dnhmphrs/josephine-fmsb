@@ -109,13 +109,17 @@
       "en": "Contact",
       "zh": "联系"
     },
+    "contact_marg": {
+      "en": "//",
+      "zh": "//"
+    },
     "contact_sub": {
       "en": "For collaborations, briefings, convenings, or correspondence. &nbsp;—&nbsp; linkedin.com/in/josephinesb",
       "zh": "合作、简报、召集或来函，欢迎联系。 &nbsp;—&nbsp; linkedin.com/in/josephinesb"
     },
     "footer_mark": {
-      "en": "Josephine Shen · Berlin · 2026",
-      "zh": "沈约瑟芬 · 柏林 · 2026"
+      "en": "2026",
+      "zh": "2026"
     },
     "error_msg": {
       "en": "Aiyo, méiyǒu!",
