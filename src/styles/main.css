@@ -386,7 +386,7 @@
     text-decoration: none;
     opacity: 0;
   }
-  .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); opacity: 0.5; }
+  .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); opacity: 1.0; }
 
   /* ---------------- LANGUAGE TOGGLE (fixed, top-right, square) ---------------- */
   .lang-toggle {
