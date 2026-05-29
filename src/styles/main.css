@@ -34,7 +34,7 @@
   html {-webkit-text-size-adjust: 100%; background: var(--paper); scroll-behavior: smooth; }
   ::selection { background: var(--hot); color: #fff; }
 
-  html::after{
+  /* html::after{
     content:"";
     position:fixed;
     left:0;
@@ -43,7 +43,7 @@
     height:50vh;
     background: #dfdbd7;
     z-index:-1;
-  }
+  } */
   
   body {
     margin: 0; padding: 0;
