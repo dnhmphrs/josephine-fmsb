@@ -388,7 +388,7 @@
     border-bottom: 1px solid var(--rule);
     transition: color .15s, border-color .15s;
     opacity: 0;
-    text-transform: none;
+    text-decoration: none;
   }
   .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); opacity: 0.5; }
 
