@@ -2,16 +2,16 @@
   "_readme": "This file holds ALL text shown on the site. Edit the values, not the keys. Every entry has an English (en) and Chinese (zh) version — keep both filled in. You can use simple HTML inside the text: <br/> is a line break, <b>…</b> is bold, &amp; is the & symbol, <sup>…</sup> is superscript. Don't rename keys or remove commas/quotes/brackets. After editing, save and redeploy.",
   "siteTitle": {
     "en": "Josephine Shen",
-    "zh": "沈约瑟芬"
+    "zh": "沈菲菲"
   },
   "metaDescription": {
     "en": "Josephine Shen — research, facilitation and strategy across AI, security, and the state.",
-    "zh": "沈约瑟芬——横跨人工智能、安全与国家的研究、协调与战略。"
+    "zh": "沈菲菲——横跨人工智能、安全与国家的研究、协调与战略。"
   },
   "ui": {
     "indexMark": {
-      "en": "Josephine Shen<sup>®</sup> &nbsp;/&nbsp; 沈约瑟芬",
-      "zh": "沈约瑟芬<sup>®</sup> &nbsp;/&nbsp; Josephine Shen"
+      "en": "Josephine Shen<sup>®</sup> &nbsp;/&nbsp; 沈菲菲",
+      "zh": "沈菲菲<sup>®</sup> &nbsp;/&nbsp; Josephine Shen"
     },
     "nameA": {
       "en": "Josephine",
