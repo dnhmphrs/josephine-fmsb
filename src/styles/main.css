@@ -34,10 +34,6 @@
   html {-webkit-text-size-adjust: 100%; background: var(--paper); scroll-behavior: smooth; }
   ::selection { background: var(--hot); color: #fff; }
 
-  html {
-    background: linear-gradient(180deg, #efece3 0%, #dfdbd7 100%);
-  }
-
   /* html::after{
     content:"";
     left:0;
@@ -50,7 +46,7 @@
   
   body {
     margin: 0; padding: 0;
-    background: transparent;   /* +bg : was var(--paper) — let the canvas show through */
+    background: linear-gradient(180deg, #efece3 0%, #dfdbd7 100%);
     color: var(--ink);
     font-family: var(--serif);
     font-size: 17px; line-height: 1.5;
