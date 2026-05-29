@@ -388,8 +388,9 @@
     border-bottom: 1px solid var(--rule);
     transition: color .15s, border-color .15s;
     opacity: 0;
+    text-transform: none;
   }
-  .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); }
+  .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); opacity: 0.5; }
 
   /* ---------------- LANGUAGE TOGGLE (fixed, top-right, square) ---------------- */
   .lang-toggle {
