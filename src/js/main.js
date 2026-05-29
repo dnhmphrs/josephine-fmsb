@@ -21,8 +21,8 @@
    const t = (entry) => (entry && entry[lang] != null ? entry[lang] : '');
 
    /* Build one accordion <li>. `item` has {title, venue, yr?, hot?, url?, body}.
-      Visibility of .drop-body is driven entirely by the button's aria-expanded
-      state in CSS — no `hidden` attribute, so it can animate. */
+      The .drop-body is clipped with max-height:0 in CSS; the open height is
+      measured and applied as an inline pixel value by wireDropdowns(). */
    function dropItem(item) {
      const li = document.createElement('li');
      const hot = item.hot ? ' is-hot' : '';
@@ -53,16 +53,31 @@
      items.forEach((it) => ol.appendChild(dropItem(it)));
    }
 
-   /* Wire accordion open/close. Only one row may be open at a time across the
-      whole page: opening one closes the rest; clicking an open one closes it.
-      Re-run on every render (lang swap rebuilds the lists). */
+   /* Wire accordion open/close. One row open at a time across the whole page.
+      Open = measure the body's natural height and set it as max-height (px);
+      close = set max-height back to 0. A single measured property animating at
+      a single speed — no fighting between competing transitions/units. */
    function wireDropdowns() {
      const buttons = Array.from(document.querySelectorAll('.tag-drop'));
+
+     const close = (btn) => {
+       btn.setAttribute('aria-expanded', 'false');
+       const body = btn.nextElementSibling;
+       if (body && body.classList.contains('drop-body')) body.style.maxHeight = '0px';
+     };
+     const open = (btn) => {
+       btn.setAttribute('aria-expanded', 'true');
+       const body = btn.nextElementSibling;
+       if (body && body.classList.contains('drop-body')) {
+         body.style.maxHeight = `${body.scrollHeight}px`;
+       }
+     };
+
      buttons.forEach((btn) => {
        btn.addEventListener('click', () => {
          const willOpen = btn.getAttribute('aria-expanded') !== 'true';
-         buttons.forEach((b) => b.setAttribute('aria-expanded', 'false'));
-         btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+         buttons.forEach(close);          // collapse everything first
+         if (willOpen) open(btn);         // then expand the clicked one
        });
      });
    }
@@ -98,7 +113,8 @@
        if (el.tagName === 'A') el.setAttribute('href', `mailto:${contact.email}`);
      });
 
-     // re-render the lists in the new language, then re-wire
+     // re-render the lists in the new language, then re-wire (this also wipes
+     // any inline max-height, since the <li>s are rebuilt — all start closed)
      renderList('themesList', themes);
      renderList('artefactsList', artefacts);
      renderList('projectsList', projects);

@@ -278,23 +278,18 @@
   .tag-drop:hover .drop-mark { color: var(--hot-2); }
   .tag-drop[aria-expanded="true"] .drop-mark { transform: rotate(45deg); color: var(--hot-2); }
 
-  /* drop body — single coordinated reveal via grid-template-rows (0fr → 1fr).
-     No opacity transition: one property, one speed, so open and close don't
-     race each other. The inner wrapper clips the text as the row collapses. */
+  /* drop body — clipped, animated by max-height. The open height is measured
+     in JS and applied inline (style="max-height: NNNpx"); CSS holds the closed
+     state and the single transition. One property, one speed, exact target. */
   .drop-body {
-    display: grid;
-    grid-template-rows: 0fr;
+    overflow: hidden;
+    max-height: 0;
     max-width: 60ch;
-    transition: grid-template-rows .4s cubic-bezier(.2,.7,.2,1);
+    transition: max-height .5s cubic-bezier(.2,.7,.2,1);
   }
   .drop-inner {
-    overflow: hidden;
-    min-height: 0;
     padding-top: 8px;
     padding-bottom: 4px;
-  }
-  .tag-drop[aria-expanded="true"] + .drop-body {
-    grid-template-rows: 1fr;
   }
   .drop-body p {
     font-family: var(--serif);
