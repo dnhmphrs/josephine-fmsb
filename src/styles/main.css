@@ -97,7 +97,7 @@
   h1 .a { font-style: normal; }
   h1 .b { font-style: italic; }
 
-  h1 .a:lang(zh) { font-style: normal; }
+  h1 .a:lang(zh) { font-style: italic; }
   h1 .b:lang(zh) { font-style: normal; }
 
   .masthead .role {
