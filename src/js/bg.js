@@ -21,7 +21,7 @@
    =========================================================================== */
 
    (function () {
-    const MODE = 1;
+    const MODE = 2;
   
     const canvas = document.getElementById('bg');
     if (!canvas) return;
