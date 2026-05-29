@@ -21,7 +21,7 @@
    =========================================================================== */
 
    (function () {
-    const MODE = 2;
+    const MODE = 1;
   
     const canvas = document.getElementById('bg');
     if (!canvas) return;
@@ -84,7 +84,7 @@
   
         // barely-there bloom following the cursor (gofun, ~5%)
         vec2 d = uv - uMouse; d.x *= uRes.x / uRes.y;
-        col = mix(col, gofun, exp(-dot(d, d) * 7.0) * 0.05);
+        col = mix(col, gofun, exp(-dot(d, d) * 7.0) * 0.5);
   
         // washi grain / dither — seeded in document space so it scrolls too
         float n = hash(vec2(uv.x * uRes.x, docY) * 0.5 + fract(uT * 0.08) * vec2(13.0, 7.0));
