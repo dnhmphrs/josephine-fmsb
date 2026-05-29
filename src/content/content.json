@@ -33,19 +33,7 @@
       "en": "Berlin, DE",
       "zh": "德国 · 柏林"
     },
-    "meta_dates": {
-      "en": "Dates &amp; dimensions variable",
-      "zh": "日期与规格可变"
-    },
-    "portrait_tag": {
-      "en": "Portrait",
-      "zh": "肖像"
-    },
     "about_label": {
-      "en": "About",
-      "zh": "简介"
-    },
-    "about_marg": {
       "en": "About",
       "zh": "简介"
     },
@@ -69,15 +57,7 @@
       "en": "Themes",
       "zh": "主题"
     },
-    "themes_marg": {
-      "en": "Themes",
-      "zh": "主题"
-    },
     "artefacts_label": {
-      "en": "Artefacts",
-      "zh": "器物"
-    },
-    "artefacts_marg": {
       "en": "Artefacts",
       "zh": "器物"
     },
@@ -85,26 +65,9 @@
       "en": "Projects",
       "zh": "项目"
     },
-    "projects_marg": {
-      "en": "Projects",
-      "zh": "项目"
-    },
-    "profile_label": {
-      "en": "Profile",
-      "zh": "概览"
-    },
-    "profile_marg": {
-      "en": "Portrait · Map",
-      "zh": "肖像 · 图"
-    },
-    "diagram_caption": {
-      "en": "Fig. — The Overlap: state · industry · grassroots",
-      "zh": "图 — 交集：国家 · 产业 · 基层"
-    },
     "dg_state":      { "en": "State",      "zh": "国家" },
     "dg_industry":   { "en": "Industry",   "zh": "产业" },
     "dg_grassroots": { "en": "Grassroots", "zh": "基层" },
-    "dg_here":       { "en": "where I work", "zh": "我的位置" },
     "contact_label": {
       "en": "Contact",
       "zh": "联系"
@@ -116,10 +79,6 @@
     "contact_sub": {
       "en": "For collaborations, briefings, convenings, or correspondence. &nbsp;—&nbsp; linkedin.com/in/josephinesb",
       "zh": "合作、简报、召集或来函，欢迎联系。 &nbsp;—&nbsp; linkedin.com/in/josephinesb"
-    },
-    "footer_mark": {
-      "en": "2026",
-      "zh": "2026"
     },
     "error_msg": {
       "en": "Aiyo, méiyǒu!",

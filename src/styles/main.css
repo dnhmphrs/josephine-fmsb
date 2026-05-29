@@ -15,11 +15,11 @@
     --rule:   #cbc7ba;
     --hot:    #6a4cc4;   /* lilac — the one accent */
     --hot-2:  #5238a8;   /* readable lilac for body links */
-  
+
     --serif: "Newsreader", Georgia, "Times New Roman", serif;
     --sans:  "Archivo", Helvetica, Arial, sans-serif;
     --mono:  "Spline Sans Mono", ui-monospace, "Courier New", monospace;
-  
+
     --pad: clamp(20px, 4.5vw, 80px);
   }
   :root:lang(zh) {
@@ -27,23 +27,13 @@
     --sans:  "Archivo", "Noto Sans SC", sans-serif;
     --mono:  "Spline Sans Mono", "Noto Sans SC", monospace;
   }
-  
+
   * { box-sizing: border-box; }
   /* +bg : paper is the page background on <html> — it stays the fallback that
      paints *behind* the shader canvas. */
   html {-webkit-text-size-adjust: 100%; background: var(--paper); scroll-behavior: smooth; }
   ::selection { background: var(--hot); color: #fff; }
 
-  /* html::after{
-    content:"";
-    left:0;
-    right:0;
-    bottom:0;
-    height:50vh;
-    background: #dfdbd7;
-    z-index:-1;
-  } */
-  
   body {
     margin: 0; padding: 0;
     background: transparent;   /* +bg : was var(--paper) — let the canvas show through */
@@ -63,15 +53,15 @@
     display: block;
     pointer-events: none;
   }
-  
+
   /* font-loading gate: hide content until webfonts are ready (no FOUT reflow) */
   body.fonts-loading .wrap, body.fonts-loading .lang-toggle { opacity: 0; }
   .wrap, .lang-toggle { opacity: 1; transition: opacity .5s ease; }
   @media (prefers-reduced-motion: reduce) { .wrap, .lang-toggle { transition: none; } }
-  
+
   /* +bg : sit content above the canvas (z-index:0). lang-toggle already fixed at 100. */
   .wrap { position: relative; z-index: 1; width: 100%; counter-reset: row; }
-  
+
   /* ---------------- MASTHEAD ---------------- */
   .masthead {
     position: relative;
@@ -83,7 +73,7 @@
     align-items: start;
   }
   .mast-main { min-width: 0; }
-  
+
   .index-mark {
     font-family: var(--mono);
     font-size: 11px;
@@ -93,7 +83,7 @@
     margin: 0 0 18px;
   }
   .index-mark sup { color: var(--hot); }
-  
+
   /* FIX (3): h1 sized between the original (too big) and the trimmed (too small) */
   h1 {
     font-family: var(--serif);
@@ -106,7 +96,7 @@
   }
   h1 .a { font-style: normal; }
   h1 .b { font-style: italic; }
-  
+
   .masthead .role {
     font-family: var(--serif);
     font-style: italic;
@@ -116,9 +106,8 @@
     margin: 26px 0 0;
     max-width: 48ch;
   }
-  
-  /* right column — status metadata, FAE-style. This is also the block the
-     portrait sits under and matches the width of. */
+
+  /* right column — status metadata, FAE-style. */
   .masthead .meta {
     font-family: var(--mono);
     font-size: 11.5px;
@@ -135,11 +124,8 @@
   }
   .masthead .meta a { color: var(--ink); border-bottom: 1px solid var(--rule); width: max-content; max-width: 100%; word-break: break-all; }
   .masthead .meta a:hover { border-color: var(--hot); color: var(--hot-2); }
-  
-  /* ---------------- PORTRAIT PLACEHOLDER ----------------
-     Option C: a calm sign-off portrait in the Contact row — the spot the diagram
-     used to hold. The masthead stays pure type; the face arrives where you say
-     goodbye. Sized modestly and bottom-aligned to the contact text. */
+
+  /* ---------------- PORTRAIT PLACEHOLDER ---------------- */
   .portrait {
     position: relative;
     width: 100%;
@@ -162,7 +148,7 @@
     padding: 4px 8px 3px;
     border-top: 1px solid var(--ink); border-right: 1px solid var(--ink);
   }
-  
+
   /* ---------------- ROWS / SECTIONS ---------------- */
   .row {
     display: grid;
@@ -175,9 +161,7 @@
     border-bottom: 1px solid var(--rule);
     align-items: start;
   }
-  /* .row:last-of-type { border-bottom: 2px solid var(--ink); } */
-  /* .row:last-of-type { border-bottom: none; } */
-  
+
   .label {
     counter-increment: row;
     position: sticky; top: 16px;
@@ -197,9 +181,9 @@
     color: var(--hot-2);
     margin-bottom: 10px;
   }
-  
+
   .content { min-width: 0; }
-  
+
   .content .lede {
     font-family: var(--serif);
     font-size: clamp(22px, 2.6vw, 33px);
@@ -225,7 +209,7 @@
     margin-top: 18px;
   }
   :lang(zh) .content .sub { line-height: 1.9; }
-  
+
   /* right marginalia per section (CSS-generated) */
   .row::after {
     font-family: var(--mono);
@@ -237,10 +221,9 @@
     align-self: start;
     line-height: 1.6;
   }
-  .row[data-marg]::after { content: attr(data-marg); } /* idk if color lilac or not is better */
-  /* .row.r-end::after { color: var(--hot); } */
-  
-  /* ---------------- CITATION / DROPDOWN LISTS ---------------- */
+  .row[data-marg]::after { content: attr(data-marg); }
+
+  /* ---------------- CITATION / ACCORDION LISTS ---------------- */
   ol.cites { list-style: none; margin: 0; padding: 0; counter-reset: cite; }
   ol.cites li {
     counter-increment: cite;
@@ -257,9 +240,15 @@
     font-family: var(--mono);
     font-size: 11px;
     color: var(--ink-3);
+    transition: color .2s ease;
   }
   ol.cites-drop li { padding-right: 8px; }
-  
+
+  /* the "one active row" cue lives entirely in the leading number — no background.
+     hover warms it; the open row goes full lilac. */
+  ol.cites li:hover::before { color: var(--hot-2); }
+  ol.cites li:has(.tag-drop[aria-expanded="true"])::before { color: var(--hot); }
+
   .tag-drop {
     appearance: none;
     background: transparent; border: 0; margin: 0; padding: 0;
@@ -273,19 +262,40 @@
     font-size: clamp(18px, 1.8vw, 23px);
     letter-spacing: -0.01em;
     color: var(--ink);
-    transition: color .15s;
+    transition: color .15s ease, transform .28s cubic-bezier(.2,.7,.2,1);
   }
-  .tag-drop:hover .tag-text { color: var(--hot-2); }
+  /* hover + active share the same elegant nudge */
+  .tag-drop:hover .tag-text,
+  .tag-drop[aria-expanded="true"] .tag-text { color: var(--hot-2); transform: translateX(3px); }
   .tag-drop.is-hot .tag-text::before { content: "✦ "; color: var(--hot); font-size: .7em; vertical-align: 2px; }
   .tag-drop .drop-mark {
     margin-left: auto;
     font-family: var(--mono);
     font-size: 14px; color: var(--ink-3); font-weight: 400;
-    transition: transform .25s, color .15s;
+    transition: transform .25s cubic-bezier(.2,.7,.2,1), color .15s;
     user-select: none;
   }
+  .tag-drop:hover .drop-mark { color: var(--hot-2); }
   .tag-drop[aria-expanded="true"] .drop-mark { transform: rotate(45deg); color: var(--hot-2); }
-  .drop-body { margin-top: 8px; padding-bottom: 4px; max-width: 60ch; }
+
+  /* drop body — single coordinated reveal via grid-template-rows (0fr → 1fr).
+     No opacity transition: one property, one speed, so open and close don't
+     race each other. The inner wrapper clips the text as the row collapses. */
+  .drop-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    max-width: 60ch;
+    transition: grid-template-rows .4s cubic-bezier(.2,.7,.2,1);
+  }
+  .drop-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding-top: 8px;
+    padding-bottom: 4px;
+  }
+  .tag-drop[aria-expanded="true"] + .drop-body {
+    grid-template-rows: 1fr;
+  }
   .drop-body p {
     font-family: var(--serif);
     font-size: clamp(15px, 1.2vw, 17px);
@@ -302,7 +312,7 @@
     border-bottom: 1px solid var(--rule);
   }
   .drop-body .more:hover { border-color: var(--hot); }
-  
+
   /* venue / year / note tails */
   .venue {
     font-family: var(--serif); font-style: italic;
@@ -310,7 +320,7 @@
     color: var(--ink-2); margin-left: 4px;
   }
   .yr { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-left: 6px; }
-  
+
   /* ---------------- CONTACT ROW — Variant D: top-aligned band ---------------- */
   .contact-row3 {
     display: grid;
@@ -343,28 +353,13 @@
     min-width: 0;
   }
   .cc-figure .domain-svg {
-    /* width: 100%; max-width: 400px; */
     height: auto; overflow: visible;
-    /* aspect-ratio: 480 / 380; */
   }
   .cc-figcap {
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--ink-3); line-height: 1.5;
   }
-  .domain-svg .dom-ring  { fill: none; stroke: var(--ink); stroke-width: 1.5; }
-  .domain-svg .dom-fill  { fill: var(--hot); opacity: .07; }
-  .domain-svg .dom-core  { fill: var(--hot); opacity: .17; }
-  .domain-svg .dom-label {
-    font-family: var(--sans); font-weight: 600; font-size: 15px; letter-spacing: -0.01em;
-    fill: var(--ink); text-anchor: middle; text-transform: uppercase;
-  }
-  .domain-svg .dom-core-label {
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
-    fill: var(--hot-2); text-anchor: middle;
-  }
-  .domain-svg .dom-tick { stroke: var(--hot); stroke-width: 1.25; }
-  .domain-svg .dom-core-dot { fill: var(--hot); }
-  
+
   /* domain-map drawing styles */
   .domain-svg .dom-ring  { fill: none; stroke: var(--ink); stroke-width: 1.5; }
   .domain-svg .dom-fill  { fill: var(--hot); opacity: .07; }
@@ -379,17 +374,27 @@
   }
   .domain-svg .dom-tick { stroke: var(--hot); stroke-width: 1.25; }
   .domain-svg .dom-core-dot { fill: var(--hot); }
-  
-  /* ---------------- FOOTER MARK ---------------- */
-  .wrap::after {
-    content: attr(data-footer-mark);
-    display: block;
+
+  /* ---------------- FOOTER ---------------- */
+  .site-footer {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px var(--pad);
     font-family: var(--mono);
-    font-size: 11px; letter-spacing: 0.05em;
+    font-size: 11px;
+    letter-spacing: 0.05em;
     color: var(--ink-3);
-    padding: 24px var(--pad) 24px var(--pad);
   }
-  
+  .site-footer .foot-link {
+    color: var(--ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color .15s, border-color .15s;
+  }
+  .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); }
+
   /* ---------------- LANGUAGE TOGGLE (fixed, top-right, square) ---------------- */
   .lang-toggle {
     position: fixed; top: 14px; right: 14px; z-index: 100;
@@ -407,7 +412,7 @@
   .lang-toggle:hover { border-color: var(--hot); }
   .lang-toggle:hover .seg.zh { border-left-color: var(--hot); }
   @media (max-width: 760px) { .lang-toggle { top: 10px; right: 10px; } }
-  
+
   /* ---------------- RESPONSIVE ---------------- */
   @media (max-width: 760px) {
     .masthead { grid-template-columns: 1fr; }
