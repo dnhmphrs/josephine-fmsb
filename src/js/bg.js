@@ -13,16 +13,13 @@
    USAGE: import once from main.js  ->  import './bg.js';
    Requires <canvas id="bg"> in the page and the CSS in main.css (see notes).
 
-   Pick a look by changing MODE:
-     0 = Murasaki dusk (紫)     faint lilac settling at the foot   [default]
-     1 = Gofun mist   (胡粉)    warm shell-white sky into paper
-     2 = Sumi wash    (墨)      low brushed ink band, sumi-e horizon
-     3 = Asagiri haze (朝霧)    twin tints drifting slowly (only animated one)
+   The look — a combination of the old 胡粉 and 墨 washes:
+     gofun (胡粉) shell-white mist settling out of the sky into the paper, with a
+     low brushed sumi (墨) ink horizon and a faint murasaki band pooled at the
+     very foot of the page.
    =========================================================================== */
 
    (function () {
-    const MODE = 2;
-  
     const canvas = document.getElementById('bg');
     if (!canvas) return;
   
@@ -42,7 +39,6 @@
       uniform vec2  uRes;
       uniform float uT;
       uniform vec2  uMouse;   // 0..1, y up, smoothed
-      uniform int   uMode;
       uniform float uScroll;  // device px scrolled from doc top
       uniform float uDocH;    // device px, full document height
   
@@ -66,21 +62,12 @@
         float y = clamp(1.0 - docN + yShift, 0.0, 1.0);  // 1 = doc top
         vec3 col = paper;
   
-        if (uMode == 0) {
-          float g = pow(smoothstep(0.0, 0.66, 1.0 - y), 1.6);
-          col = mix(paper, mix(paper, murasaki, 0.5), g * 0.16);
-          col = mix(col, gofun, smoothstep(0.55, 1.0, y) * 0.09);
-        } else if (uMode == 1) {
-          col = mix(paper, gofun, smoothstep(0.32, 1.0, y) * 0.55);
-          col = mix(col, usuzumi, smoothstep(0.22, 0.0, y) * 0.045);
-        } else if (uMode == 2) {
-          col = mix(paper, usuzumi, smoothstep(0.30, 0.0, y) * 0.075);
-          col = mix(col, mix(paper, murasaki, 0.5), smoothstep(0.20, 0.0, y) * 0.05);
-        } else {
-          float drift = sin(uT * 0.05) * 0.10;
-          col = mix(col, gofun, smoothstep(0.40 + drift, 1.0, y) * 0.10);
-          col = mix(col, mix(paper, murasaki, 0.5), smoothstep(0.50 - drift, 0.0, y) * 0.13);
-        }
+        // gofun (胡粉) mist — warm shell-white settling out of the sky
+        col = mix(col, gofun, smoothstep(0.32, 1.0, y) * 0.55);
+        // sumi (墨) ink — low brushed horizon at the foot
+        col = mix(col, usuzumi, smoothstep(0.30, 0.0, y) * 0.075);
+        // faint murasaki pooled beneath the ink
+        col = mix(col, mix(paper, murasaki, 0.5), smoothstep(0.20, 0.0, y) * 0.05);
   
         // barely-there bloom following the cursor (gofun, ~5%)
         vec2 d = uv - uMouse; d.x *= uRes.x / uRes.y;
@@ -116,7 +103,6 @@
       res:   gl.getUniformLocation(prog, 'uRes'),
       t:     gl.getUniformLocation(prog, 'uT'),
       mouse: gl.getUniformLocation(prog, 'uMouse'),
-      mode:  gl.getUniformLocation(prog, 'uMode'),
       scroll: gl.getUniformLocation(prog, 'uScroll'),
       docH:   gl.getUniformLocation(prog, 'uDocH'),
     };
@@ -149,7 +135,6 @@
       gl.uniform2f(U.res, canvas.width, canvas.height);
       gl.uniform1f(U.t, t);
       gl.uniform2f(U.mouse, m.x, m.y);
-      gl.uniform1i(U.mode, MODE);
       gl.uniform1f(U.scroll, (window.scrollY || window.pageYOffset || 0) * dpr);
       gl.uniform1f(U.docH, document.documentElement.scrollHeight * dpr);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
