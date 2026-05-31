@@ -65,9 +65,9 @@
         // gofun (胡粉) mist — warm shell-white settling out of the sky
         col = mix(col, gofun, smoothstep(0.32, 1.0, y) * 0.55);
         // sumi (墨) ink — low brushed horizon at the foot
-        col = mix(col, usuzumi, smoothstep(0.30, 0.0, y) * 0.075);
+        col = mix(col, usuzumi, smoothstep(0.30, 0.0, y) * 0.09);
         // faint murasaki pooled beneath the ink
-        col = mix(col, mix(paper, murasaki, 0.5), smoothstep(0.20, 0.0, y) * 0.05);
+        col = mix(col, mix(paper, murasaki, 0.5), smoothstep(0.20, 0.0, y) * 0.062);
   
         // barely-there bloom following the cursor (gofun, ~5%)
         vec2 d = uv - uMouse; d.x *= uRes.x / uRes.y;
