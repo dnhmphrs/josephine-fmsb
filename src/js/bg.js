@@ -15,7 +15,7 @@
     if (navigator.gpu) {
       try {
         const manifold = await import('./manifold.js');
-        if (await manifold.init()) return;     // WebGPU path took over
+        // if (await manifold.init()) return;     // WebGPU path took over
       } catch (e) {
         // fall through to the WebGL standard page
       }
