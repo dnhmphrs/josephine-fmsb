@@ -363,7 +363,7 @@
   .domain-svg .dom-fill  { fill: var(--hot); opacity: .07; }
   .domain-svg .dom-core  { fill: var(--hot); opacity: .17; }
   .domain-svg .dom-label {
-    font-family: var(--sans); font-weight: 600; font-size: 15px; letter-spacing: -0.01em;
+    font-family: var(--sans); font-weight: 400; font-size: 15px; letter-spacing: -0.01em;
     fill: var(--ink); text-anchor: middle; text-transform: uppercase;
   }
   .domain-svg .dom-core-label {
