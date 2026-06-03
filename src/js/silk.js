@@ -142,19 +142,13 @@
      let W = 1, H = 1;
      function resize() {
        const dpr = Math.min(devicePixelRatio || 1, DPR_CAP);
-       // Measure the actual layout size dictated by CSS (inset: 0)
-       // rather than the window's volatile innerHeight
-       W = canvas.width  = Math.max(1, Math.round(canvas.clientWidth  * dpr));
-       H = canvas.height = Math.max(1, Math.round(canvas.clientHeight * dpr));
-       
-       // NOTE: canvas.style.width and canvas.style.height have been deleted!
-       // We let CSS handle the sizing with 100vw and 100dvh now.
+       W = canvas.width  = Math.max(1, Math.round(innerWidth  * dpr));
+       H = canvas.height = Math.max(1, Math.round(innerHeight * dpr));
+       canvas.style.width  = innerWidth  + 'px';
+       canvas.style.height = innerHeight + 'px';
      }
-   
-     // Swap the old 'resize' event listener for a ResizeObserver
-     const observer = new ResizeObserver(resize);
-     observer.observe(canvas);
-     resize(); // Trigger once on load
+     addEventListener('resize', resize, { passive: true });
+     resize();
    
      const start = performance.now();
      function frame(now) {
