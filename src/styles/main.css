@@ -387,6 +387,7 @@
   }
   .site-footer .foot-link {
     text-decoration: none;
+    opacity: 0.25;
   }
   .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); }
 
@@ -395,7 +396,7 @@
     position: fixed; top: 14px; right: 14px; z-index: 100;
     display: inline-flex; align-items: stretch;
     border: 1px solid var(--ink); border-radius: 0;
-    background: var(--paper); overflow: hidden; cursor: pointer;
+    background: none; overflow: hidden; cursor: pointer;
     font-family: var(--mono); font-size: 10.5px; font-weight: 500;
     letter-spacing: 0.08em; line-height: 1;
     box-shadow: 0 1px 6px rgba(17,17,20,.06);
@@ -405,7 +406,6 @@
   .lang-toggle .seg.on { background: var(--ink); color: var(--paper); }
   .lang-toggle .seg.zh { border-left: 1px solid var(--ink); }
   .lang-toggle:hover { border-color: var(--hot); }
-  .lang-toggle:hover .seg.zh { border-left-color: var(--hot); }
   @media (max-width: 760px) { .lang-toggle { top: 10px; right: 10px; } }
 
   /* ---------------- RESPONSIVE ---------------- */
