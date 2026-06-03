@@ -28,9 +28,11 @@
       padding:var(--pad); position:relative; overflow:hidden;
     }
     #bg {
-      position: fixed; top: 0; left: 0;
+      position: fixed; 
+      top: -15vh;      /* Pull the canvas up above the top of the screen */
+      left: 0;
       width: 100vw; 
-      height: 100dvh; /* This is the magic bullet for mobile Safari */
+      height: 130vh;   /* Make it extra tall to cover the bottom bounce and address bar shifts */
       z-index: 0;
       display: block;
       pointer-events: none;
