@@ -174,7 +174,7 @@
     position: sticky; top: 16px;
     font-family: var(--mono);
     font-weight: 400;
-    font-size: clamp(13px, 1.25vw, 15px);
+    font-size: clamp(15px, 2.0vw, 18px);
     letter-spacing: 0.01em;
     color: var(--ink);
   }
