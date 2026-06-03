@@ -10,6 +10,7 @@
    :root {
     --paper:  #efece3;
     --ink:    #111114;
+    --ink-1:  #232328;
     --ink-2:  #54555b;
     --ink-3:  #8e8f95;
     --rule:   #232323;
@@ -32,7 +33,7 @@
   /* +bg : paper is the page background on <html> — it stays the fallback that
      paints *behind* the shader canvas. */
   html {-webkit-text-size-adjust: 100%; background: var(--paper); scroll-behavior: smooth; }
-  ::selection { background: var(--ink); color: #fff; }
+  ::selection { background: var(--ink-1); color: var(--ink-2) }
 
   body {
     margin: 0; padding: 0;
