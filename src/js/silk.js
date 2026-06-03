@@ -142,8 +142,10 @@
      let W = 1, H = 1;
      function resize() {
        const dpr = Math.min(devicePixelRatio || 1, DPR_CAP);
-       W = canvas.width  = Math.max(1, Math.round(innerWidth  * dpr));
-       H = canvas.height = Math.max(1, Math.round(innerHeight * dpr));
+       // Measure the actual layout size dictated by CSS (inset: 0)
+       // rather than the window's volatile innerHeight
+       W = canvas.width  = Math.max(1, Math.round(canvas.clientWidth  * dpr));
+       H = canvas.height = Math.max(1, Math.round(canvas.clientHeight * dpr));
        canvas.style.width  = innerWidth  + 'px';
        canvas.style.height = innerHeight + 'px';
      }
