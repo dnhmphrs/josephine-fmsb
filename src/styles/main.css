@@ -103,7 +103,7 @@
     line-height: 1.32;
     color: var(--ink);
     margin: 26px 0 0;
-    max-width: 48ch;
+    max-width: 52ch;
   }
 
   /* right column — status metadata, FAE-style. */
