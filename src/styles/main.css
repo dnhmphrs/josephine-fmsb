@@ -9,7 +9,7 @@
 
    :root {
     --paper:#efece3; --ink:#111114; --ink-1:#232327; --ink-2:#54555b;
-    --ink-3:#8e8f95; --rule:#232323; --hot:#6a4cc4; --hot-2:#5238a8;
+    --ink-3:#7e7f85; --rule:#232323; --hot:#6a4cc4; --hot-2:#5238a8;
   
     --serif: "EB Garamond", Georgia, "Times New Roman", serif;
     --sans:  "Archivo", Helvetica, Arial, sans-serif;
@@ -310,8 +310,8 @@
 
   /* venue / year / note tails */
   .venue {
-    font-family: var(--serif); font-style: italic;
-    font-size: clamp(14px, 1.2vw, 16px);
+    font-family: var(--serif);
+    font-size: clamp(16px, 1.3vw, 18px);
     color: var(--ink-2); margin-left: 4px;
   }
   .yr { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-left: 6px; }
