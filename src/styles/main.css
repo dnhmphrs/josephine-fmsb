@@ -89,7 +89,7 @@
   h1 {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(50px, 11vw, 152px);
+    font-size: clamp(50px, 11vw, 136px);
     line-height: 0.87;
     letter-spacing: -0.035em;
     margin: 0;
