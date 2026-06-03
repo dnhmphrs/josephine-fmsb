@@ -33,7 +33,7 @@
   /* +bg : paper is the page background on <html> — it stays the fallback that
      paints *behind* the shader canvas. */
   html {-webkit-text-size-adjust: 100%; background: var(--paper); scroll-behavior: smooth; }
-  ::selection { background: var(--ink-1); color: var(--ink-2) }
+  ::selection { background: var(--ink-1); color: var(--paper) }
 
   body {
     margin: 0; padding: 0;
