@@ -384,7 +384,7 @@
   }
   .site-footer .foot-link {
     text-decoration: none;
-    opacity: 0.15;
+    opacity: 0.25;
   }
   .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); }
 
