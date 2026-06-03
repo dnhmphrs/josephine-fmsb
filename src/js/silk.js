@@ -31,7 +31,7 @@
    // ---- TUNABLES (compile-time) -------------------------------------------
    const FLOW_SPEED: f32 = 0.01;   // how fast the silk moves
    const WARP:       f32 = 1.00;   // fold strength (domain warp)
-   const BAND_FREQ:  f32 = 4.0;    // density of the silk bands
+   const BAND_FREQ:  f32 = 2.0;    // density of the silk bands
    const SHEEN:      f32 = 0.0;    // brightness of the drifting highlight
    
    fn hash21(p: vec2<f32>) -> f32 {
