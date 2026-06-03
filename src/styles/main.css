@@ -159,7 +159,7 @@
     padding: clamp(30px, 4vw, 60px) var(--pad);
     border-bottom: 1px solid var(--rule);
     align-items: start;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(7.5px);
   }
 
   .label {
