@@ -12,7 +12,7 @@
     --ink:    #111114;
     --ink-2:  #54555b;
     --ink-3:  #8e8f95;
-    --rule:   #cbc7ba;
+    --rule:   #232323;
     --hot:    #6a4cc4;   /* lilac — the one accent */
     --hot-2:  #5238a8;   /* readable lilac for body links */
 
@@ -66,7 +66,7 @@
   .masthead {
     position: relative;
     padding: clamp(28px, 5vw, 64px) var(--pad) clamp(24px, 3vw, 40px);
-    border-bottom: 2px solid var(--ink);
+    border-bottom: 1.5px solid var(--rule);
     display: grid;
     grid-template-columns: minmax(0, 1fr) clamp(180px, 22vw, 300px);
     gap: clamp(20px, 4vw, 64px);
@@ -387,9 +387,8 @@
   }
   .site-footer .foot-link {
     text-decoration: none;
-    opacity: 0;
   }
-  .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); opacity: 0.75; }
+  .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); }
 
   /* ---------------- LANGUAGE TOGGLE (fixed, top-right, square) ---------------- */
   .lang-toggle {
