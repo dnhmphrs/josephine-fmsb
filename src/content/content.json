@@ -45,13 +45,9 @@
       "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "zh": "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。"
     },
-    "about_p2": {
-      "en": "Embedded across the seams between sectors, the work facilitates the emergence of new systems for <b>AI</b>, <b>security</b> and <b>society</b> — translating between the people who build capability, the bodies that govern it, and the communities who live with its consequences.",
-      "zh": "在各部门的接缝之间展开工作，促成<b>人工智能</b>、<b>安全</b>与<b>社会</b>新系统的形成——在构建能力的人、治理能力的机构，以及承受其后果的社区之间进行转译。"
-    },
     "about_sub": {
-      "en": "Practice — Researcher / Facilitator / Strategist / Libertine / Provocateur / Arsonist. Based in Berlin. Working across English &amp; 中文.",
-      "zh": "实践 — 研究者 / 促进者 / 战略家 / 风流者 / 煽动者 / 纵火者。常驻柏林。工作语言：English &amp; 中文。"
+      "en": "Based in Berlin. Working across English &amp; 中文.",
+      "zh": "工作语言：English &amp; 中文。"
     },
     "themes_label": {
       "en": "Themes",
