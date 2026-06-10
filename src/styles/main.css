@@ -384,7 +384,7 @@
   }
   .site-footer .foot-link {
     text-decoration: none;
-    color: white;
+    color: #fafafa;
   }
   .site-footer .foot-link:hover { color: var(--hot-2); border-color: var(--hot); }
 
