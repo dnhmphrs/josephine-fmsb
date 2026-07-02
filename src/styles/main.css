@@ -162,6 +162,8 @@
     backdrop-filter: blur(7.5px);
   }
 
+  .row.is-about .content p:not(.lede):not(.sub) { max-width: none; }
+
   .label {
     counter-increment: row;
     position: sticky; top: 16px;
@@ -190,7 +192,7 @@
     line-height: 1.18;
     letter-spacing: -0.01em;
     margin: 0 0 22px;
-    max-width: 26ch;
+    max-width: 40ch;
   }
   .content p {
     font-family: var(--serif);
