@@ -5,7 +5,7 @@
     "zh": "沈菲菲"
   },
   "metaDescription": {
-    "en": "Josephine Shen — research, facilitation and strategy across AI, security, and the state.",
+    "en": "Josephine Shen — research, facilitation and governnce strategy across AI, security, and the state.",
     "zh": "沈菲菲——横跨人工智能、安全与国家的研究、协调与战略。"
   },
   "ui": {
@@ -22,11 +22,11 @@
       "zh": "菲菲"
     },
     "role": {
-      "en": "Research, facilitation &amp; strategy across AI, security &amp; the state.<br>A practice for the institutions, communities and companies shaping how advanced AI meets the public good.",
+      "en": "Research, Speaker, Strategy Design across Society, Security &amp; States.<br>A practice for the institutions, communities and companies shaping how advanced AI meets for the public good.",
       "zh": "横跨人工智能、安全与国家的研究、协调与战略。<br>为塑造先进人工智能如何服务公共利益的机构、社区与企业而工作。"
     },
     "meta_avail": {
-      "en": "Available for collaboration",
+      "en": "Available for Research Collaboration, Policy Advisory and Speaker roles",
       "zh": "开放合作"
     },
     "meta_city": {
@@ -42,12 +42,12 @@
       "zh": "为塑造先进人工智能如何服务公共利益的机构、社区与企业，提供研究、协调与战略支持。"
     },
     "about_p1": {
-      "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "en": "Josephine is a AI policy researcher, bridgemaker, political organiser and strategist based in Berlin. Her work focuses on systemic analysis and political strategy with a focus on Geopolitics &amp; Technology Governance (China &amp; EU). Her work has bridged across civil society, industry and institutions to center critical risks of technology to the forefront of political design. With industry experience in Machine Learning, and visiting researcher to the United Nations Nuclear Non-Proliferation Treaty Conference (UN NPTC) she specialises in multilateral and systemic framing of technology and it's impacts.",
       "zh": "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。"
     },
     "about_sub": {
-      "en": "Based in Berlin. Working across English &amp; 中文.",
-      "zh": "工作语言：English &amp; 中文。"
+      "en": "Based in Berlin. Working across English &amp; Mandarin （Chinese）.",
+      "zh": "工作语言：英文 &amp; 中文。"
     },
     "themes_label": {
       "en": "Themes",
@@ -91,7 +91,7 @@
   "themes": [
     {
       "title": {
-        "en": "Regulatory Design",
+        "en": "Technology Industry Trends and Impact of Artificial Intellgience",
         "zh": "监管设计"
       },
       "venue": {
@@ -105,7 +105,7 @@
     },
     {
       "title": {
-        "en": "Institutional Strategy",
+        "en": "Geopolitical Analysis",
         "zh": "制度战略"
       },
       "venue": {
@@ -119,7 +119,7 @@
     },
     {
       "title": {
-        "en": "Public-Interest AI",
+        "en": "Public Interest AI and Society: Social movements and Labour Changes",
         "zh": "公共利益人工智能"
       },
       "venue": {
@@ -135,7 +135,7 @@
   "artefacts": [
     {
       "title": {
-        "en": "Lorem Ipsum Artefact I",
+        "en": "Artificial Intelligence in Nuclear Regulation Frameworks: Trends in Security Narratives and Regulartory Change",
         "zh": "Lorem Ipsum 器物 I"
       },
       "venue": {
@@ -143,13 +143,13 @@
         "zh": "简报"
       },
       "body": {
-        "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "en": "This article provides a snapshot on how Artificial Intelligence emerges as a dominante topic in traditional international security environments and outlines the impact of these topics and how it is interacting with a rapidly changing regulartory environment.",
         "zh": "占位文本。此处展开为该器物的简短说明，列出形式、范围与受众。"
       }
     },
     {
       "title": {
-        "en": "Lorem Ipsum Artefact II",
+        "en": "Ontological Insecurity: Soverignty, Nationalism and how the EU navigates the China-US Competition for Market Dominance Artificial Inteliigence",
         "zh": "Lorem Ipsum 器物 II"
       },
       "venue": {
@@ -157,7 +157,7 @@
         "zh": "工作论文"
       },
       "body": {
-        "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "en": "This Working Paper provides an analysis of how the emergence of soverignty narrative around technological infrastructure and AI is a symptom of geopolitical insecurity as market forces are concentrated in the China-US bind. Consequently, as nationalism and defense heightens across European countries, the soverignty arguement leverages this approach as it races to find security. From this lens, taking on theories and frameworks from social movement strategies, the paper provides pointers for how institutions and movements can prepare capabilties and infrastructure for protecting public interest.",
         "zh": "占位文本。此处展开为该器物的简短说明，列出形式、范围与受众。"
       }
     }
@@ -175,22 +175,22 @@
       "yr": "(2025—)",
       "hot": true,
       "body": {
-        "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "en": "Fellow investigating how geopoltiical trends in artificial intelligence agendas are shaping society, labour and national security measures.",
         "zh": "占位文本。此处展开为该项目的简短描述。"
       }
     },
     {
       "title": {
-        "en": "Grassroots Facilitation",
+        "en": "Facilitaitng Labour Movements and Public Interest Technology",
         "zh": "基层协调"
       },
       "venue": {
-        "en": "grassroots",
+        "en": "Society",
         "zh": "基层"
       },
       "yr": "(2024—)",
       "body": {
-        "en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "en": "Researching and facilitating discussions happening in Labour movements around the impact of Technology Industry",
         "zh": "占位文本。此处展开为该项目的简短描述。"
       }
     },
