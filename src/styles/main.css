@@ -117,7 +117,7 @@
     align-items: end;
   }
   .masthead .meta span, .masthead .meta a { color: var(--ink-2); text-decoration: none; }
-  .masthead .meta .avail { color: var(--ink); font-weight: 500; }
+  .masthead .meta .avail { color: var(--ink); font-weight: 500; text-align: right; }
   .masthead .meta .avail::before {
     content: "●"; color: var(--hot); font-size: 9px; margin-right: 8px; vertical-align: 1px;
   }

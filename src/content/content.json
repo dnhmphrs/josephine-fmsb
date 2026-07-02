@@ -5,7 +5,7 @@
     "zh": "沈菲菲"
   },
   "metaDescription": {
-    "en": "Josephine Shen — research, facilitation and governnce strategy across AI, security, and the state.",
+    "en": "Josephine Shen — research, facilitation and governance strategy across AI, security, and the state.",
     "zh": "沈菲菲——横跨人工智能、安全与国家的研究、协调与战略。"
   },
   "ui": {
@@ -22,7 +22,7 @@
       "zh": "菲菲"
     },
     "role": {
-      "en": "Research, Speaker, Strategy Design across Society, Security &amp; States.<br>A practice for the institutions, communities and companies shaping how advanced AI meets for the public good.",
+      "en": "Research, Speaker, Strategy Design across Society, Security &amp; States.<br>A practice for the institutions, communities and companies shaping how advanced AI meets the public good.",
       "zh": "横跨人工智能、安全与国家的研究、协调与战略。<br>为塑造先进人工智能如何服务公共利益的机构、社区与企业而工作。"
     },
     "meta_avail": {
@@ -42,8 +42,8 @@
       "zh": "为塑造先进人工智能如何服务公共利益的机构、社区与企业，提供研究、协调与战略支持。"
     },
     "about_p1": {
-      "en": "Josephine is a AI policy researcher, bridgemaker, political organiser and strategist based in Berlin. Her work focuses on systemic analysis and political strategy with a focus on Geopolitics &amp; Technology Governance (China &amp; EU). Her work has bridged across civil society, industry and institutions to center critical risks of technology to the forefront of political design. With industry experience in Machine Learning, and visiting researcher to the United Nations Nuclear Non-Proliferation Treaty Conference (UN NPTC) she specialises in multilateral and systemic framing of technology and it's impacts.",
-      "zh": "占位文本。此处将替换为该领域工作的真实摘录，用以呈现其政策与研究写作的风格、结构与论证方式，供读者参考与评估。"
+      "en": "Josephine is an AI policy researcher, bridgemaker, political organiser and strategist based in Berlin. Her work focuses on systemic analysis and political strategy with a focus on Geopolitics &amp; Technology Governance (China &amp; EU). Her work has bridged across civil society, industry and institutions to center critical risks of technology to the forefront of political design. With industry experience in Machine Learning, and as a visiting researcher to the United Nations Nuclear Non-Proliferation Treaty Conference (UN NPTC), she specialises in multilateral and systemic framing of technology and its impacts.",
+      "zh": "沈菲菲是一位常驻柏林的人工智能政策研究者、桥梁搭建者、政治组织者与战略家。她的工作聚焦于系统性分析与政治战略，尤其关注地缘政治与技术治理（中国与欧盟）。她的工作跨越公民社会、产业与机构，致力于将技术的关键风险置于政治设计的核心。凭借在机器学习领域的产业经验，以及作为联合国核不扩散条约大会（UN NPTC）访问研究员的经历，她专长于以多边与系统性的视角审视技术及其影响。"
     },
     "about_sub": {
       "en": "Based in Berlin. Working across English &amp; Mandarin （Chinese）.",
@@ -91,8 +91,8 @@
   "themes": [
     {
       "title": {
-        "en": "Technology Industry Trends and Impact of Artificial Intellgience",
-        "zh": "监管设计"
+        "en": "Technology Industry Trends and Impact of Artificial Intelligence",
+        "zh": "科技产业趋势与人工智能的影响"
       },
       "venue": {
         "en": "rules &amp; compliance",
@@ -106,7 +106,7 @@
     {
       "title": {
         "en": "Geopolitical Analysis",
-        "zh": "制度战略"
+        "zh": "地缘政治分析"
       },
       "venue": {
         "en": "agencies &amp; leverage",
@@ -120,7 +120,7 @@
     {
       "title": {
         "en": "Public Interest AI and Society: Social movements and Labour Changes",
-        "zh": "公共利益人工智能"
+        "zh": "公共利益人工智能与社会：社会运动与劳工变迁"
       },
       "venue": {
         "en": "measurement &amp; safety",
@@ -135,30 +135,30 @@
   "artefacts": [
     {
       "title": {
-        "en": "Artificial Intelligence in Nuclear Regulation Frameworks: Trends in Security Narratives and Regulartory Change",
-        "zh": "Lorem Ipsum 器物 I"
+        "en": "Artificial Intelligence in Nuclear Regulation Frameworks: Trends in Security Narratives and Regulatory Change",
+        "zh": "核监管框架中的人工智能：安全叙事与监管变革的趋势"
       },
       "venue": {
         "en": "briefing",
         "zh": "简报"
       },
       "body": {
-        "en": "This article provides a snapshot on how Artificial Intelligence emerges as a dominante topic in traditional international security environments and outlines the impact of these topics and how it is interacting with a rapidly changing regulartory environment.",
-        "zh": "占位文本。此处展开为该器物的简短说明，列出形式、范围与受众。"
+        "en": "This article provides a snapshot on how Artificial Intelligence emerges as a dominant topic in traditional international security environments and outlines the impact of these topics and how it is interacting with a rapidly changing regulatory environment.",
+        "zh": "本文简要呈现人工智能如何在传统国际安全领域中成为主导议题，并概述这些议题的影响，以及它如何与快速变化的监管环境相互作用。"
       }
     },
     {
       "title": {
-        "en": "Ontological Insecurity: Soverignty, Nationalism and how the EU navigates the China-US Competition for Market Dominance Artificial Inteliigence",
-        "zh": "Lorem Ipsum 器物 II"
+        "en": "Ontological Insecurity: Sovereignty, Nationalism and how the EU navigates the China-US Competition for Market Dominance of Artificial Intelligence",
+        "zh": "本体性不安全：主权、民族主义，以及欧盟如何在中美争夺人工智能市场主导权的竞争中寻路"
       },
       "venue": {
         "en": "working paper",
         "zh": "工作论文"
       },
       "body": {
-        "en": "This Working Paper provides an analysis of how the emergence of soverignty narrative around technological infrastructure and AI is a symptom of geopolitical insecurity as market forces are concentrated in the China-US bind. Consequently, as nationalism and defense heightens across European countries, the soverignty arguement leverages this approach as it races to find security. From this lens, taking on theories and frameworks from social movement strategies, the paper provides pointers for how institutions and movements can prepare capabilties and infrastructure for protecting public interest.",
-        "zh": "占位文本。此处展开为该器物的简短说明，列出形式、范围与受众。"
+        "en": "This Working Paper provides an analysis of how the emergence of sovereignty narrative around technological infrastructure and AI is a symptom of geopolitical insecurity as market forces are concentrated in the China-US bind. Consequently, as nationalism and defense heighten across European countries, the sovereignty argument leverages this approach as it races to find security. From this lens, taking on theories and frameworks from social movement strategies, the paper provides pointers for how institutions and movements can prepare capabilities and infrastructure for protecting public interest.",
+        "zh": "本工作论文分析了围绕技术基础设施与人工智能的主权叙事的兴起，如何在市场力量集中于中美博弈之际，成为地缘政治不安全的一种症候。因此，随着民族主义与国防议题在欧洲各国不断升温，主权论述便借助这一路径，在寻求安全的竞逐中加以运用。从这一视角出发，本文借鉴社会运动策略的理论与框架，为机构与运动如何构建保护公共利益的能力与基础设施提供了方向。"
       }
     }
   ],
@@ -175,23 +175,23 @@
       "yr": "(2025—)",
       "hot": true,
       "body": {
-        "en": "Fellow investigating how geopoltiical trends in artificial intelligence agendas are shaping society, labour and national security measures.",
-        "zh": "占位文本。此处展开为该项目的简短描述。"
+        "en": "Fellow investigating how geopolitical trends in artificial intelligence agendas are shaping society, labour and national security measures.",
+        "zh": "作为研究员，探究人工智能议程中的地缘政治趋势如何塑造社会、劳工与国家安全举措。"
       }
     },
     {
       "title": {
-        "en": "Facilitaitng Labour Movements and Public Interest Technology",
-        "zh": "基层协调"
+        "en": "Facilitating Labour Movements and Public Interest Technology",
+        "zh": "协调劳工运动与公共利益技术"
       },
       "venue": {
         "en": "Society",
-        "zh": "基层"
+        "zh": "社会"
       },
       "yr": "(2024—)",
       "body": {
-        "en": "Researching and facilitating discussions happening in Labour movements around the impact of Technology Industry",
-        "zh": "占位文本。此处展开为该项目的简短描述。"
+        "en": "Researching and facilitating discussions happening in Labour movements around the impact of the Technology Industry.",
+        "zh": "研究并协调劳工运动中围绕技术产业影响的讨论。"
       }
     },
     {
